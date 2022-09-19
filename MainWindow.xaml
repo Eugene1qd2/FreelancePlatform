@@ -64,7 +64,18 @@
                     <GradientStop Color="#774ECCA3" Offset="1" ></GradientStop>
                 </LinearGradientBrush>
             </Border.Background>
-                
+
+            <StackPanel Margin="0,60,0,0">
+                <TextBox Width="440"
+                         Height="60"
+                         Tag="Логин"
+                         Style="{StaticResource UnderlinedTextBox}"/>
+                <TextBox Margin="0,10,0,0"
+                         Width="440"
+                         Height="60"    
+                         Tag="Пароль"
+                         Style="{StaticResource UnderlinedTextBox}"/>
+            </StackPanel>
         </Border>
 
     </Grid>
