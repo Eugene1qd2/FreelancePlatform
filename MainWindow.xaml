@@ -122,7 +122,7 @@
                 </LinearGradientBrush>
             </Border.Background>
 
-            <StackPanel Margin="0,60,0,0">
+            <StackPanel Margin="0,50,0,0">
                 <TextBox Width="440"
                          Height="60"
                          Tag="Логин"
@@ -134,10 +134,30 @@
                          Style="{StaticResource UnderlinedTextBox}"/>
                 <Button Width="440"
                         Height="70"
-                        Content="Войти"
                         Margin="0,67,0,0"
-                        VerticalAlignment="Center"
-                        FontSize="36" Style="{StaticResource WhiteButton}"/>
+                        Content="Войти"
+                        Style="{StaticResource WhiteButton}"
+                        FontSize="36"
+                        OverridesDefaultStyle="True"/>
+                <StackPanel Orientation="Horizontal"
+                            Width="320"
+                            Height="32"
+                            Margin="30"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                    <Label FontFamily="Montserrat"
+                       FontWeight="Medium"
+                       FontSize="16" Content="Нет аккаунта?"/>
+                    <Button Width="190"
+                            Height="32"
+                            Content="Зарегистрироваться"
+                            Style="{StaticResource WhiteButton}"
+                            FontSize="16"/>
+                </StackPanel>
+                <Grid >
+                    
+                </Grid>
+                
             </StackPanel>
         </Border>
 

@@ -2,40 +2,33 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Style TargetType="{x:Type Button}"
            x:Key="WhiteButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="20,5,20,5"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
 
-                    <Border Background="#d9d9d9"
+                    <Border x:Name="btnBorder"  Background="#d9d9d9"
                             CornerRadius="10"
                             BorderThickness="0"
-                            SnapsToDevicePixels="true">
-
-                        <Button
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            BorderThickness="0"
-                            Padding="20,5,20,5" 
-                            Content="{TemplateBinding Content}"
-                            Foreground="#232931"
-                            FontFamily="Montserrat"
-                            FontWeight="Medium">
-                            <Button.Style>
-                                <Style TargetType="{x:Type Button}">
-
-                                    <Setter Property="Background" Value="Transparent"/>
-                                    <Setter Property="BorderBrush" Value="Transparent"/>
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Border.Background" Value="#c9c9c9" />
-                                        </Trigger>
-
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                            SnapsToDevicePixels="true"
+                            TextBlock.Foreground="#232931"
+                            TextBlock.FontSize="{TemplateBinding FontSize}"
+                            TextBlock.FontFamily="Montserrat"
+                            TextBlock.FontWeight="Medium">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
-                    
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="btnBorder" Property="Background" Value="#c9c9c9" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="btnBorder" Property="Background" Value="#b0b0b0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
