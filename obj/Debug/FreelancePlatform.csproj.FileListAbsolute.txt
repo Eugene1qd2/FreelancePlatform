@@ -50,3 +50,4 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\FreelancePlatform.g.resources
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\FreelancePlatform.Properties.Resources.resources
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\FreelancePlatform.csproj.GenerateResource.cache
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\FreelancePlatform.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\WhiteButtonTheme.baml
