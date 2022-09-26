@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -18,16 +19,16 @@ namespace FreelancePlatform
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class EnterWindow : Window
     {
-        public MainWindow()
+        public EnterWindow()
         {
             InitializeComponent();
         }
 
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
         }
 
         private void TextBlock_MouseDown_1(object sender, MouseButtonEventArgs e)
@@ -37,10 +38,18 @@ namespace FreelancePlatform
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton==MouseButton.Left)
+            if (e.ChangedButton == MouseButton.Left)
             {
                 this.DragMove();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow window = new RegistrationWindow();
+            window.Show();
+            
+            this.Hide();
         }
     }
 }

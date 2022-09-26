@@ -14,37 +14,55 @@
                                      BorderThickness="0"
                                      VerticalContentAlignment="Center"
                                      Padding="28,5,28,5"
-                                     Foreground="#2C6C5C"
+                                     Foreground="#393E46"
                                      Background="Transparent"
                                      VerticalAlignment="Bottom"
                                      FontSize="30"
                                      FontFamily="Montserrat"
                                      FontWeight="Medium"
-                                     x:Name="SearchBox"/>
+                                     x:Name="textBox"/>
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="{TemplateBinding Tag}"
                                        VerticalAlignment="Bottom"
                                        HorizontalAlignment="Left"
-                                       Margin="30,5,30,5"
                                        FontSize="30"
                                        FontFamily="Montserrat"
                                        FontWeight="Medium"
-                                       Foreground="#3C7C6C"
-                                       Grid.Column="1">
+                                       Foreground="#2C6C5C"
+                                       Grid.Column="1"
+                                       x:Name="textBlock">
                                 <TextBlock.Style>
                                     <Style TargetType="{x:Type TextBlock}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                                            <DataTrigger Binding="{Binding Text, ElementName=textBox}" Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                         <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Margin" Value="30,5,30,5"/>
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
                         </Grid>
                     </Border>
+                    <!--<ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="Control.GotFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="FontSize" From="30" To="0"/>
+                                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="Opacity" From="1" To="0"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger  RoutedEvent="Control.LostFocus">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.07" Storyboard.TargetName="textBlock" Storyboard.TargetProperty="Opacity" From="0" To="1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>-->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
