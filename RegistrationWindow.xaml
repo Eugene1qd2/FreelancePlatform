@@ -97,13 +97,21 @@
                          Height="50"
                          Tag="Пол"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <extend:MaskedTextBox 
-                    Mask="99-99-9999"
+                <StackPanel Orientation="Horizontal" Width="440">
+                    <extend:MaskedTextBox Mask="99-99-9999"
                          Margin="0,20,0,0"
                          Width="440"
                          Height="50"
                          Style="{StaticResource UnderlinedTextBox}"
                          Tag="Дата рождения"/>
+                    <Button Style="{StaticResource RoundedButton}"
+                            Margin="-60,0,0,0"
+                            Width="45"
+                            Height="45"
+                            BorderThickness="3"
+                            Content="?"
+                            FontSize="30" Click="HintButtonClick"/>
+                </StackPanel>
                 <TextBox Margin="0,20,0,0"
                          Width="440"
                          Height="50"

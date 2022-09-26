@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\user\Desktop\FreelancePlatform\obj\Debug\
+C:\Users\qawse\Desktop\FPL\obj\Debug\
 FreelancePlatform
 none
 false
 DEBUG;TRACE
-C:\Users\user\Desktop\FreelancePlatform\App.xaml
-5902302138
+C:\Users\qawse\Desktop\FPL\App.xaml
+7-340504877
 
-7-1918259255
-18-578832890
-Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;RegistrationWindow.xaml;
+8-2008090431
+181183842027
+Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
 
-True
+False
 

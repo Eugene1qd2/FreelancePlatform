@@ -40,5 +40,11 @@ namespace FreelancePlatform
                 this.DragMove();
             }
         }
+
+        private void HintButtonClick(object sender, RoutedEventArgs e)
+        {
+            ModalWindow modal = new ModalWindow("Поле ввода вашей даты рождения");
+            modal.ShowDialog();
+        }
     }
 }
