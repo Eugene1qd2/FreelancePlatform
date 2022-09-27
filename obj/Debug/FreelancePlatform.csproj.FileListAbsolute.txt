@@ -96,3 +96,7 @@ C:\Users\qawse\Desktop\FPL\obj\Debug\FreelancePlatform.csproj.CopyComplete
 C:\Users\qawse\Desktop\FPL\obj\Debug\ModalWindow.g.cs
 C:\Users\qawse\Desktop\FPL\obj\Debug\ModalWindow.baml
 C:\Users\qawse\Desktop\FPL\obj\Debug\Assets\Themes\RoundedButtonTheme.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\RoundedButtonTheme.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\ModalWindow.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\ModalWindow.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\UnderlinedComboBoxTheme.baml
