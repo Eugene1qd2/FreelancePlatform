@@ -20,7 +20,8 @@
                                      FontSize="30"
                                      FontFamily="Montserrat"
                                      FontWeight="Medium"
-                                     x:Name="textBox"/>
+                                     x:Name="textBox"
+                                     MaxLength="{TemplateBinding MaxLength}"/>
 
                             <TextBlock IsHitTestVisible="False"
                                        Text="{TemplateBinding Tag}"

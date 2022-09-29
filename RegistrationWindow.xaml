@@ -58,7 +58,7 @@
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"
                 Width="630"
-                Height="630"
+                Height="750"
                 Grid.Row="1"
                 CornerRadius="10"
                 Panel.ZIndex="-10">
@@ -87,50 +87,68 @@
                 </Style>
             </Border.Style>
 
-            <StackPanel Margin="0,40,0,0">
+            <StackPanel Margin="40">
                 <TextBox Width="440"
                          Height="60"
-                         Tag="Фамилия Имя"
+                         Tag="Фамилия"
+                         Margin="5"
+                         Style="{StaticResource UnderlinedTextBox}"
+                         MaxLength="20"/>
+                <TextBox Width="440"
+                         Height="60"
+                         Tag="Имя"
+                         Margin="5"
+                         MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Margin="0,10,0,0"
-                         Width="440"
+                <TextBox Width="440"
+                         Height="60"
+                         Tag="Отчество"
+                         Margin="5"  
+                         MaxLength="20"
+                         Style="{StaticResource UnderlinedTextBox}"/>
+                <TextBox Width="440"
                          Height="60"
                          Tag="Пол"
+                         Margin="5"
+                         MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"/>
 
                 <StackPanel Orientation="Horizontal" Width="440">
                     <extend:MaskedTextBox Mask="99-99-9999"
-                         Margin="0,10,0,0"
+                         Margin="5"
                          Width="440"
                          Height="60"
                          Style="{StaticResource UnderlinedTextBox}"
                          Tag="Дата рождения"/>
                     <Button Style="{StaticResource RoundedButton}"
-                            Margin="-60,0,0,0"
+                            Margin="-70,0,0,0"
                             Width="45"
                             Height="45"
                             BorderThickness="3"
                             Content="?"
                             FontSize="30" Click="HintButtonClick"/>
                 </StackPanel>
-                <TextBox Margin="0,10,0,0"
+                <TextBox Margin="5"
                          Width="440"
                          Height="60"
                          Tag="Эл. почта"
-                         Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Margin="0,10,0,0"
+                         Style="{StaticResource UnderlinedTextBox}"
+                         MaxLength="50"/>
+                <TextBox Margin="5"
                          Width="440"
                          Height="60"
                          Tag="Логин (Никнейм)"
+                         MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Margin="0,10,0,0"
+                <TextBox Margin="5"
                          Width="440"
                          Height="60"
                          Tag="Пароль"
+                         MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"/>
                 <Button Width="440"
                         Height="70"
-                        Margin="0,67,0,0"
+                        Margin="35"
                         Content="Зарегистрироваться"
                         Style="{StaticResource WhiteButton}"
                         FontSize="36"

@@ -99,11 +99,13 @@
                 <TextBox Width="440"
                          Height="60"
                          Tag="Логин"
+                         MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"/>
                 <TextBox Margin="10"
                          Width="440"
                          Height="60"    
                          Tag="Пароль"
+                         MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"
                          x:Name="passwordBox"/>
                 <Button Width="440"
