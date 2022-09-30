@@ -7,6 +7,7 @@
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         xmlns:extend="clr-namespace:Xceed.Wpf.Toolkit.Obselete;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
+        xmlns:control="clr-namespace:FreelancePlatform.Assets.Controls"
         Height="850" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FocusVisual">
@@ -87,35 +88,38 @@
                 </Style>
             </Border.Style>
 
-            <StackPanel Margin="40">
+            <Grid Margin="40">
                 <TextBox Width="440"
                          Height="60"
                          Tag="Фамилия"
-                         Margin="5"
                          Style="{StaticResource UnderlinedTextBox}"
-                         MaxLength="20"/>
+                         MaxLength="20"
+                         VerticalAlignment="Top"/>
                 <TextBox Width="440"
                          Height="60"
                          Tag="Имя"
-                         Margin="5"
+                         Margin="0,70,0,0"
                          MaxLength="20"
+                         VerticalAlignment="Top"
                          Style="{StaticResource UnderlinedTextBox}"/>
                 <TextBox Width="440"
                          Height="60"
                          Tag="Отчество"
-                         Margin="5"  
                          MaxLength="20"
+                         Margin="0,140,0,0"
+                         VerticalAlignment="Top"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Width="440"
-                         Height="60"
-                         Tag="Пол"
-                         Margin="5"
-                         MaxLength="20"
-                         Style="{StaticResource UnderlinedTextBox}"/>
+                <control:UnderlinedComboBox Width="440"
+                                            Margin="0,210,0,0"
+                         VerticalAlignment="Top"
+                         Height="280"
+                                            Panel.ZIndex="10"
+                         Tag="Пол"/>
 
-                <StackPanel Orientation="Horizontal" Width="440">
+                <StackPanel Orientation="Horizontal" Width="440"
+                         Margin="0,280,0,0"
+                         VerticalAlignment="Top">
                     <extend:MaskedTextBox Mask="99-99-9999"
-                         Margin="5"
                          Width="440"
                          Height="60"
                          Style="{StaticResource UnderlinedTextBox}"
@@ -128,32 +132,35 @@
                             Content="?"
                             FontSize="30" Click="HintButtonClick"/>
                 </StackPanel>
-                <TextBox Margin="5"
-                         Width="440"
+                <TextBox Width="440"
                          Height="60"
                          Tag="Эл. почта"
+                         Margin="0,350,0,0"
+                         VerticalAlignment="Top"
                          Style="{StaticResource UnderlinedTextBox}"
                          MaxLength="50"/>
-                <TextBox Margin="5"
-                         Width="440"
+                <TextBox Width="440"
                          Height="60"
                          Tag="Логин (Никнейм)"
                          MaxLength="20"
+                         Margin="0,420,0,0"
+                         VerticalAlignment="Top"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Margin="5"
-                         Width="440"
+                <TextBox Width="440"
                          Height="60"
                          Tag="Пароль"
                          MaxLength="20"
+                         Margin="0,490,0,0"
+                         VerticalAlignment="Top"
                          Style="{StaticResource UnderlinedTextBox}"/>
                 <Button Width="440"
                         Height="70"
-                        Margin="35"
                         Content="Зарегистрироваться"
                         Style="{StaticResource WhiteButton}"
                         FontSize="36"
+                         VerticalAlignment="Bottom"
                         OverridesDefaultStyle="True"/>
-            </StackPanel>
+            </Grid>
         </Border>
 
     </Grid>
