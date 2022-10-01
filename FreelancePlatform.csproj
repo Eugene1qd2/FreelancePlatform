@@ -70,15 +70,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
+      <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\Controls\UnderlinedComboBox.xaml.cs">
       <DependentUpon>UnderlinedComboBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
     <Compile Include="ModalWindow.xaml.cs">
       <DependentUpon>ModalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Assets\Controls\PasswordBoxMy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Controls\UnderlinedComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -86,10 +96,6 @@
     <Page Include="Assets\Themes\OpacityHoverTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Themes\UnderlinedPasswordBoxTheme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Themes\UnderlinedTextBoxTheme.xaml">
       <SubType>Designer</SubType>
@@ -153,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
+    <Folder Include="Assets\MVVM\Models\" />
+    <Folder Include="Assets\MVVM\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\BackgroundImage.png" />

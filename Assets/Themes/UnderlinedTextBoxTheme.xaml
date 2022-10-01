@@ -10,8 +10,7 @@
                             Background="Transparent">
 
                         <Grid>
-                            <TextBox Text="{TemplateBinding Text}"
-                                     BorderThickness="0"
+                            <TextBox BorderThickness="0"
                                      VerticalContentAlignment="Center"
                                      Padding="28,5,28,5"
                                      Foreground="#393E46"

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\user\Desktop\FreelancePlatform\App.xaml
-9-1265804697
+91983424775
 
-91314780537
+131753929845
 18-578832890
-Assets\Controls\UnderlinedComboBox.xaml;Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedPasswordBoxTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
+Assets\Controls\PasswordBoxMy.xaml;Assets\Controls\UnderlinedComboBox.xaml;Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
 
-True
+False
 

@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FreelancePlatform"
+        xmlns:viewModel="clr-namespace:FreelancePlatform.Assets.MVVM.ViewModels"
+        xmlns:control="clr-namespace:FreelancePlatform.Assets.Controls"
         mc:Ignorable="d"
         Height="850" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -16,10 +18,17 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/BackgroundImage.png" />
     </Window.Background>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
     <Grid Height="850" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -66,7 +75,7 @@
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"
                 Width="630"
-                Height="410"
+                Padding="30"
                 Grid.Row="1"
                 CornerRadius="10"
                 Panel.ZIndex="-10">
@@ -95,43 +104,66 @@
                 </Style>
             </Border.Style>
 
-            <StackPanel Margin="0,40,0,0">
-                <TextBox Width="440"
+            <StackPanel>
+
+                <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                    <StackPanel>
+                        <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Логин"/>
+                        <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#232931" 
+                         Width="440"
                          Height="60"
                          Tag="Логин"
                          MaxLength="20"
-                         Style="{StaticResource UnderlinedTextBox}"/>
-                <StackPanel Orientation="Horizontal" Width="440"
-                         Margin="0,10,0,0"
-                         VerticalAlignment="Top">
-                    <PasswordBox Width="440"
-                         Height="60"
-                         Tag="Пароль"
-                         MaxLength="20"
-                         VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedPasswordBox}"/>
-                    <Button Style="{StaticResource RoundedButton}"
-                            Margin="-70,0,0,0"
-                            Width="45"
-                            Height="45"
-                            BorderThickness="3"
-                            Content="?"
-                            FontSize="30" Click="HintButtonClick" Tag="Поле ввода пароля"
-                            IsTabStop="False"/>
-                </StackPanel>
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,5"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                        </TextBox>
+                    </StackPanel>
+                </Border>
+                <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                    <StackPanel>
+                        <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Пароль"/>
+                        <control:PasswordBoxMy 
+                                     Width="440"
+                                     Height="60"
+                                     Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Border>
                 <Button Width="440"
                         Height="70"
                         Margin="0,67,0,0"
                         Content="Войти"
                         Style="{StaticResource WhiteButton}"
                         FontSize="36"
-                        OverridesDefaultStyle="True"/>
+                        OverridesDefaultStyle="True"
+                        Command="{Binding LoginCommand}"/>
                 <StackPanel Orientation="Horizontal"
                             Width="320"
                             Height="32"
-                            Margin="30"
                             VerticalAlignment="Center"
-                            HorizontalAlignment="Center">
+                            HorizontalAlignment="Center"
+                            Margin="0,10,0,0">
                     <Label FontFamily="Montserrat"
                        FontWeight="Medium"
                        FontSize="16" Content="Нет аккаунта?"/>
