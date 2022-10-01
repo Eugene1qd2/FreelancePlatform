@@ -43,8 +43,16 @@ namespace FreelancePlatform
 
         private void HintButtonClick(object sender, RoutedEventArgs e)
         {
-            ModalWindow modal = new ModalWindow("Поле ввода вашей даты рождения");
+            ModalWindow modal = new ModalWindow((sender as Button).Tag.ToString());
             modal.ShowDialog();
+        }
+
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

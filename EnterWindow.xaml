@@ -101,13 +101,24 @@
                          Tag="Логин"
                          MaxLength="20"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Margin="10"
-                         Width="440"
-                         Height="60"    
+                <StackPanel Orientation="Horizontal" Width="440"
+                         Margin="0,10,0,0"
+                         VerticalAlignment="Top">
+                    <PasswordBox Width="440"
+                         Height="60"
                          Tag="Пароль"
                          MaxLength="20"
-                         Style="{StaticResource UnderlinedTextBox}"
-                         x:Name="passwordBox"/>
+                         VerticalAlignment="Top"
+                         Style="{StaticResource UnderlinedPasswordBox}"/>
+                    <Button Style="{StaticResource RoundedButton}"
+                            Margin="-70,0,0,0"
+                            Width="45"
+                            Height="45"
+                            BorderThickness="3"
+                            Content="?"
+                            FontSize="30" Click="HintButtonClick" Tag="Поле ввода пароля"
+                            IsTabStop="False"/>
+                </StackPanel>
                 <Button Width="440"
                         Height="70"
                         Margin="0,67,0,0"

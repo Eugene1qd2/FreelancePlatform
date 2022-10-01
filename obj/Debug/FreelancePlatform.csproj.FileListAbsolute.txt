@@ -102,3 +102,4 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\ModalWindow.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Controls\UnderlinedComboBox.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Controls\UnderlinedComboBox.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\UnderlinedPasswordBoxTheme.baml

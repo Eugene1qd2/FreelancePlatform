@@ -94,26 +94,29 @@
                          Tag="Фамилия"
                          Style="{StaticResource UnderlinedTextBox}"
                          MaxLength="20"
-                         VerticalAlignment="Top"/>
+                         VerticalAlignment="Top" PreviewTextInput="PreviewTextInput"
+                         />
                 <TextBox Width="440"
                          Height="60"
                          Tag="Имя"
                          Margin="0,70,0,0"
                          MaxLength="20"
                          VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"/>
+                         Style="{StaticResource UnderlinedTextBox}"
+                         PreviewTextInput="PreviewTextInput"/>
                 <TextBox Width="440"
                          Height="60"
                          Tag="Отчество"
                          MaxLength="20"
                          Margin="0,140,0,0"
                          VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"/>
+                         Style="{StaticResource UnderlinedTextBox}"
+                         PreviewTextInput="PreviewTextInput"/>
                 <control:UnderlinedComboBox Width="440"
                                             Margin="0,210,0,0"
                          VerticalAlignment="Top"
                          Height="280"
-                                            Panel.ZIndex="10"
+                         Panel.ZIndex="10"
                          Tag="Пол"/>
 
                 <StackPanel Orientation="Horizontal" Width="440"
@@ -130,7 +133,8 @@
                             Height="45"
                             BorderThickness="3"
                             Content="?"
-                            FontSize="30" Click="HintButtonClick"/>
+                            FontSize="30" Click="HintButtonClick" Tag="Поле ввода даты рождения"
+                            IsTabStop="False"/>
                 </StackPanel>
                 <TextBox Width="440"
                          Height="60"
@@ -146,13 +150,25 @@
                          Margin="0,420,0,0"
                          VerticalAlignment="Top"
                          Style="{StaticResource UnderlinedTextBox}"/>
-                <TextBox Width="440"
+                <StackPanel Orientation="Horizontal" Width="440"
+                         Margin="0,490,0,0"
+                         VerticalAlignment="Top">
+                    <PasswordBox Width="440"
                          Height="60"
                          Tag="Пароль"
                          MaxLength="20"
-                         Margin="0,490,0,0"
                          VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"/>
+                         Style="{StaticResource UnderlinedPasswordBox}"/>
+                    <Button Style="{StaticResource RoundedButton}"
+                            Margin="-70,0,0,0"
+                            Width="45"
+                            Height="45"
+                            BorderThickness="3"
+                            Content="?"
+                            FontSize="30" Click="HintButtonClick" Tag="Поле ввода пароля"
+                            IsTabStop="False"/>
+                </StackPanel>
+                
                 <Button Width="440"
                         Height="70"
                         Content="Зарегистрироваться"
