@@ -1,8 +1,13 @@
-﻿using System;
+﻿using FreelancePlatform.Assets.MVVM.Models;
+using FreelancePlatform.Assets.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security;
+using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,7 +18,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private string _username;
         private SecureString _password;
         private string _errorMessage;
-        private bool _isViewVisible = true;
+        private bool _isEntered = false;
+
+        private IUserRepository userRepository;
 
         public string Username
         {
@@ -34,10 +41,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             set { _errorMessage = value; OnPropertyChanged(); }
 
         }
-        public bool IsViewVisible
+        public bool IsEntered
         {
-            get { return _isViewVisible; }
-            set { _isViewVisible = value; OnPropertyChanged(); }
+            get { return _isEntered; }
+            set { _isEntered = value; OnPropertyChanged(); }
 
         }
 
@@ -47,6 +54,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         public LoginViewModel()
         {
+            userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RememberPasswordCommand = new ViewModelCommand(p=>ExecuteRememberPasswordCommand("",""));
         }
@@ -74,7 +82,18 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
-            throw new NotImplementedException();
+            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username,Password));
+            if (isValidUser)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal( new GenericIdentity(Username),null);
+                IsEntered = true;
+                ErrorMessage = string.Empty;
+
+            }
+            else
+            {
+                ErrorMessage="Неправильный логин или пароль!";
+            }
         }
     }
 }
