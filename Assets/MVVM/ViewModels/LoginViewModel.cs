@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Security;
 using System.Security.Principal;
 using System.Text;
@@ -82,18 +83,31 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username,Password));
-            if (isValidUser)
+            IPStatus status = IPStatus.Unknown;
+            try
             {
-                Thread.CurrentPrincipal = new GenericPrincipal( new GenericIdentity(Username),null);
-                IsEntered = true;
-                ErrorMessage = string.Empty;
-
+                status = new Ping().Send(@"vk.com").Status;
+            }
+            catch { }
+            if (status == IPStatus.Success)
+            {
+                var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+                if (isValidUser)
+                {
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                    IsEntered = true;
+                    ErrorMessage = string.Empty;
+                }
+                else
+                {
+                    ErrorMessage = "Неправильный логин или пароль!";
+                }
             }
             else
             {
-                ErrorMessage="Неправильный логин или пароль!";
+                ErrorMessage = "Нет подключения к интернету!";
             }
+
         }
     }
 }

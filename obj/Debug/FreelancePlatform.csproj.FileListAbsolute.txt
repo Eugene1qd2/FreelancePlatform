@@ -99,8 +99,6 @@ C:\Users\qawse\Desktop\FPL\obj\Debug\Assets\Themes\RoundedButtonTheme.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\RoundedButtonTheme.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\ModalWindow.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\ModalWindow.baml
-C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Controls\UnderlinedComboBox.g.cs
-C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Controls\UnderlinedComboBox.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Controls\PasswordBoxMy.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Controls\PasswordBoxMy.baml

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FreelancePlatform"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         xmlns:extend="clr-namespace:Xceed.Wpf.Toolkit.Obselete;assembly=Xceed.Wpf.Toolkit"
+        xmlns:viewModel="clr-namespace:FreelancePlatform.Assets.MVVM.ViewModels"
         mc:Ignorable="d"
         xmlns:control="clr-namespace:FreelancePlatform.Assets.Controls"
         Height="850" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
@@ -20,6 +21,9 @@
             </Setter>
         </Style>
     </Window.Resources>
+    <Window.DataContext>
+        <viewModel:RegistrationViewModel/>
+    </Window.DataContext>
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/BackgroundImage.png" />
     </Window.Background>
@@ -58,7 +62,7 @@
         <Border BorderThickness="0" 
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center"
-                Width="630"
+                Width="1130"
                 Height="750"
                 Grid.Row="1"
                 CornerRadius="10"
@@ -87,97 +91,252 @@
                     </Style.Triggers>
                 </Style>
             </Border.Style>
-
-            <Grid Margin="40">
-                <TextBox Width="440"
+            <StackPanel>
+                <Grid Margin="40,40,40,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Фамилия"/>
+                                <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#232931" 
+                         Width="440"
                          Height="60"
                          Tag="Фамилия"
-                         Style="{StaticResource UnderlinedTextBox}"
                          MaxLength="20"
-                         VerticalAlignment="Top" PreviewTextInput="PreviewTextInput"
-                         />
-                <TextBox Width="440"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,5"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Surname, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Имя"/>
+                                <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#232931" 
+                         Width="440"
                          Height="60"
                          Tag="Имя"
-                         Margin="0,70,0,0"
                          MaxLength="20"
-                         VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"
-                         PreviewTextInput="PreviewTextInput"/>
-                <TextBox Width="440"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,5"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Отчество"/>
+                                <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#232931" 
+                         Width="440"
                          Height="60"
                          Tag="Отчество"
                          MaxLength="20"
-                         Margin="0,140,0,0"
-                         VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"
-                         PreviewTextInput="PreviewTextInput"/>
-                <control:UnderlinedComboBox Width="440"
-                                            Margin="0,210,0,0"
-                         VerticalAlignment="Top"
-                         Height="280"
-                         Panel.ZIndex="10"
-                         Tag="Пол"/>
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,5"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Middlename, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                                       FontSize="26"
+                                       FontWeight="Medium"
+                                       Foreground="#232931"
+                                       Width="440"
+                                       Padding="20,0"
+                                       Text="Дата рождения"/>
+                                <extend:MaskedTextBox FontFamily="Montserrat"
+                                                  Mask="99-99-9999"
+                                                  FontSize="30"
+                                                  FontWeight="Medium"
+                                                  Foreground="#232931" 
+                                                  Width="440"
+                                                  Height="60"
+                                                  Tag="Дата рождения"
+                                                  MaxLength="20"
+                                                  Background="Transparent"
+                                                  BorderThickness="0"
+                                                  Padding="30,10,30,5"
+                                                  VerticalAlignment="Bottom"
+                                                  Text="{Binding Birthdate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                </extend:MaskedTextBox>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Width="440"
-                         Margin="0,280,0,0"
-                         VerticalAlignment="Top">
-                    <extend:MaskedTextBox Mask="99-99-9999"
+                    <StackPanel Grid.Column="1">
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Электронная почта"/>
+                                <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#232931" 
                          Width="440"
                          Height="60"
-                         Style="{StaticResource UnderlinedTextBox}"
-                         Tag="Дата рождения"/>
-                    <Button Style="{StaticResource RoundedButton}"
-                            Margin="-70,0,0,0"
-                            Width="45"
-                            Height="45"
-                            BorderThickness="3"
-                            Content="?"
-                            FontSize="30" Click="HintButtonClick" Tag="Поле ввода даты рождения"
-                            IsTabStop="False"/>
-                </StackPanel>
-                <TextBox Width="440"
-                         Height="60"
-                         Tag="Эл. почта"
-                         Margin="0,350,0,0"
-                         VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"
-                         MaxLength="50"/>
-                <TextBox Width="440"
-                         Height="60"
-                         Tag="Логин (Никнейм)"
+                         Tag="Электронная почта"
                          MaxLength="20"
-                         Margin="0,420,0,0"
-                         VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedTextBox}"/>
-                <StackPanel Orientation="Horizontal" Width="440"
-                         Margin="0,490,0,0"
-                         VerticalAlignment="Top">
-                    <PasswordBox Width="440"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,0"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Email, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Логин"/>
+                                <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#232931" 
+                         Width="440"
                          Height="60"
-                         Tag="Пароль"
+                         Tag="Логин"
                          MaxLength="20"
-                         VerticalAlignment="Top"
-                         Style="{StaticResource UnderlinedPasswordBox}"/>
-                    <Button Style="{StaticResource RoundedButton}"
-                            Margin="-70,0,0,0"
-                            Width="45"
-                            Height="45"
-                            BorderThickness="3"
-                            Content="?"
-                            FontSize="30" Click="HintButtonClick" Tag="Поле ввода пароля"
-                            IsTabStop="False"/>
-                </StackPanel>
-                
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,0"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Username, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                </TextBox>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#232931"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Пароль"/>
+                                <control:PasswordBoxMy 
+                                     Width="440"
+                                     Height="60"
+                                     Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     VerticalAlignment="Bottom"/>
+                            </StackPanel>
+                        </Border>
+                        <Border Background="Transparent" BorderThickness="0"
+                        Width="440"
+                        Margin="10">
+                            <StackPanel>
+                                <Grid>
+                                    <Border BorderBrush="#D9D9D9" BorderThickness="0,0,0,3" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="440">
+
+                                        <StackPanel Width="440">
+                                            <TextBlock FontFamily="Montserrat"
+                                                       FontSize="26"
+                                                       FontWeight="Medium"
+                                                       Foreground="#232931"
+                                                       Width="440"
+                                                       Padding="20,0"
+                                                       Text="Пол"/>
+                                            <StackPanel Orientation="Horizontal" MouseDown="MaleDropdown">
+                                            <TextBlock TextWrapping="Wrap"
+                                                       FontFamily="Montserrat"
+                                                       FontSize="30"
+                                                       FontWeight="Medium"
+                                                       VerticalAlignment="Top"
+                                                       Padding="30,10,30,5"
+                                                       Foreground="#232931"
+                                                       Width="400"
+                                                       Height="60"
+                                                       Text="{Binding Male, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                       x:Name="textB"/>
+                                            <Border Height="40" Width="40" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                                                <TextBlock Background="Transparent"  Text="▼" FontFamily="Montserrat" FontSize="30" FontWeight="Medium" Foreground="#232931" x:Name="btn" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            </Border>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                    <Rectangle Fill="#D9D9D9" HorizontalAlignment="Left" Height="145" Margin="0,100,0,0" VerticalAlignment="Top" Width="440" Visibility="Hidden" x:Name="rect"/>
+                                    <ListBox HorizontalAlignment="Left" Height="125" Margin="10,110,10,10" VerticalAlignment="Top" Width="420" Background="Transparent" BorderThickness="0" Visibility="Hidden" x:Name="list" SelectionChanged="list_SelectionChanged">
+                                        <ListBoxItem Height="30" Content="Мужской" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#232931" />
+                                        <ListBoxItem Height="30" Content="Женский" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#232931" />
+                                        <ListBoxItem Height="30" Content="Другой" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#232931" />
+                                        <ListBoxItem Height="30" Content="Не указан" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#232931" />
+                                    </ListBox>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
                 <Button Width="440"
                         Height="70"
                         Content="Зарегистрироваться"
                         Style="{StaticResource WhiteButton}"
                         FontSize="36"
-                         VerticalAlignment="Bottom"
-                        OverridesDefaultStyle="True"/>
-            </Grid>
+                        VerticalAlignment="Bottom"
+                        OverridesDefaultStyle="True"
+                        Grid.Column="1"
+                        Command="{Binding RegisterCommand}"/>
+            </StackPanel>
         </Border>
-
     </Grid>
 </Window>

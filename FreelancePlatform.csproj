@@ -123,11 +123,9 @@
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Assets\Controls\UnderlinedComboBox.xaml.cs">
-      <DependentUpon>UnderlinedComboBox.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Assets\MVVM\Models\IUserRepository.cs" />
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\LoginViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
@@ -140,10 +138,6 @@
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Assets\Controls\PasswordBoxMy.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Assets\Controls\UnderlinedComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

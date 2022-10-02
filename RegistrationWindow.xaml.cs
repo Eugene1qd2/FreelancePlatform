@@ -19,9 +19,36 @@ namespace FreelancePlatform
     /// </summary>
     public partial class RegistrationWindow : Window
     {
+
+        private bool isChecked = false;
+
+        public bool IsChecked
+        {
+            get { return isChecked; }
+            set
+            {
+                CheckedPropertyChanged();
+                isChecked = value;
+            }
+        }
+
+        private void CheckedPropertyChanged()
+        {
+            if (IsChecked)
+            {
+                rect.Visibility = Visibility.Hidden;
+                list.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                rect.Visibility = Visibility.Visible;
+                list.Visibility = Visibility.Visible;
+            }
+        }
+
         public RegistrationWindow()
         {
-            InitializeComponent();
+             InitializeComponent();
         }
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -53,6 +80,18 @@ namespace FreelancePlatform
             {
                 e.Handled = true;
             }
+        }
+
+        private void MaleDropdown(object sender, MouseButtonEventArgs e)
+        {
+            IsChecked = !IsChecked;
+
+        }
+        private void list_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            textB.Text = (list.Items[list.SelectedIndex] as ListBoxItem).Content.ToString();
+            IsChecked = false;
+            textB.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x39, 0x3E, 0x46));
         }
     }
 }
