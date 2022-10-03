@@ -86,21 +86,28 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             IPStatus status = IPStatus.Unknown;
             try
             {
-                status = new Ping().Send(@"vk.com").Status;
+                status = new Ping().Send(@"google.com").Status;
             }
             catch { }
             if (status == IPStatus.Success)
             {
-                var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
-                if (isValidUser)
+                try
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-                    IsEntered = true;
-                    ErrorMessage = string.Empty;
+                    var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+                    if (isValidUser)
+                    {
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                        IsEntered = true;
+                        ErrorMessage = string.Empty;
+                    }
+                    else
+                    {
+                        ErrorMessage = "Неправильный логин или пароль!";
+                    }
                 }
-                else
+                catch
                 {
-                    ErrorMessage = "Неправильный логин или пароль!";
+                    ErrorMessage = "Нет подключения к базе данных!";
                 }
             }
             else
