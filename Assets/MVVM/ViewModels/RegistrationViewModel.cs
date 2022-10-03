@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FreelancePlatform.Assets.Additional_Data;
 
 namespace FreelancePlatform.Assets.MVVM.ViewModels
 {
@@ -103,7 +104,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             bool isDate = DateTime.TryParse(Birthdate, out date);
             bool validDate = (date < DateTime.Today && date>new DateTime(1900,1,1));
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
-                Password == null || Password.Length < 3 ||
+                Password == null || Password.Length < 8 ||
                 string.IsNullOrWhiteSpace(Surname) || Surname.Length<3 ||
                 string.IsNullOrWhiteSpace(Name) || Name.Length<3 ||
                 string.IsNullOrWhiteSpace(Middlename) || Middlename.Length<3 ||
@@ -124,20 +125,28 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             IPStatus status = IPStatus.Unknown;
             try
             {
-                status = new Ping().Send(@"vk.com").Status;
+                status = new Ping().Send(@"google.com").Status;
             }
             catch { }
             if (status == IPStatus.Success)
             {
-                var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
-                if (isValidUser)
+                try
                 {
-                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-                    ErrorMessage = string.Empty;
+                    Console.WriteLine(DateTime.Parse(Birthdate));
+                    ErrorStatus errorStatus = userRepository.Add(new UserModel(Username, Password, Name, Surname, Middlename, DateTime.Parse(Birthdate), Email, Male));
+                    if (errorStatus==ErrorStatus.NoError)
+                    {
+                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                        ErrorMessage = string.Empty;
+                    }
+                    else
+                    {
+                        ErrorMessage = ErrorData.GetErrorMessage(errorStatus);
+                    }
                 }
-                else
+                catch
                 {
-                    ErrorMessage = "Неправильный логин или пароль!";
+                    ErrorMessage = "Нет подключения к базе данных!";
                 }
             }
             else

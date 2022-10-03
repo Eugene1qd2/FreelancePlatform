@@ -4,13 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using FreelancePlatform.Assets.Additional_Data;
 
 namespace FreelancePlatform.Assets.MVVM.Models
 {
     public interface IUserRepository
     {
         bool AuthenticateUser(NetworkCredential credantial);
-        void Add(UserModel userModel);
+        ErrorStatus Add(UserModel userModel);
         void Edit(UserModel userModel);
         void Remove(int id);
         UserModel GetById(int id);
