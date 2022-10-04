@@ -336,7 +336,9 @@
                     Height="30"
                     TextAlignment="Center"
                     Margin="0,-70,0,0"/>
-                <Button Width="440"
+                <Grid>
+                    <Image Source="Assets\Images\ArrowBack.png" Width="42" Height="38" HorizontalAlignment="Left" Margin="30,0" VerticalAlignment="Bottom" MouseDown="Back"/>
+                    <Button Width="440"
                         Height="70"
                         Content="Зарегистрироваться"
                         Style="{StaticResource WhiteButton}"
@@ -345,6 +347,8 @@
                         OverridesDefaultStyle="True"
                         Grid.Column="1"
                         Command="{Binding RegisterCommand}"/>
+                </Grid>
+                
             </StackPanel>
         </Border>
     </Grid>

@@ -20,6 +20,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private SecureString _password;
         private string _errorMessage;
         private bool _isEntered = false;
+        private bool _isVisible = true;
 
         private IUserRepository userRepository;
 
@@ -48,16 +49,30 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             set { _isEntered = value; OnPropertyChanged(); }
 
         }
+        public bool IsViewVisible
+        {
+            get { return _isVisible; }
+            set { _isVisible = value; OnPropertyChanged(); }
+
+        }
 
         public ICommand LoginCommand { get; }
         public ICommand RememberPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
+        public ICommand OpenRegistrationCommand { get; }
 
         public LoginViewModel()
         {
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RememberPasswordCommand = new ViewModelCommand(p=>ExecuteRememberPasswordCommand("",""));
+            OpenRegistrationCommand = new ViewModelCommand(ExecuteOpenRegistationCommand);
+        }
+
+        private void ExecuteOpenRegistationCommand(object obj)
+        {
+            IsViewVisible = false;
+            ErrorMessage = string.Empty;
         }
 
         private bool ExecuteRememberPasswordCommand(string username , string email)
@@ -83,6 +98,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
+            IsEntered = false;
             IPStatus status = IPStatus.Unknown;
             try
             {
@@ -98,6 +114,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     {
                         Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
                         IsEntered = true;
+                        IsViewVisible = false;
                         ErrorMessage = string.Empty;
                     }
                     else

@@ -93,5 +93,10 @@ namespace FreelancePlatform
             IsChecked = false;
             textB.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x39, 0x3E, 0x46));
         }
+
+        private void Back(object sender, MouseButtonEventArgs e)
+        {
+            App.Current.MainWindow.Show();
+        }
     }
 }

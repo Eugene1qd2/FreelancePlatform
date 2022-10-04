@@ -44,14 +44,6 @@ namespace FreelancePlatform
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            RegistrationWindow window = new RegistrationWindow();
-            window.Show();
-            
-            this.Hide();
-        }
-
         private void HintButtonClick(object sender, RoutedEventArgs e)
         {
             ModalWindow modal = new ModalWindow((sender as Button).Tag.ToString());

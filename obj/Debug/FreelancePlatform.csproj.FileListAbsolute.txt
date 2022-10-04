@@ -159,3 +159,5 @@ C:\Users\qawse\Desktop\FPL\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\qawse\Desktop\FPL\obj\Debug\Assets\Controls\PasswordBoxMy.g.cs
 C:\Users\qawse\Desktop\FPL\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\qawse\Desktop\FPL\obj\Debug\Assets\Controls\PasswordBoxMy.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\MainWindow.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\MainWindow.baml
