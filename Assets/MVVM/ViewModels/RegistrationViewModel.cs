@@ -133,7 +133,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 try
                 {
                     Console.WriteLine(DateTime.Parse(Birthdate));
-                    ErrorStatus errorStatus = userRepository.Add(new UserModel(Username, Password, Name, Surname, Middlename, DateTime.Parse(Birthdate), Email, Male));
+                    ErrorStatus errorStatus = userRepository.Add(new UserModel(Username, ErrorData.SecureStringToString(Password), Name, Surname, Middlename, DateTime.Parse(Birthdate), Email, Male));
                     if (errorStatus==ErrorStatus.NoError)
                     {
                         Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);

@@ -13,7 +13,7 @@ namespace FreelancePlatform.Assets.MVVM.Models
 
         public int Id { get; set; }             //Unique
         public string Username { get; set; }    //Unique
-        public SecureString Password { get; set; }    
+        public string Password { get; set; }    
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Middlename { get; set; }
@@ -23,7 +23,7 @@ namespace FreelancePlatform.Assets.MVVM.Models
         public string Aboutme { get; set; }
         public Bitmap Photo { get; set; }   
         public DateTime Registrationdate { get; set; }
-        public UserModel( string username, SecureString password, string name, string surname, string middlename, DateTime birthdate, string email, string male)
+        public UserModel( string username, string password, string name, string surname, string middlename, DateTime birthdate, string email, string male)
         {
             Username = username;
             Password = password;
@@ -35,6 +35,8 @@ namespace FreelancePlatform.Assets.MVVM.Models
             Male = male;
         }
 
-        
+        public UserModel()
+        {
+        }
     }
 }

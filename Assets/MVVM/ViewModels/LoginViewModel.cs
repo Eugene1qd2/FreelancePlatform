@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FreelancePlatform.Assets.Additional_Data;
 
 namespace FreelancePlatform.Assets.MVVM.ViewModels
 {
@@ -22,12 +23,17 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private bool _isEntered = false;
         private bool _isVisible = true;
 
+        private int failureCount = 0;
+        private string prevUsername = string.Empty;
+
         private IUserRepository userRepository;
 
         public string Username
         {
             get { return _username; }
-            set { _username = value; OnPropertyChanged();
+            set
+            {
+                _username = value; OnPropertyChanged();
             }
 
         }
@@ -65,7 +71,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             userRepository = new UserRepository();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RememberPasswordCommand = new ViewModelCommand(p=>ExecuteRememberPasswordCommand("",""));
+            RememberPasswordCommand = new ViewModelCommand(p => ExecuteRememberPasswordCommand("", ""));
             OpenRegistrationCommand = new ViewModelCommand(ExecuteOpenRegistationCommand);
         }
 
@@ -75,16 +81,27 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             ErrorMessage = string.Empty;
         }
 
-        private bool ExecuteRememberPasswordCommand(string username , string email)
+        private bool ExecuteRememberPasswordCommand(string username, string email)
         {
-            throw new NotImplementedException();
+            UserModel user = userRepository.GetByUsername(username);
+            if (user != null)
+            {
+                MailData.SendMail(user.Email, "Ваш пароль: <br><i>" + user.Password + "</i>", "Восстановление пароля");
+                ErrorMessage = "Пароль отправлен на вашу почту!";
+                return true;
+            }
+            else
+            {
+                ErrorMessage = "Такого пользователя не существует!";
+                return false;
+            }
         }
 
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
 
-            if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 || Password == null || Password.Length<3)
+            if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 || Password == null || Password.Length < 3)
             {
                 validData = false;
 
@@ -107,25 +124,52 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             catch { }
             if (status == IPStatus.Success)
             {
+                bool isValidUser = false;
                 try
                 {
-                    var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
-                    if (isValidUser)
-                    {
-                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-                        IsEntered = true;
-                        IsViewVisible = false;
-                        ErrorMessage = string.Empty;
-                    }
-                    else
-                    {
-                        ErrorMessage = "Неправильный логин или пароль!";
-                    }
+                    isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
                 }
                 catch
                 {
                     ErrorMessage = "Нет подключения к базе данных!";
+                    return;
                 }
+                if (isValidUser)
+                {
+                    Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                    IsEntered = true;
+                    IsViewVisible = false;
+                    ErrorMessage = string.Empty;
+                }
+                else
+                {
+                    if (prevUsername == Username)
+                    {
+                        failureCount++;
+                    }
+                    else
+                    {
+                        failureCount = 1;
+                        prevUsername = Username;
+                    }
+                    if (failureCount == 3)
+                    {
+                        UserModel user = userRepository.GetByUsername(Username);
+                        if (user!=null)
+                        {
+                            MailData.SendMail(user.Email, "Ваш пароль: <br><i>" + user.Password + "</i>", "Восстановление пароля");
+                            ErrorMessage = "Пароль отправлен на вашу почту!";
+                            return;
+                        }
+                        else
+                        {
+                            ErrorMessage = "Такого пользователя не существует!";
+                        }
+
+                    }
+                    ErrorMessage = "Неправильный логин или пароль!";
+                }
+
             }
             else
             {

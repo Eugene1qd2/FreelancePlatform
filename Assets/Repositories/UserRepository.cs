@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using FreelancePlatform.Assets.Additional_Data;
-
+using System.Security;
 
 namespace FreelancePlatform.Assets.Repositories
 {
@@ -92,7 +92,35 @@ namespace FreelancePlatform.Assets.Repositories
 
         public UserModel GetByUsername(string username)
         {
-            throw new NotImplementedException();
+            UserModel user = null;
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select * from users where Username=@username";
+                command.Parameters.Add("@username", MySqlDbType.VarChar).Value = username;
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    user = new UserModel()
+                    {
+                        Surname = reader.GetString("Surname"),
+                        Name = reader.GetString("Name"),
+                        Middlename = reader.GetString("Middlename"),
+                        Birthdate = DateTime.Parse(reader.GetString("Birthday")),
+                        Email = reader.GetString("Email"),
+                        Registrationdate = DateTime.Parse(reader.GetString("Registerdate")),
+                        Male = reader.GetString("Male"),
+                        Username = reader.GetString("Username"),
+                        Password = reader.GetString("Password"),
+                        Id = int.Parse(reader.GetString("ID")),
+                        Photo = null
+                        //Photo = reader.GetString("Photo")
+                    };
+                }
+            }
+            return user;
         }
 
         public void Remove(int id)

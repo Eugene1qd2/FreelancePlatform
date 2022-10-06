@@ -121,6 +121,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Assets\Additional Data\ErrorData.cs" />
+    <Compile Include="Assets\Additional Data\MailData.cs" />
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
