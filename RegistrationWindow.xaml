@@ -335,6 +335,7 @@
                     Foreground="#dd1616"
                     Height="30"
                     TextAlignment="Center"
+                    Panel.ZIndex="-10"
                     Margin="0,-70,0,0"/>
                 <Grid>
                     <Image Source="Assets\Images\ArrowBack.png" Width="42" Height="38" HorizontalAlignment="Left" Margin="30,0" VerticalAlignment="Bottom" MouseDown="Back"/>
