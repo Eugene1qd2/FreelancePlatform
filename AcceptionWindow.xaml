@@ -1,0 +1,107 @@
+﻿<Window x:Class="FreelancePlatform.AcceptionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FreelancePlatform"
+        xmlns:vm="clr-namespace:FreelancePlatform.Assets.MVVM.ViewModels"
+        mc:Ignorable="d"
+        Title="AcceptionWindow" Height="340" Width="630" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Border BorderThickness="0" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Width="630"
+                Height="340"
+                CornerRadius="10"
+                Grid.Row="1"
+                Panel.ZIndex="-10" MouseDown="Border_MouseDown">
+        <Grid>
+            <Grid Grid.Row="0" Background="Transparent"  Height="25" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="37"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="28" 
+                       Foreground="#D9D9D9" 
+                       Grid.Column="2" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       Background="Transparent"
+                       Width="37"
+                       Height="44"
+                       TextAlignment="Center"
+                       Style="{StaticResource OpacityHoverTheme}" MouseDown="TextBlock_MouseDown">×</TextBlock>
+            </Grid>
+            <StackPanel VerticalAlignment="Center" Margin="0,40,0,0">
+
+                <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                Width="440">
+                    <StackPanel>
+                        <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#D9D9D9"
+                           Width="440"
+                           Padding="20,0"
+                           Text="Код подтверждения"/>
+                        <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#D9D9D9" 
+                         Width="440"
+                         Height="60"
+                         Tag="Электронная почта"
+                         MaxLength="50"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,0"
+                         VerticalAlignment="Bottom"
+                         x:Name="codeField">
+                        </TextBox>
+                    </StackPanel>
+                </Border>
+                <Button Width="440"
+                    Margin="0,25"
+                        Height="70"
+                        Content="Подтвердить"
+                        Style="{StaticResource WhiteButton}"
+                        FontSize="36"
+                        VerticalAlignment="Bottom"
+                        OverridesDefaultStyle="True"
+                        Grid.Column="1"
+                        Command="{Binding ConfirmMailCommand}" Click="Button_Click"/>
+                <TextBlock Text="{Binding MailInfoText, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                       FontSize="16"
+                       FontFamily="Montserrat"
+                       FontWeight="Medium"
+                       Foreground="#232931"
+                       Height="40"
+                           x:Name="mailText"/>
+            </StackPanel>
+        </Grid>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#232931" Offset="0"></GradientStop>
+                <GradientStop Color="#99232931" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Border.Style>
+            <Style>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Window.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.7" Storyboard.TargetProperty="Opacity" From="0" To="1"/>
+                                <ThicknessAnimation Duration="0:0:0.7" Storyboard.TargetProperty="Margin" From="0,-1000,0,0" To="0,0,0,0">
+                                    <ThicknessAnimation.EasingFunction>
+                                        <QuadraticEase EasingMode="EaseOut"/>
+                                    </ThicknessAnimation.EasingFunction>
+                                </ThicknessAnimation>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+    </Border>
+
+</Window>

@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FreelancePlatform.Assets.Additional_Data;
+using System.Text.RegularExpressions;
 
 namespace FreelancePlatform.Assets.MVVM.ViewModels
 {
@@ -19,13 +20,29 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     {
         private string _username;
         private SecureString _password;
-        private string surname;
-        private string name;
-        private string middlename;
-        private string birthdate;
-        private string email;
-        private string male;
+        private string _surname;
+        private string _name;
+        private string _middlename;
+        private string _birthdate;
+        private string _email;
+        private string _male;
         private string _errorMessage;
+
+        private string generatedCode;
+        private string _mailInfoText;
+        AcceptionWindow acceptionWindow; //тут тоже хз пока
+        public string MailInfoText
+        {
+            get
+            {
+                return _mailInfoText;
+            }
+            set
+            {
+                _mailInfoText = value;
+                OnPropertyChanged();
+            }
+        }
 
         private IUserRepository userRepository;
 
@@ -54,62 +71,86 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         public string Name
         {
-            get { return name; }
-            set { name = value; OnPropertyChanged(); }
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(); }
         }
 
         public string Surname
         {
-            get { return surname; }
-            set { surname = value; OnPropertyChanged(); }
+            get { return _surname; }
+            set { _surname = value; OnPropertyChanged(); }
         }
 
         public string Middlename
         {
-            get { return middlename; }
-            set { middlename = value; OnPropertyChanged(); }
+            get { return _middlename; }
+            set { _middlename = value; OnPropertyChanged(); }
         }
 
         public string Birthdate
         {
-            get { return birthdate; }
-            set { birthdate = value; OnPropertyChanged(); }
+            get { return _birthdate; }
+            set { _birthdate = value; OnPropertyChanged(); }
         }
 
         public string Email
         {
-            get { return email; }
-            set { email = value; OnPropertyChanged(); }
+            get { return _email; }
+            set { _email = value; OnPropertyChanged(); }
         }
 
         public string Male
         {
-            get { return male; }
-            set { male = value; OnPropertyChanged(); }
+            get { return _male; }
+            set { _male = value; OnPropertyChanged(); }
         }
 
         public ICommand RegisterCommand { get; }
         public ICommand ShowPasswordCommand { get; }
+        public ICommand DeclineRegistrationCommand { get; }
+        public ICommand ConfirmMailCommand { get; }
 
         public RegistrationViewModel()
         {
             userRepository = new UserRepository();
             RegisterCommand = new ViewModelCommand(ExecuteRegisterCommand, CanExecuteRegisterCommand);
+            DeclineRegistrationCommand = new ViewModelCommand(ExecuteDeclineRegistrationCommand);
+            ConfirmMailCommand = new ViewModelCommand(ExecuteConfirmMailCommand, CanExecuteConfirmMailCommand);
         }
 
+        private bool CanExecuteConfirmMailCommand(object obj)
+        {
+            return true;
+        }
+
+        private void ExecuteConfirmMailCommand(object obj)
+        {
+            acceptionWindow.Close();
+        }
+
+        private void ExecuteDeclineRegistrationCommand(object obj)
+        {
+            App.Current.MainWindow.Show();
+        }
+        public static bool isValid(string email)
+        {
+            string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
+            Match isMatch = Regex.Match(email.ToLower(), pattern, RegexOptions.IgnoreCase);
+            return isMatch.Success;
+        }
         private bool CanExecuteRegisterCommand(object obj)
         {
             bool validData;
             DateTime date;
             bool isDate = DateTime.TryParse(Birthdate, out date);
-            bool validDate = (date < DateTime.Today && date>new DateTime(1900,1,1));
+            bool validDate = (date < DateTime.Today && date > new DateTime(1900, 1, 1));
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
                 Password == null || Password.Length < 8 ||
-                string.IsNullOrWhiteSpace(Surname) || Surname.Length<3 ||
-                string.IsNullOrWhiteSpace(Name) || Name.Length<3 ||
-                string.IsNullOrWhiteSpace(Middlename) || Middlename.Length<3 ||
-                string.IsNullOrWhiteSpace(Email) || Email.Length<3 ||
-                string.IsNullOrWhiteSpace(Male) || !isDate || !validDate)
+                string.IsNullOrWhiteSpace(Surname) || Surname.Length < 3 ||
+                string.IsNullOrWhiteSpace(Name) || Name.Length < 3 ||
+                string.IsNullOrWhiteSpace(Middlename) || Middlename.Length < 3 ||
+                string.IsNullOrWhiteSpace(Email) || Email.Length < 3 ||
+                string.IsNullOrWhiteSpace(Male) || !isDate || !validDate || !isValid(Email))
             {
                 validData = false;
             }
@@ -130,24 +171,45 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             catch { }
             if (status == IPStatus.Success)
             {
+                generatedCode = MailData.GenerateCode(5);
                 try
                 {
-                    Console.WriteLine(DateTime.Parse(Birthdate));
-                    ErrorStatus errorStatus = userRepository.Add(new UserModel(Username, ErrorData.SecureStringToString(Password), Name, Surname, Middlename, DateTime.Parse(Birthdate), Email, Male));
-                    if (errorStatus==ErrorStatus.NoError)
-                    {
-                        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-                        ErrorMessage = string.Empty;
-                    }
-                    else
-                    {
-                        ErrorMessage = ErrorData.GetErrorMessage(errorStatus);
-                    }
+                MailData.SendMail(Email, "Ваш код подтверждения: " + generatedCode, "Подтверждение электронной почты");
                 }
                 catch
                 {
-                    ErrorMessage = "Нет подключения к базе данных!";
+                    ErrorMessage = "Такой почты не существует!";
+                    return;
                 }
+                acceptionWindow = new AcceptionWindow(Email);
+                var result = acceptionWindow.ShowDialog();
+
+                if (result == true)
+                    if (acceptionWindow.Code == generatedCode)
+                    {
+                        try
+                        {
+                            ErrorStatus errorStatus = userRepository.Add(new UserModel(Username, ErrorData.SecureStringToString(Password), Name, Surname, Middlename, DateTime.Parse(Birthdate), Email, Male));
+                            if (errorStatus == ErrorStatus.NoError)
+                            {
+                                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+                                ErrorMessage = string.Empty;
+                                App.Current.MainWindow.Show();
+                            }
+                            else
+                            {
+                                ErrorMessage = ErrorData.GetErrorMessage(errorStatus);
+                            }
+                        }
+                        catch
+                        {
+                            ErrorMessage = "Нет подключения к базе данных!";
+                        }
+                    }
+                    else
+                    {
+                        ErrorMessage = "Неверный код подтверждения!";
+                    }
             }
             else
             {

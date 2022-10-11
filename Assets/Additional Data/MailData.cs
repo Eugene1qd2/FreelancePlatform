@@ -10,6 +10,7 @@ namespace FreelancePlatform.Assets.Additional_Data
 {
     class MailData
     {
+        private static string values = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         private static string mail = "freelanceplatformassistant@mail.ru";
         public static void SendMail(string recipient, string messaage,string subject)
         {
@@ -33,5 +34,15 @@ namespace FreelancePlatform.Assets.Additional_Data
             smtp.Send(Message);
         }
 
+        internal static string GenerateCode(int length)
+        {
+            Random random = new Random();
+            string code = string.Empty;
+            for (int i = 0; i < length; i++)
+            {
+                code += values[random.Next(0, values.Length)];
+            }
+            return code;
+        }
     }
 }

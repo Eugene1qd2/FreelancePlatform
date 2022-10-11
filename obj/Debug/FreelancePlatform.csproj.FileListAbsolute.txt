@@ -163,3 +163,5 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\MainWindow.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\MainWindow.baml
 C:\Users\qawse\Desktop\FPL\obj\Debug\MainWindow.g.cs
 C:\Users\qawse\Desktop\FPL\obj\Debug\MainWindow.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\AcceptionWindow.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\AcceptionWindow.baml

@@ -68,20 +68,6 @@ namespace FreelancePlatform
             }
         }
 
-        private void HintButtonClick(object sender, RoutedEventArgs e)
-        {
-            ModalWindow modal = new ModalWindow((sender as Button).Tag.ToString());
-            modal.ShowDialog();
-        }
-
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if (Char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void MaleDropdown(object sender, MouseButtonEventArgs e)
         {
             IsChecked = !IsChecked;
@@ -92,11 +78,6 @@ namespace FreelancePlatform
             textB.Text = (list.Items[list.SelectedIndex] as ListBoxItem).Content.ToString();
             IsChecked = false;
             textB.Foreground = new SolidColorBrush(Color.FromArgb(0xFF, 0x39, 0x3E, 0x46));
-        }
-
-        private void Back(object sender, MouseButtonEventArgs e)
-        {
-            App.Current.MainWindow.Show();
         }
     }
 }

@@ -120,6 +120,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AcceptionWindow.xaml.cs">
+      <DependentUpon>AcceptionWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\Additional Data\ErrorData.cs" />
     <Compile Include="Assets\Additional Data\MailData.cs" />
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
@@ -142,6 +145,10 @@
     <Compile Include="RegistrationWindow.xaml.cs">
       <DependentUpon>RegistrationWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AcceptionWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Controls\PasswordBoxMy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

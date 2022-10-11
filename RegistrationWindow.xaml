@@ -338,7 +338,27 @@
                     Panel.ZIndex="-10"
                     Margin="0,-70,0,0"/>
                 <Grid>
-                    <Image Source="Assets\Images\ArrowBack.png" Width="42" Height="38" HorizontalAlignment="Left" Margin="30,0" VerticalAlignment="Bottom" MouseDown="Back"/>
+                    <Button Width="42" Height="38"  HorizontalAlignment="Left" Margin="30,0" Background="Transparent" BorderThickness="0"  VerticalAlignment="Bottom" Command="{Binding DeclineRegistrationCommand}">
+                        <Image Source="Assets\Images\ArrowBack.png" Width="42" Height="38"/>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border Background="Transparent">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="0.8"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                     <Button Width="440"
                         Height="70"
                         Content="Зарегистрироваться"

@@ -39,6 +39,10 @@ namespace FreelancePlatform
                     {
                         registrationWindow.Show();
                     }
+                    else
+                    {
+                        registrationWindow.Hide();
+                    }
                 }
             };
         }
