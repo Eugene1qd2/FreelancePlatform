@@ -132,25 +132,42 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             App.Current.MainWindow.Show();
         }
-        public static bool isValid(string email)
+        public static bool isValidMail(string email)
         {
             string pattern = "[.\\-_a-z0-9]+@([a-z0-9][\\-a-z0-9]+\\.)+[a-z]{2,6}";
             Match isMatch = Regex.Match(email.ToLower(), pattern, RegexOptions.IgnoreCase);
             return isMatch.Success;
         }
+        public static bool isValidString(string str)
+        {
+            string pattern = "^[A-ЯЁ][а-яё]+";
+            Match isMatch = Regex.Match(str.ToLower(), pattern, RegexOptions.IgnoreCase);
+            return isMatch.Success;
+        }
+        public static bool isValidPhone(string phone)
+        {
+            string pattern = @"^[+](?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$";
+            Match isMatch = Regex.Match(phone.ToLower(), pattern, RegexOptions.IgnoreCase);
+            return isMatch.Success;
+        }
+        public static bool isValidDate(string dates)
+        {
+            DateTime date;
+            bool isDate = DateTime.TryParse(dates, out date);
+            bool validDate = date < DateTime.Today && date > new DateTime(1900, 1, 1);
+            return isDate && validDate;
+        }
         private bool CanExecuteRegisterCommand(object obj)
         {
             bool validData;
-            DateTime date;
-            bool isDate = DateTime.TryParse(Birthdate, out date);
-            bool validDate = (date < DateTime.Today && date > new DateTime(1900, 1, 1));
+            
             if (string.IsNullOrWhiteSpace(Username) || Username.Length < 3 ||
                 Password == null || Password.Length < 8 ||
-                string.IsNullOrWhiteSpace(Surname) || Surname.Length < 3 ||
-                string.IsNullOrWhiteSpace(Name) || Name.Length < 3 ||
-                string.IsNullOrWhiteSpace(Middlename) || Middlename.Length < 3 ||
-                string.IsNullOrWhiteSpace(Email) || Email.Length < 3 ||
-                string.IsNullOrWhiteSpace(Male) || !isDate || !validDate || !isValid(Email))
+                !isValidString(Surname) ||
+                !isValidString(Name) ||
+                !isValidString(Middlename) ||
+                !isValidMail(Email) ||
+                string.IsNullOrWhiteSpace(Male) || !isValidDate(Birthdate))
             {
                 validData = false;
             }
