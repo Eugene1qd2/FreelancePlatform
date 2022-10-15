@@ -5,8 +5,94 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FreelancePlatform"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+         Height="850" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <ImageBrush ImageSource="Assets/Images/BackgroundImage.png" />
+    </Window.Background>
+    <Grid Height="850" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#232931" MouseDown="Grid_MouseDown">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="37" />
+                <ColumnDefinition Width="37" />
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="28" 
+                       Foreground="#D9D9D9" 
+                       Grid.Column="1" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       Width="37"
+                       Height="44"
+                       TextAlignment="Center"
+                       Style="{StaticResource OpacityHoverTheme}" MouseDown="TextBlock_MouseDown_1" >–</TextBlock>
+            <TextBlock FontSize="28" 
+                       Foreground="#D9D9D9" 
+                       Grid.Column="2" 
+                       VerticalAlignment="Center" HorizontalAlignment="Center" 
+                       Background="Transparent"
+                       Width="37"
+                       Height="44"
+                       TextAlignment="Center"
+                       Style="{StaticResource OpacityHoverTheme}" MouseDown="TextBlock_MouseDown">×</TextBlock>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0"
+              Panel.ZIndex="-10">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#4ECCA3" Offset="0"></GradientStop>
+                    <GradientStop Color="#774ECCA3" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85"/>
+                <RowDefinition Height="77"/>
+                <RowDefinition Height="77"/>
+                <RowDefinition Height="77"/>
+                <RowDefinition Height="77"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="115"/>
+            </Grid.RowDefinitions>
+            <Image Source="Assets\Images\Logo.png" Grid.Row="0" Width="164" Height="69"/>
+            <Image Width="50" Height="50" Source="Assets\Images\User.png" Grid.Row="1" HorizontalAlignment="Left" Margin="30,0"/>
+            <RadioButton Content="Профиль" 
+                             Style="{StaticResource BarRadioButton}" 
+                             Height="77"
+                             FontSize="30"
+                             IsChecked="True"
+                             Grid.Row="1"/>
+            <Image Width="50" Height="50" Source="Assets\Images\News.png" Grid.Row="2" HorizontalAlignment="Left" Margin="30,0"/>
+            <RadioButton Content="Лента" 
+                             Style="{StaticResource BarRadioButton}" 
+                             Height="77"
+                             FontSize="30"
+                             Grid.Row="2"/>
+            <Image Width="50" Height="50" Source="Assets\Images\Chat.png" Grid.Row="3" HorizontalAlignment="Left" Margin="30,0"/>
+            <RadioButton Content="Чаты" 
+                             Style="{StaticResource BarRadioButton}" 
+                             Height="77"
+                             FontSize="30"
+                             Grid.Row="3"/>
+            <Image Width="50" Height="50" Source="Assets\Images\Order.png" Grid.Row="4" HorizontalAlignment="Left" Margin="30,0"/>
+            <RadioButton Content="Мои заказы" 
+                             Style="{StaticResource BarRadioButton}" 
+                             Height="77"
+                             FontSize="30"
+                             Grid.Row="4"/>
+            <Image Width="50" Height="50" Source="Assets\Images\Settings.png" Grid.Row="7" HorizontalAlignment="Left" Margin="30,15" VerticalAlignment="Top"/>
+            <RadioButton Content="Настройки" 
+                         Style="{StaticResource BarRadioButton}" 
+                         Height="77"
+                         FontSize="30"
+                         Grid.Row="7"
+                         VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Window>

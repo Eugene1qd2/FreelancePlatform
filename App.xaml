@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Assets\Themes\UnderlinedTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\WhiteButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RoundedButtonTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

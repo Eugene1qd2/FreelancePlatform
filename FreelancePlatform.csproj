@@ -153,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\Themes\BarRadioButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Assets\Themes\OpacityHoverTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -234,6 +238,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\ArrowBack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Order.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\News.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
