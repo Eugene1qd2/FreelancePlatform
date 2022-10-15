@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -17,5 +18,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
         UserModel GetById(int id);
         UserModel GetByUsername(string username);
         IEnumerable<UserModel> GetAll();
+        Image GetImage(byte[] photo);
     }
 }

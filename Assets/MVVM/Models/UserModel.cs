@@ -10,20 +10,58 @@ namespace FreelancePlatform.Assets.MVVM.Models
 {
     public class UserModel
     {
-
+        public string FIO { get; set; }
         public int Id { get; set; }             //Unique
-        public string Username { get; set; }    //Unique
-        public string Password { get; set; }    
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Middlename { get; set; }
-        public DateTime Birthdate { get; set; }
+        public string Username { get; set; }               //Unique
+        public string Password { get; set; }
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set
+            {
+                _name = value;
+                UpdateFIO();
+            }
+
+        }
+        private string _surname;
+        public string Surname
+        {
+            get { return _surname; }
+            set
+            {
+                _surname = value;
+                UpdateFIO();
+            }
+        }
+        private string _middlename;
+        public string Middlename
+        {
+            get { return _middlename; }
+            set
+            {
+                _middlename = value;
+                UpdateFIO();
+            }
+        }
+        private DateTime _birthdate;
+        public DateTime Birthdate
+        {
+            get { return _birthdate; }
+            set
+            {
+                _birthdate = value;
+                UpdateBDStr();
+            }
+        }
+        public string BirthdateString { get; set; }
         public string Email { get; set; }       //Unique
         public string Male { get; set; }
         public string Aboutme { get; set; }
-        public Bitmap Photo { get; set; }   
+        public byte[] Photo { get; set; }
         public DateTime Registrationdate { get; set; }
-        public UserModel( string username, string password, string name, string surname, string middlename, DateTime birthdate, string email, string male)
+        public UserModel(string username, string password, string name, string surname, string middlename, DateTime birthdate, string email, string male)
         {
             Username = username;
             Password = password;
@@ -33,8 +71,16 @@ namespace FreelancePlatform.Assets.MVVM.Models
             Birthdate = birthdate;
             Email = email;
             Male = male;
+            FIO = Surname + " " + Name + " " + Middlename;
         }
-
+        private void UpdateFIO()
+        {
+            FIO = Surname + " " + Name + " " + Middlename;
+        }
+        private void UpdateBDStr()
+        {
+            BirthdateString = Birthdate.ToString("dd.MM.yyyy");
+        }
         public UserModel()
         {
         }

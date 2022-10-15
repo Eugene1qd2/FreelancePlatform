@@ -30,7 +30,7 @@
         </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="#38232931"></Setter>
+                <Setter Property="Background" Value="#38232931"/>
             </Trigger>
         </Style.Triggers>
     </Style>

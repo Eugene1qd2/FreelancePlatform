@@ -8,11 +8,39 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using FreelancePlatform.Assets.Additional_Data;
 using System.Security;
+using System.Drawing;
+using System.IO;
 
 namespace FreelancePlatform.Assets.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
+        public Image GetImage(byte[] byteArrayIn)
+        {
+            Image returnImage =null;
+            if (byteArrayIn == null)
+            {
+                byteArrayIn = defaultImage;
+            }
+            try
+            {
+                MemoryStream ms = new MemoryStream(byteArrayIn, 0, byteArrayIn.Length);
+                ms.Write(byteArrayIn, 0, byteArrayIn.Length);
+                returnImage = Image.FromStream(ms, true);//Exception occurs here
+            }
+            catch { }
+            return returnImage;
+        }
+
+        public UserRepository()
+        {
+            using (System.IO.FileStream fs = new System.IO.FileStream("..\\..\\Assets\\Images\\Default.png", FileMode.Open))
+            {
+                defaultImage = new byte[fs.Length];
+                fs.Read(defaultImage, 0, defaultImage.Length);
+            }
+        }
+        byte[] defaultImage;
         public ErrorStatus Add(UserModel userModel)
         {
             using (var connection = GetConnection())
@@ -39,13 +67,14 @@ namespace FreelancePlatform.Assets.Repositories
                         try
                         {
                             NetworkCredential net = new NetworkCredential(userModel.Username, userModel.Password);
-                            command.CommandText = "insert into users(Username,Password,Surname,Name,Middlename,Birthday,Email,Male) value(@username,@password,@surname,@name,@middlename,@birthday,@email,@male)";
+                            command.CommandText = "insert into users(Username,Password,Surname,Name,Middlename,Birthday,Email,Male,Photo) value(@username,@password,@surname,@name,@middlename,@birthday,@email,@male,@photo)";
                             command.Parameters.Add("@password", MySqlDbType.VarChar).Value = net.Password;
                             command.Parameters.Add("@surname", MySqlDbType.VarChar).Value = userModel.Surname;
                             command.Parameters.Add("@name", MySqlDbType.VarChar).Value = userModel.Name;
                             command.Parameters.Add("@middlename", MySqlDbType.VarChar).Value = userModel.Middlename;
                             command.Parameters.Add("@birthday", MySqlDbType.VarChar).Value = userModel.Birthdate.ToString("yyyy-MM-dd");
                             command.Parameters.Add("@male", MySqlDbType.VarChar).Value = userModel.Male;
+                            command.Parameters.Add("@photo", MySqlDbType.LongBlob).Value = userModel.Photo ?? defaultImage;
                             command.ExecuteNonQuery();
                         }
                         catch

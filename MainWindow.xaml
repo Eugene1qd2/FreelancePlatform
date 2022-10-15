@@ -3,12 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:FreelancePlatform.Assets.MVVM.ViewModels"
         xmlns:local="clr-namespace:FreelancePlatform"
         mc:Ignorable="d"
          Height="850" Width="1200" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/BackgroundImage.png" />
     </Window.Background>
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
     <Grid Height="850" VerticalAlignment="Top">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -67,32 +71,41 @@
                              Height="77"
                              FontSize="30"
                              IsChecked="True"
-                             Grid.Row="1"/>
+                             Grid.Row="1"
+                         Command="{Binding UserAccauntCommand}"/>
             <Image Width="50" Height="50" Source="Assets\Images\News.png" Grid.Row="2" HorizontalAlignment="Left" Margin="30,0"/>
             <RadioButton Content="Лента" 
                              Style="{StaticResource BarRadioButton}" 
                              Height="77"
                              FontSize="30"
-                             Grid.Row="2"/>
+                             Grid.Row="2"
+                          Command="{Binding OrdersListCommand}"/>
             <Image Width="50" Height="50" Source="Assets\Images\Chat.png" Grid.Row="3" HorizontalAlignment="Left" Margin="30,0"/>
             <RadioButton Content="Чаты" 
                              Style="{StaticResource BarRadioButton}" 
                              Height="77"
                              FontSize="30"
-                             Grid.Row="3"/>
+                             Grid.Row="3"
+                          Command="{Binding ChatsCommand}"/>
             <Image Width="50" Height="50" Source="Assets\Images\Order.png" Grid.Row="4" HorizontalAlignment="Left" Margin="30,0"/>
             <RadioButton Content="Мои заказы" 
                              Style="{StaticResource BarRadioButton}" 
                              Height="77"
                              FontSize="30"
-                             Grid.Row="4"/>
+                             Grid.Row="4"
+                          Command="{Binding MyOrdersCommand}"/>
             <Image Width="50" Height="50" Source="Assets\Images\Settings.png" Grid.Row="7" HorizontalAlignment="Left" Margin="30,15" VerticalAlignment="Top"/>
             <RadioButton Content="Настройки" 
                          Style="{StaticResource BarRadioButton}" 
                          Height="77"
                          FontSize="30"
                          Grid.Row="7"
-                         VerticalAlignment="Top"/>
+                         VerticalAlignment="Top"
+                         Command="{Binding SettingsCommand}"/>
         </Grid>
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        Content="{Binding CurrentView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        </ContentControl>
     </Grid>
 </Window>

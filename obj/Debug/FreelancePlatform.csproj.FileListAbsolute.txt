@@ -166,3 +166,5 @@ C:\Users\qawse\Desktop\FPL\obj\Debug\MainWindow.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\AcceptionWindow.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\AcceptionWindow.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\BarRadioButtonTheme.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserAccountView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserAccountView.baml

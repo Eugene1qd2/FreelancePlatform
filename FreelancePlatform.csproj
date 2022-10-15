@@ -130,10 +130,15 @@
     </Compile>
     <Compile Include="Assets\MVVM\Models\IUserRepository.cs" />
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\MainViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserAccauntViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
+    <Compile Include="Assets\MVVM\Views\UserAccountView.xaml.cs">
+      <DependentUpon>UserAccountView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\Repositories\RepositoryBase.cs" />
     <Compile Include="Assets\Repositories\UserRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -150,6 +155,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Controls\PasswordBoxMy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MVVM\Views\UserAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -227,7 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Assets\MVVM\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\BackgroundImage.png" />
@@ -256,6 +264,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\News.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Default.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
