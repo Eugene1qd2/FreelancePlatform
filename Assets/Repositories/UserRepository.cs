@@ -15,23 +15,6 @@ namespace FreelancePlatform.Assets.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {
-        public Image GetImage(byte[] byteArrayIn)
-        {
-            Image returnImage =null;
-            if (byteArrayIn == null)
-            {
-                byteArrayIn = defaultImage;
-            }
-            try
-            {
-                MemoryStream ms = new MemoryStream(byteArrayIn, 0, byteArrayIn.Length);
-                ms.Write(byteArrayIn, 0, byteArrayIn.Length);
-                returnImage = Image.FromStream(ms, true);//Exception occurs here
-            }
-            catch { }
-            return returnImage;
-        }
-
         public UserRepository()
         {
             using (System.IO.FileStream fs = new System.IO.FileStream("..\\..\\Assets\\Images\\Default.png", FileMode.Open))
@@ -40,7 +23,15 @@ namespace FreelancePlatform.Assets.Repositories
                 fs.Read(defaultImage, 0, defaultImage.Length);
             }
         }
-        byte[] defaultImage;
+        public byte[] defaultImage;
+        public byte[] ImageToByteArray(Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
         public ErrorStatus Add(UserModel userModel)
         {
             using (var connection = GetConnection())
@@ -144,8 +135,7 @@ namespace FreelancePlatform.Assets.Repositories
                         Username = reader.GetString("Username"),
                         Password = reader.GetString("Password"),
                         Id = int.Parse(reader.GetString("ID")),
-                        Photo = null
-                        //Photo = reader.GetString("Photo")
+                        Photo = reader.GetValue(11) as byte[]
                     };
                 }
             }
@@ -155,6 +145,22 @@ namespace FreelancePlatform.Assets.Repositories
         public void Remove(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void ChangePhoto(UserModel userModel)
+        {
+            using (var connection = GetConnection())
+            {
+                using (var command = new MySqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "update users set Photo=@photo where Username=@username;";
+                    command.Parameters.Add("@username", MySqlDbType.VarChar).Value = userModel.Username;
+                    command.Parameters.Add("@photo", MySqlDbType.LongBlob).Value = userModel.Photo ?? defaultImage;
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

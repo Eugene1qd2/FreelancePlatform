@@ -168,3 +168,7 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\AcceptionWindow.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\BarRadioButtonTheme.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserAccountView.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserAccountView.baml
+C:\Users\user\Desktop\FreelancePlatform\bin\Debug\Microsoft.Windows.Design.Interaction.dll
+C:\Users\user\Desktop\FreelancePlatform\bin\Debug\Microsoft.Windows.Design.Extensibility.dll
+C:\Users\user\Desktop\FreelancePlatform\bin\Debug\ru\Microsoft.Windows.Design.Interaction.resources.dll
+C:\Users\user\Desktop\FreelancePlatform\bin\Debug\ru\Microsoft.Windows.Design.Extensibility.resources.dll

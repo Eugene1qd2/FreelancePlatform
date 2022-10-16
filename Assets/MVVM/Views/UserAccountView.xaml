@@ -16,11 +16,35 @@
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Border Width="280" 
+                        Height="280"
                         CornerRadius="140"
                         HorizontalAlignment="Left"
-                        Grid.Column="0">
-                    <Image x:Name="userPhoto" Width="280"/>
-
+                        Grid.Column="0"
+                        Cursor="Hand">
+                    <Border.InputBindings>
+                        <MouseBinding MouseAction="LeftClick"
+                    Command="{Binding ChangeUserPhotoCommand}"
+                    CommandParameter="{Binding}" />
+                    </Border.InputBindings>
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding PhotoName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Stretch="UniformToFill"/>
+                    </Border.Background>
+                    <!--<Border Background="#38232931"
+                            Width="280"
+                            VerticalAlignment="Bottom"
+                            Height="100"
+                            ClipToBounds="True">
+                        <Border.Style>
+                            <Style TargetType="Border">
+                                <Setter Property="Opacity" Value="0"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Opacity" Value="1"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                    </Border>-->
                 </Border>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <TextBlock Height="150" Text="{Binding CurrentUser.FIO}"
@@ -41,7 +65,7 @@
                                FontFamily="Montserrat"/>
                 </StackPanel>
             </Grid>
-            
+
         </StackPanel>
     </Grid>
 </UserControl>
