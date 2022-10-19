@@ -1,6 +1,8 @@
 ﻿using FreelancePlatform.Assets.MVVM.Models;
 using FreelancePlatform.Assets.Repositories;
 using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Input;
@@ -11,10 +13,60 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     class UserAccauntViewModel : ViewModelBase
     {
         private UserModel _currentUser;
+        private List<EducationModel> _educations;
+        private List<WorkExpModel> _workExps;
+        private List<UserSkillModel> _userSkills;
 
         BitmapImage _photoName;
-
+        byte[] defaultImage;
         string _errorMessage;
+
+        IUserRepository userRepository;
+        IEducationRepository educationRepository;
+        IWorkExpRepository workExpRepository;
+        IUserSkillRepository userSkillRepository;
+        public ICommand ChangeUserPhotoCommand { get; set; }
+        public ICommand ConfirmAboutMeCommand { get; set; }
+
+        public List<EducationModel> Educations
+        {
+            get
+            {
+                return _educations;
+            }
+            set
+            {
+                _educations = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<WorkExpModel> WorkExps
+        {
+            get
+            {
+                return _workExps;
+            }
+            set
+            {
+                _workExps = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public List<UserSkillModel> UserSkills
+        {
+            get
+            {
+                return _userSkills;
+            }
+            set
+            {
+                _userSkills = value;
+                OnPropertyChanged();
+            }
+        }
+
         public string ErrorMessage
         {
             get
@@ -28,7 +80,6 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             }
         }
 
-        IUserRepository userRepository;
         public BitmapImage PhotoName
         {
             get
@@ -53,14 +104,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ICommand ChangeUserPhotoCommand { get; set; }
 
         public UserAccauntViewModel()
         {
             ErrorMessage = "Вы не вошли в учётную запись пользователя!";
         }
 
-        byte[] defaultImage;
 
         private void UpdatePhoto()
         {
@@ -78,8 +127,32 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         public UserAccauntViewModel(UserModel user)
         {
             userRepository = new UserRepository();
+            educationRepository = new EducationRepository();
+            workExpRepository = new WorkExpRepository();
+            userSkillRepository = new UserSkillRepository();
+
             CurrentUser = user;
-            using (System.IO.FileStream fs = new System.IO.FileStream("..\\..\\Assets\\Images\\Default.png", FileMode.Open))
+            Educations = educationRepository.GetByUserId(CurrentUser.Id);
+            WorkExps =workExpRepository.GetByUserId(CurrentUser.Id);
+            UserSkills = userSkillRepository.GetByUserId(CurrentUser.Id);
+
+            if (Educations.Count == 0)
+            {
+                Educations = new List<EducationModel>();
+                Educations.Add(new EducationModel() { Institution = "Отсутствует" });
+            }
+            if (WorkExps.Count == 0)
+            {
+                WorkExps = new List<WorkExpModel>();
+                WorkExps.Add(new WorkExpModel() { Company = "Отсутствует" });
+            }
+            if (UserSkills.Count == 0)
+            {
+                UserSkills = new List<UserSkillModel>();
+                UserSkills.Add(new UserSkillModel() { Skill = "Отсутствует" });
+            }
+
+            using (FileStream fs = new FileStream("..\\..\\Assets\\Images\\Default.png", FileMode.Open))
             {
                 defaultImage = new byte[fs.Length];
                 fs.Read(defaultImage, 0, defaultImage.Length);
@@ -88,6 +161,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             UpdatePhoto();
 
             ChangeUserPhotoCommand = new ViewModelCommand(ExecuteChangeUserPhotoCommand);
+            ConfirmAboutMeCommand = new ViewModelCommand(ExecuteConfirmAboutMeCommand);
+        }
+
+        private void ExecuteConfirmAboutMeCommand(object obj)
+        {
+            userRepository.ChangeAboutMeByUsername(CurrentUser);
         }
 
         private void ExecuteChangeUserPhotoCommand(object obj)

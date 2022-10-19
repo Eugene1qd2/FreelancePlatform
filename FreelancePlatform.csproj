@@ -129,8 +129,14 @@
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Models\EducationModel.cs" />
+    <Compile Include="Assets\MVVM\Models\IUserSkillRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\IWorkExpRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\IEducationRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IUserRepository.cs" />
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
+    <Compile Include="Assets\MVVM\Models\UserSkillModel.cs" />
+    <Compile Include="Assets\MVVM\Models\WorkExpModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\MainViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\LoginViewModel.cs" />
@@ -140,6 +146,9 @@
     <Compile Include="Assets\MVVM\Views\UserAccountView.xaml.cs">
       <DependentUpon>UserAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Repositories\UserSkillRepository.cs" />
+    <Compile Include="Assets\Repositories\WorkExpRepository.cs" />
+    <Compile Include="Assets\Repositories\EducationRepository.cs" />
     <Compile Include="Assets\Repositories\RepositoryBase.cs" />
     <Compile Include="Assets\Repositories\UserRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
@@ -237,7 +246,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\Fonts\" />
-    <Folder Include="Assets\Images\UserFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\BackgroundImage.png" />
@@ -269,6 +277,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Folder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Confirm.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

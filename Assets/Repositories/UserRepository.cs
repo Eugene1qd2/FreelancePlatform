@@ -135,7 +135,8 @@ namespace FreelancePlatform.Assets.Repositories
                         Username = reader.GetString("Username"),
                         Password = reader.GetString("Password"),
                         Id = int.Parse(reader.GetString("ID")),
-                        Photo = reader.GetValue(11) as byte[]
+                        Photo = reader.GetValue(11) as byte[],
+                        Aboutme = reader.GetString("Aboutme")
                     };
                 }
             }
@@ -158,6 +159,22 @@ namespace FreelancePlatform.Assets.Repositories
                     command.CommandText = "update users set Photo=@photo where Username=@username;";
                     command.Parameters.Add("@username", MySqlDbType.VarChar).Value = userModel.Username;
                     command.Parameters.Add("@photo", MySqlDbType.LongBlob).Value = userModel.Photo ?? defaultImage;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ChangeAboutMeByUsername(UserModel user)
+        {
+            using (var connection = GetConnection())
+            {
+                using (var command = new MySqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "update users set Aboutme=@about where Username=@username;";
+                    command.Parameters.Add("@username", MySqlDbType.VarChar).Value = user.Username;
+                    command.Parameters.Add("@about", MySqlDbType.Text).Value = user.Aboutme;
                     command.ExecuteNonQuery();
                 }
             }

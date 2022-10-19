@@ -20,5 +20,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
         UserModel GetByUsername(string username);
         IEnumerable<UserModel> GetAll();
         byte[] ImageToByteArray(Image imageIn);
+        void ChangeAboutMeByUsername(UserModel user);
     }
 }
