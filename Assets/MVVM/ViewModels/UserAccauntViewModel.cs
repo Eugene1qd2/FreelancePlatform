@@ -16,6 +16,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private List<EducationModel> _educations;
         private List<WorkExpModel> _workExps;
         private List<UserSkillModel> _userSkills;
+        private List<CertificateModel> _certificates;
 
         BitmapImage _photoName;
         byte[] defaultImage;
@@ -25,6 +26,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         IEducationRepository educationRepository;
         IWorkExpRepository workExpRepository;
         IUserSkillRepository userSkillRepository;
+        ICertificateRepository certificateRepository;
+
         public ICommand ChangeUserPhotoCommand { get; set; }
         public ICommand ConfirmAboutMeCommand { get; set; }
 
@@ -104,6 +107,18 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+        public List<CertificateModel> Certificates
+        {
+            get
+            {
+                return _certificates;
+            }
+            set
+            {
+                _certificates = value;
+                OnPropertyChanged();
+            }
+        }
 
         public UserAccauntViewModel()
         {
@@ -130,11 +145,13 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             educationRepository = new EducationRepository();
             workExpRepository = new WorkExpRepository();
             userSkillRepository = new UserSkillRepository();
+            certificateRepository = new CertificateRepository();
 
             CurrentUser = user;
             Educations = educationRepository.GetByUserId(CurrentUser.Id);
-            WorkExps =workExpRepository.GetByUserId(CurrentUser.Id);
+            WorkExps = workExpRepository.GetByUserId(CurrentUser.Id);
             UserSkills = userSkillRepository.GetByUserId(CurrentUser.Id);
+            Certificates = certificateRepository.GetByUserId(CurrentUser.Id);
 
             if (Educations.Count == 0)
             {
@@ -150,6 +167,11 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 UserSkills = new List<UserSkillModel>();
                 UserSkills.Add(new UserSkillModel() { Skill = "Отсутствует" });
+            }
+            if (Certificates.Count == 0)
+            {
+                Certificates = new List<CertificateModel>();
+                Certificates.Add(new CertificateModel() { Organization = "Отсутствует" });
             }
 
             using (FileStream fs = new FileStream("..\\..\\Assets\\Images\\Default.png", FileMode.Open))

@@ -129,7 +129,9 @@
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Models\CertificateModel.cs" />
     <Compile Include="Assets\MVVM\Models\EducationModel.cs" />
+    <Compile Include="Assets\MVVM\Models\ICertificateRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IUserSkillRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IWorkExpRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IEducationRepository.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Assets\MVVM\Views\UserAccountView.xaml.cs">
       <DependentUpon>UserAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Repositories\CertificateRepository.cs" />
     <Compile Include="Assets\Repositories\UserSkillRepository.cs" />
     <Compile Include="Assets\Repositories\WorkExpRepository.cs" />
     <Compile Include="Assets\Repositories\EducationRepository.cs" />
@@ -185,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Themes\RoundedButtonTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Themes\TransparentButtonTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

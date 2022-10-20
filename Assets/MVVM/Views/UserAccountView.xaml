@@ -137,7 +137,7 @@
                             <ItemsControl ItemsSource="{Binding Educations, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" Grid.Row="1">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" Height="auto" Margin="5">
+                                        <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" Height="auto" Width="700" Margin="5">
                                             <TextBox Text="{Binding EducationString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
                                                    Background="Transparent"
                                                      BorderThickness="0"
@@ -179,7 +179,7 @@
                             <ItemsControl ItemsSource="{Binding WorkExps, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" Grid.Row="1">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" MinWidth="80" Height="auto" Margin="5">
+                                        <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" MinWidth="80" Height="auto" Width="700" Margin="5">
                                             <TextBox Text="{Binding WorkExpString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
                                                    TextWrapping="Wrap"
                                                    FontWeight="Medium"
@@ -233,6 +233,59 @@
                                                      Background="Transparent"
                                                      BorderThickness="0"
                                                      IsReadOnly="true"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+
+                        </Grid>
+                    </Border>
+                    <Border CornerRadius="10" Background="#88D9D9D9" MinHeight="190" Margin="0,15">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="48"/>
+                                <RowDefinition Height="1*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0" CornerRadius="10,10,0,0" Background="#393E46">
+                                <TextBlock Text="Сертификаты"
+                                   FontWeight="Medium"
+                                   FontFamily="Montserrat"
+                                   FontSize="24"
+                                   Foreground="#d9d9d9"
+                                   VerticalAlignment="Center"
+                                   Margin="30,0"/>
+                            </Border>
+                            <ItemsControl ItemsSource="{Binding Certificates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" Grid.Row="1">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" MinWidth="80" Height="auto" Width="700" Margin="5">
+                                            <StackPanel>
+                                                <TextBox Text="{Binding CertificateString,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                         TextWrapping="Wrap"
+                                                     FontWeight="Medium"
+                                                     FontFamily="Montserrat"
+                                                     FontSize="20"
+                                                     Foreground="#232931"
+                                                     Height="auto"
+                                                     VerticalAlignment="Center"
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                     IsReadOnly="true"/>
+                                                <Button Width="300"
+                                                        Height="45"
+                                                        Margin="0,20,0,0"
+                                                        Content="Посмотреть сертификат"
+                                                        Style="{StaticResource TransparentButton}"
+                                                        Command="{Binding FollowLinkCommand}"
+                                                        FontSize="20"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"/>
+                                            </StackPanel>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>

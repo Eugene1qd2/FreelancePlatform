@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Assets\Themes\OpacityHoverTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\UnderlinedTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\WhiteButtonTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\TransparentButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RoundedButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
