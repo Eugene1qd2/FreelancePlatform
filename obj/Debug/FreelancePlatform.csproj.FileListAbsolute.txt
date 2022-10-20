@@ -173,3 +173,5 @@ C:\Users\user\Desktop\FreelancePlatform\bin\Debug\Microsoft.Windows.Design.Exten
 C:\Users\user\Desktop\FreelancePlatform\bin\Debug\ru\Microsoft.Windows.Design.Interaction.resources.dll
 C:\Users\user\Desktop\FreelancePlatform\bin\Debug\ru\Microsoft.Windows.Design.Extensibility.resources.dll
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\TransparentButtonTheme.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ApplicationSettingsView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ApplicationSettingsView.baml

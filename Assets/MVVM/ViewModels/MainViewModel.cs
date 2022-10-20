@@ -18,6 +18,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     public class MainViewModel : ViewModelBase
     {
         private UserAccauntViewModel userAccaunt { get; set; }
+        private ApplicationSettingsViewModel applicationSettings { get; set; }
+
         private string _username;
         private string _errorMessage;
         private object _currentView;
@@ -73,6 +75,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             CurrentUser = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
 
             userAccaunt = new UserAccauntViewModel(CurrentUser);
+            applicationSettings = new ApplicationSettingsViewModel();
 
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
@@ -93,7 +96,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             });
             SettingsCommand = new ViewModelCommand(o =>
             {
-                CurrentView = null;
+                CurrentView = applicationSettings;
             });
 
         }

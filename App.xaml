@@ -18,6 +18,9 @@
             <DataTemplate DataType="{x:Type viewModel:UserAccauntViewModel}">
                 <view:UserAccountView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ApplicationSettingsViewModel}">
+                <view:ApplicationSettingsView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

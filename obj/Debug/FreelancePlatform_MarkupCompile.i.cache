@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\user\Desktop\FreelancePlatform\App.xaml
-13-368100742
+14-320181248
 
-36402766100
+382102553719
 144-542412628
-AcceptionWindow.xaml;Assets\Controls\PasswordBoxMy.xaml;Assets\MVVM\Views\UserAccountView.xaml;Assets\Themes\BarRadioButtonTheme.xaml;Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\TransparentButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;MainWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
+AcceptionWindow.xaml;Assets\Controls\PasswordBoxMy.xaml;Assets\MVVM\Views\ApplicationSettingsView.xaml;Assets\MVVM\Views\UserAccountView.xaml;Assets\Themes\BarRadioButtonTheme.xaml;Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\TransparentButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;MainWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
 
-True
+False
 

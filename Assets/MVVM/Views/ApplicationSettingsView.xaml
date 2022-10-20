@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="FreelancePlatform.Assets.MVVM.Views.ApplicationSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FreelancePlatform.Assets.MVVM.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="825" d:DesignWidth="840"
+             BorderThickness="0">
+    <Grid>
+        <WrapPanel>
+            <Image Source="../../Images/ArrowBack.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Chat.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/CloseCross.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Confirm.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Default.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Folder.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Logo.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/News.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Order.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/Settings.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/User.png" Width="100" Margin="20"/>
+            <Image Source="../../Images/BackgroundImage.png" Width="100" Margin="20"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

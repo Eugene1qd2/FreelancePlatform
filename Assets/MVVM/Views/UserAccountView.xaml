@@ -45,7 +45,7 @@
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
-
+                                <Image Source="../../Images/Folder.png" Width="41" Height="auto" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,40"/>
                             </Border>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Center">
