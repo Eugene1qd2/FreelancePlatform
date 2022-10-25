@@ -28,8 +28,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         IUserSkillRepository userSkillRepository;
         ICertificateRepository certificateRepository;
 
+        //public delegate void StartChangingSkills();
+        public event Action OnChangeSkills;
+
         public ICommand ChangeUserPhotoCommand { get; set; }
         public ICommand ConfirmAboutMeCommand { get; set; }
+        public ICommand ChangeSkillsCommand { get; set; }
 
         public List<EducationModel> Educations
         {
@@ -184,6 +188,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
             ChangeUserPhotoCommand = new ViewModelCommand(ExecuteChangeUserPhotoCommand);
             ConfirmAboutMeCommand = new ViewModelCommand(ExecuteConfirmAboutMeCommand);
+            ChangeSkillsCommand = new ViewModelCommand(ExecuteChangeSkillsCommand);
+        }
+
+        private void ExecuteChangeSkillsCommand(object obj)
+        {
+            OnChangeSkills();
         }
 
         private void ExecuteConfirmAboutMeCommand(object obj)
@@ -202,6 +212,43 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 UpdatePhoto();
                 userRepository.ChangePhoto(CurrentUser);
             }
+        }
+
+        public void UpdateInfo()
+        {
+            Educations = educationRepository.GetByUserId(CurrentUser.Id);
+            WorkExps = workExpRepository.GetByUserId(CurrentUser.Id);
+            UserSkills = userSkillRepository.GetByUserId(CurrentUser.Id);
+            Certificates = certificateRepository.GetByUserId(CurrentUser.Id);
+
+            if (Educations.Count == 0)
+            {
+                Educations = new List<EducationModel>();
+                Educations.Add(new EducationModel() { Institution = "Отсутствует" });
+            }
+            if (WorkExps.Count == 0)
+            {
+                WorkExps = new List<WorkExpModel>();
+                WorkExps.Add(new WorkExpModel() { Company = "Отсутствует" });
+            }
+            if (UserSkills.Count == 0)
+            {
+                UserSkills = new List<UserSkillModel>();
+                UserSkills.Add(new UserSkillModel() { Skill = "Отсутствует" });
+            }
+            if (Certificates.Count == 0)
+            {
+                Certificates = new List<CertificateModel>();
+                Certificates.Add(new CertificateModel() { Organization = "Отсутствует" });
+            }
+
+            using (FileStream fs = new FileStream("..\\..\\Assets\\Images\\Default.png", FileMode.Open))
+            {
+                defaultImage = new byte[fs.Length];
+                fs.Read(defaultImage, 0, defaultImage.Length);
+            }
+
+            UpdatePhoto();
         }
     }
 }

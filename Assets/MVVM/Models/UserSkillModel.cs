@@ -1,8 +1,11 @@
-﻿using System;
+﻿using FreelancePlatform.Assets.MVVM.ViewModels;
+using FreelancePlatform.Assets.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FreelancePlatform.Assets.MVVM.Models
 {

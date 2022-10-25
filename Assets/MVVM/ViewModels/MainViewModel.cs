@@ -19,6 +19,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     {
         private UserAccauntViewModel userAccaunt { get; set; }
         private ApplicationSettingsViewModel applicationSettings { get; set; }
+        private UserSkillsViewModel userSkills { get; set; }
 
         private string _username;
         private string _errorMessage;
@@ -76,6 +77,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
             userAccaunt = new UserAccauntViewModel(CurrentUser);
             applicationSettings = new ApplicationSettingsViewModel();
+            userSkills= new UserSkillsViewModel(CurrentUser);
 
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
@@ -98,7 +100,15 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = applicationSettings;
             });
-
+            userAccaunt.OnChangeSkills += () =>
+            {
+                CurrentView = userSkills;
+            };
+            userSkills.OnGoBack += () =>
+            {
+                CurrentView=userAccaunt;
+                userAccaunt.UpdateInfo();
+            };
         }
     }
 }

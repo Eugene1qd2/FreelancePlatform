@@ -1,0 +1,248 @@
+﻿<UserControl x:Class="FreelancePlatform.Assets.MVVM.Views.UserSkillsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FreelancePlatform.Assets.MVVM.Views"
+             mc:Ignorable="d"  
+             d:DesignHeight="825" d:DesignWidth="840"
+             BorderThickness="0">
+    <UserControl.Resources>
+        <Style TargetType="ScrollBar">
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="Margin" Value="0,0,-20,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0"
+                Background="#393E46">
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Montserrat"
+                       FontSize="24"
+                       Foreground="#D9D9D9"
+                       FontWeight="Medium"
+                       Text="Добавление навыков"/>
+        </Border>
+        <Grid Grid.Row="1"
+              Grid.Column="0">
+            <StackPanel Margin="35,10">
+                <Grid Height="77" Margin="0,0,0,30">
+                    <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Width="350">
+                        <StackPanel>
+                            <TextBlock FontFamily="Montserrat"
+                                       FontSize="22"
+                                       FontWeight="Medium"
+                                       Foreground="#D9D9D9"
+                                       Width="350"
+                                       Padding="20,0"
+                                       Text="Поиск навыков"/>   
+                            <TextBox FontFamily="Montserrat"
+                                     FontSize="26"
+                                     FontWeight="Medium"
+                                     Foreground="#D9D9D9" 
+                                     Width="350"
+                                     Height="50"
+                                     Tag="Логин"
+                                     MaxLength="20"
+                                     Background="Transparent"
+                                     BorderThickness="0"
+                                     Padding="20,10,20,5"
+                                     VerticalAlignment="Bottom"
+                                     Text="{Binding SearchSkills, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            </TextBox>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <ScrollViewer Height="590">
+                    <ItemsControl ItemsSource="{Binding Skills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" MinWidth="345" Height="auto" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="40"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Text="{Binding Skill,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                   TextWrapping="Wrap"
+                                                   FontWeight="Medium"
+                                                   FontFamily="Montserrat"
+                                                   FontSize="20"
+                                                   Foreground="#232931"
+                                                   Height="auto"
+                                                   VerticalAlignment="Center"
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                     IsReadOnly="true"/>
+                                        <Button Width="30" 
+                                        Height="30"  
+                                        HorizontalAlignment="Right" 
+                                        Background="Transparent" 
+                                        BorderThickness="0"  
+                                        VerticalAlignment="Center" 
+                                        Command="{Binding 
+    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, 
+    Path=DataContext.AddSkillCommand}"
+                                                CommandParameter="{Binding Id}"
+                                        Grid.Column="1">
+                                            <Image Source="..\..\Images\AddButton.png" Width="30" Height="30"/>
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="Transparent">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="False">
+                                                            <Setter Property="Opacity" Value="0"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+        <Border Grid.Row="1"
+                Grid.Column="1"
+                Background="#D9D9D9"
+                Height="670"/>
+        <Grid Grid.Row="1"
+              Grid.Column="2">
+            <StackPanel Margin="35,10">
+                <Grid Height="77" Margin="0,0,0,30">
+                    <TextBlock FontFamily="Montserrat"
+                               FontSize="30"
+                               FontWeight="Medium"
+                               Foreground="#D9D9D9"
+                               Text="Добавленные навыки"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"/>
+                </Grid>
+                <ScrollViewer Height="590">
+                    <ItemsControl ItemsSource="{Binding UserSkills, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Padding="10,5" CornerRadius="10" Background="#d9d9d9" MinHeight="43" MinWidth="345" Height="auto" Margin="5">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="40"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Text="{Binding Skill,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" 
+                                                   TextWrapping="Wrap"
+                                                   FontWeight="Medium"
+                                                   FontFamily="Montserrat"
+                                                   FontSize="20"
+                                                   Foreground="#232931"
+                                                   Height="auto"
+                                                   VerticalAlignment="Center"
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                     IsReadOnly="true"/>
+                                        <Button Width="30" 
+                                        Height="30"  
+                                        HorizontalAlignment="Right" 
+                                        Background="Transparent" 
+                                        BorderThickness="0"  
+                                        VerticalAlignment="Center" 
+                                        Command="{Binding 
+    RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}, 
+    Path=DataContext.RemoveSkillCommand}"
+                                                CommandParameter="{Binding Id}"
+                                        Grid.Column="1">
+                                            <Image Source="..\..\Images\RemoveButton.png" Width="30" Height="30"/>
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border Background="Transparent">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+        <Button Width="42" 
+                Height="38"  
+                HorizontalAlignment="Left" 
+                Background="Transparent" 
+                BorderThickness="0"  
+                VerticalAlignment="Center" 
+                Command="{Binding DeclineChangeSkillsCommand}"
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="30,0">
+            <Image Source="..\..\Images\ArrowBack.png" Width="42" Height="38"/>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="Transparent">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

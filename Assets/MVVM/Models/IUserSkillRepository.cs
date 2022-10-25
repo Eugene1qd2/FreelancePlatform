@@ -12,5 +12,8 @@ namespace FreelancePlatform.Assets.MVVM.Models
         ErrorStatus Add(UserSkillModel workExp, UserModel user);
         void Remove(UserModel user,int id);
         List<UserSkillModel> GetByUserId(int userId);
+        List<UserSkillModel> GetExceptUserId(int userId);
+        UserSkillModel GetById(int Id);
+        List<UserSkillModel> GetAllSkills();
     }
 }

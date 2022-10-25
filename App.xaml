@@ -21,6 +21,10 @@
             <DataTemplate DataType="{x:Type viewModel:ApplicationSettingsViewModel}">
                 <view:ApplicationSettingsView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:UserSkillsViewModel}">
+                <view:UserSkillsView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

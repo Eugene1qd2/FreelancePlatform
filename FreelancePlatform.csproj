@@ -143,6 +143,7 @@
     <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\LoginViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ApplicationSettingsViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserSkillsViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\UserAccauntViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
@@ -151,6 +152,9 @@
     </Compile>
     <Compile Include="Assets\MVVM\Views\UserAccountView.xaml.cs">
       <DependentUpon>UserAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\UserSkillsView.xaml.cs">
+      <DependentUpon>UserSkillsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\Repositories\CertificateRepository.cs" />
     <Compile Include="Assets\Repositories\UserSkillRepository.cs" />
@@ -180,6 +184,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\MVVM\Views\UserAccountView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MVVM\Views\UserSkillsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -298,6 +306,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\Confirm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\AddButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\RemoveButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

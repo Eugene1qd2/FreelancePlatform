@@ -175,3 +175,6 @@ C:\Users\user\Desktop\FreelancePlatform\bin\Debug\ru\Microsoft.Windows.Design.Ex
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\TransparentButtonTheme.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ApplicationSettingsView.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ApplicationSettingsView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\FreelancePlatform.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserSkillsView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserSkillsView.baml
