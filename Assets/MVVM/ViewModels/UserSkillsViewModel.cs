@@ -23,10 +23,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         string _errorMessage;
 
         IUserRepository userRepository;
-        IEducationRepository educationRepository;
-        IWorkExpRepository workExpRepository;
         IUserSkillRepository userSkillRepository;
-        ICertificateRepository certificateRepository;
 
         public ICommand DeclineChangeSkillsCommand { get; set; }
         public ICommand RemoveSkillCommand { get; set; }

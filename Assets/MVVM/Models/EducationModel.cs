@@ -23,7 +23,28 @@ namespace FreelancePlatform.Assets.MVVM.Models
                 return _educationString;
             }
         }
-
+        private string _institutionString;
+        public string InstitutionString
+        {
+            get
+            {
+                _institutionString = "Учебное заведение: "+Institution ;
+                return _institutionString;
+            }
+        }
+        private string _yearsString;
+        public string YearsString
+        {
+            get
+            {
+                _yearsString = "Годы обучения: " + StartYear+"-"+EndYear+"гг.";
+                return _yearsString;
+            }
+        }
+        public override string ToString()
+        {
+            return Institution + " " + StartYear + " " + EndYear + " " + Id;
+        }
         public EducationModel()
         {
 

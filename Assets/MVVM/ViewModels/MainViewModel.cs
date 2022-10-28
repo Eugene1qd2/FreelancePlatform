@@ -20,6 +20,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private UserAccauntViewModel userAccaunt { get; set; }
         private ApplicationSettingsViewModel applicationSettings { get; set; }
         private UserSkillsViewModel userSkills { get; set; }
+        private EducationViewModel educations { get; set; }
+        private AddEducationViewModel addEducations { get; set; }
 
         private string _username;
         private string _errorMessage;
@@ -78,11 +80,14 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userAccaunt = new UserAccauntViewModel(CurrentUser);
             applicationSettings = new ApplicationSettingsViewModel();
             userSkills= new UserSkillsViewModel(CurrentUser);
+            educations = new EducationViewModel(CurrentUser);
+            addEducations = new AddEducationViewModel(CurrentUser);
 
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
             {
                 CurrentView = userAccaunt;
+                userAccaunt.UpdateInfo();
             });
             OrdersListCommand = new ViewModelCommand(o =>
             {
@@ -104,6 +109,52 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = userSkills;
             };
+
+            /// <summary>
+            /// User Accaunt triggers
+            /// </summary>
+            userAccaunt.OnChangeEducations += () =>
+            {
+                CurrentView = educations;
+                educations.UpdateInfo();
+            };
+
+            /// <summary>
+            /// Education triggers
+            /// </summary>
+            educations.OnAddEducation += () =>
+            {
+                CurrentView = addEducations;
+                addEducations.IdEducation = -1;
+
+            };
+            educations.OnEditEducation += (int Id) =>
+            {
+                CurrentView = addEducations;
+                addEducations.IdEducation = Id;
+            };
+
+            educations.OnGoBack += () =>
+            {
+                CurrentView = userAccaunt;
+                userAccaunt.UpdateInfo();
+            };
+
+            addEducations.OnGoBack += () =>
+            {
+                CurrentView = educations;
+                educations.UpdateInfo();
+            };
+
+            addEducations.OnConfirm += () =>
+            {
+                CurrentView = educations;
+                educations.UpdateInfo();
+            };
+
+            /// <summary>
+            /// User Skills triggers
+            /// </summary>
             userSkills.OnGoBack += () =>
             {
                 CurrentView=userAccaunt;

@@ -22,9 +22,19 @@
                 <view:ApplicationSettingsView/>
             </DataTemplate>
 
+            
             <DataTemplate DataType="{x:Type viewModel:UserSkillsViewModel}">
                 <view:UserSkillsView/>
             </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:EducationViewModel}">
+                <view:EducationView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AddEducationViewModel}">
+                <view:AddEducationView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

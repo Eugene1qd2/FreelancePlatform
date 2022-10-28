@@ -13,5 +13,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
         void Edit(EducationModel education);
         void Remove(int id);
         List<EducationModel> GetByUserId(int userId);
+        EducationModel GetById(int Id);
     }
 }

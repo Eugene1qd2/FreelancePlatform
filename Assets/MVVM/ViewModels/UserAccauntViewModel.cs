@@ -30,10 +30,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         //public delegate void StartChangingSkills();
         public event Action OnChangeSkills;
+        public event Action OnChangeEducations;
 
         public ICommand ChangeUserPhotoCommand { get; set; }
         public ICommand ConfirmAboutMeCommand { get; set; }
         public ICommand ChangeSkillsCommand { get; set; }
+        public ICommand ChangeEducationsCommand { get; set; }
 
         public List<EducationModel> Educations
         {
@@ -189,11 +191,17 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             ChangeUserPhotoCommand = new ViewModelCommand(ExecuteChangeUserPhotoCommand);
             ConfirmAboutMeCommand = new ViewModelCommand(ExecuteConfirmAboutMeCommand);
             ChangeSkillsCommand = new ViewModelCommand(ExecuteChangeSkillsCommand);
+            ChangeEducationsCommand = new ViewModelCommand(ExecuteChangeEducationsCommand);
         }
 
         private void ExecuteChangeSkillsCommand(object obj)
         {
             OnChangeSkills();
+        }
+
+        private void ExecuteChangeEducationsCommand(object obj)
+        {
+            OnChangeEducations();
         }
 
         private void ExecuteConfirmAboutMeCommand(object obj)
