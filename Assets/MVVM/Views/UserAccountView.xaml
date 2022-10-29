@@ -89,6 +89,18 @@
                                                       Command="{Binding ConfirmAboutMeCommand}"
                                                       CommandParameter="{Binding}" />
                                         </Border.InputBindings>
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsChanged}" Value="False">
+                                                        <Setter Property="IsEnabled" Value="False"/>
+                                                    </DataTrigger>
+                                                    <Trigger Property="IsEnabled" Value="False">
+                                                        <Setter Property="Opacity" Value="0"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
                                         <Image Source="../../Images/Confirm.png">
                                             <Image.Style>
                                                 <Style TargetType="Image">
@@ -105,7 +117,7 @@
                                 </Grid>
                             </Border>
                             <Border  Padding="10" CornerRadius="10" Background="#d9d9d9" MinHeight="43" MinWidth="80" Grid.Row="1" Margin="10" Height="auto">
-                                <TextBox Text="{Binding CurrentUser.Aboutme,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+                                <TextBox Text="{Binding AboutUser,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                                    TextWrapping="Wrap"
                                    FontWeight="Medium"
                                    FontFamily="Montserrat"
@@ -189,13 +201,34 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" CornerRadius="10,10,0,0" Background="#393E46">
-                                <TextBlock Text="Опыт работы"
+                                <Grid>
+                                    <TextBlock Text="Опыт работы"
                                    FontWeight="Medium"
                                    FontFamily="Montserrat"
                                    FontSize="24"
                                    Foreground="#d9d9d9"
                                    VerticalAlignment="Center"
                                    Margin="30,0"/>
+                                    <Border HorizontalAlignment="Right" Margin="10">
+                                        <Border.InputBindings>
+                                            <MouseBinding MouseAction="LeftClick"
+                                                      Command="{Binding ChangeWorkExpsCommand}"
+                                                      CommandParameter="{Binding}" />
+                                        </Border.InputBindings>
+                                        <Image Source="../../Images/Edit.png">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Setter Property="Opacity" Value="1"/>
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Opacity" Value="0.8"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </Border>
+                                </Grid>
                             </Border>
                             <ItemsControl ItemsSource="{Binding WorkExps, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5" Grid.Row="1">
                                 <ItemsControl.ItemTemplate>

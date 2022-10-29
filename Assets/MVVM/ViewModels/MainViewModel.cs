@@ -21,6 +21,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private ApplicationSettingsViewModel applicationSettings { get; set; }
         private UserSkillsViewModel userSkills { get; set; }
         private EducationViewModel educations { get; set; }
+        private WorkExpViewModel workExps { get; set; }
+        private AddWorkExpViewModel addWorkExps { get; set; }
         private AddEducationViewModel addEducations { get; set; }
 
         private string _username;
@@ -81,7 +83,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             applicationSettings = new ApplicationSettingsViewModel();
             userSkills= new UserSkillsViewModel(CurrentUser);
             educations = new EducationViewModel(CurrentUser);
+            workExps = new WorkExpViewModel(CurrentUser);
             addEducations = new AddEducationViewModel(CurrentUser);
+            addWorkExps=new AddWorkExpViewModel(CurrentUser);
 
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
@@ -105,18 +109,24 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = applicationSettings;
             });
+
+            /// <summary>
+            /// User Accaunt triggers
+            /// </summary>
             userAccaunt.OnChangeSkills += () =>
             {
                 CurrentView = userSkills;
             };
 
-            /// <summary>
-            /// User Accaunt triggers
-            /// </summary>
             userAccaunt.OnChangeEducations += () =>
             {
                 CurrentView = educations;
                 educations.UpdateInfo();
+            };
+
+            userAccaunt.OnChangeWorkExps += () =>
+            {
+                CurrentView = workExps;
             };
 
             /// <summary>
@@ -124,14 +134,13 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             /// </summary>
             educations.OnAddEducation += () =>
             {
-                CurrentView = addEducations;
                 addEducations.IdEducation = -1;
-
+                CurrentView = addEducations;
             };
             educations.OnEditEducation += (int Id) =>
             {
-                CurrentView = addEducations;
                 addEducations.IdEducation = Id;
+                CurrentView = addEducations;
             };
 
             educations.OnGoBack += () =>
@@ -150,6 +159,38 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = educations;
                 educations.UpdateInfo();
+            };
+            /// <summary>
+            /// WorkExp triggers
+            /// </summary>
+            workExps.OnAddWorkExp += () =>
+            {
+                addWorkExps.IdWorkExp = -1;
+                CurrentView = addWorkExps;
+
+            };
+            workExps.OnEditWorkExp += (int Id) =>
+            {
+                addWorkExps.IdWorkExp = Id;
+                CurrentView = addWorkExps;
+            };
+
+            workExps.OnGoBack += () =>
+            {
+                CurrentView = userAccaunt;
+                userAccaunt.UpdateInfo();
+            };
+
+            addWorkExps.OnGoBack += () =>
+            {
+                CurrentView = workExps;
+                workExps.UpdateInfo();
+            };
+
+            addWorkExps.OnConfirm += () =>
+            {
+                CurrentView = workExps;
+                workExps.UpdateInfo();
             };
 
             /// <summary>

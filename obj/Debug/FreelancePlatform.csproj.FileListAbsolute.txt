@@ -182,3 +182,7 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\EducationVie
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\EducationView.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddEducationView.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddEducationView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\WorkExpView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\WorkExpView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddWorkExpView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddWorkExpView.baml

@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="FreelancePlatform.Assets.MVVM.Views.AddWorkExpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FreelancePlatform.Assets.MVVM.Views"
+             mc:Ignorable="d"  
+             d:DesignHeight="825" d:DesignWidth="840"
+             BorderThickness="0">
+    <UserControl.Resources>
+        <Style TargetType="ScrollBar">
+            <Setter Property="Opacity" Value="0"/>
+            <Setter Property="Margin" Value="0,0,-20,0"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="85"/>
+        </Grid.RowDefinitions>
+        <Border Grid.ColumnSpan="3" Grid.Column="0" Grid.Row="0"
+                Background="#393E46">
+            <TextBlock VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       FontFamily="Montserrat"
+                       FontSize="24"
+                       Foreground="#D9D9D9"
+                       FontWeight="Medium"
+                       Text="Добавление места работы"/>
+        </Border>
+        <StackPanel Grid.Row="1">
+            <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Margin="30">
+                <StackPanel>
+                    <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#D9D9D9"
+                           Padding="20,0"
+                           Text="Название организации работодателя"/>
+                    <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#D9D9D9" 
+                         Height="60"
+                         Tag="Логин"
+                         MaxLength="255"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,5"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Company, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                </StackPanel>
+            </Border>
+            <Border Background="Transparent" BorderBrush="#D9D9D9" BorderThickness="0,0,0,3"
+                        Margin="30,0">
+                <StackPanel>
+                    <TextBlock FontFamily="Montserrat"
+                           FontSize="26"
+                           FontWeight="Medium"
+                           Foreground="#D9D9D9"
+                           Padding="20,0"
+                           Text="Занимаемая должность"/>
+                    <TextBox FontFamily="Montserrat"
+                         FontSize="30"
+                         FontWeight="Medium"
+                         Foreground="#D9D9D9" 
+                         Height="60"
+                         Tag="Логин"
+                         MaxLength="255"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="30,10,30,5"
+                         VerticalAlignment="Bottom"
+                         Text="{Binding Post, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                </StackPanel>
+            </Border>
+            <Border Background="Transparent" BorderThickness="0"
+                        Margin="30">
+                <StackPanel>
+                    <Grid>
+                        <Border BorderBrush="#D9D9D9" BorderThickness="0,0,0,3" VerticalAlignment="Top">
+                            <StackPanel>
+                                <TextBlock FontFamily="Montserrat"
+                                                       FontSize="26"
+                                                       FontWeight="Medium"
+                                                       Foreground="#d9d9d9"
+                                                       Padding="20,0"
+                                                       Text="Время работы"/>
+                                <StackPanel Orientation="Horizontal" MouseDown="MaleDropdown">
+                                    <TextBlock TextWrapping="Wrap"
+                                                       FontFamily="Montserrat"
+                                                       FontSize="30"
+                                                       FontWeight="Medium"
+                                                       VerticalAlignment="Top"
+                                                       Padding="30,10,30,5"
+                                                       Foreground="#d9d9d9"
+                                                       Width="730"
+                                                       Height="60"
+                                                       Text="{Binding Duration, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                       x:Name="textB"/>
+                                    <Border Height="40" Width="40" Background="Transparent" BorderThickness="0" BorderBrush="Transparent">
+                                        <TextBlock Background="Transparent"  Text="▼" FontFamily="Montserrat" FontSize="30" FontWeight="Medium" Foreground="#d9d9d9" x:Name="btn" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Rectangle Fill="#232931" HorizontalAlignment="Left" Height="300" Margin="0,100,0,0" VerticalAlignment="Top" Visibility="Hidden" x:Name="rect" Width="400"/>
+                        <ListBox HorizontalAlignment="Left" Height="290" Margin="10,110,10,10" VerticalAlignment="Top" Background="Transparent" BorderThickness="0" Visibility="Hidden" x:Name="list" SelectionChanged="list_SelectionChanged">
+                            <ListBoxItem Height="30" Content="1-2 месяц" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="около 6 месяцев" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="менее года" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="от 1 до 1.5 лет" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="от 1.5 до 2 лет" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="2 года" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="3 года" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="4 года" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                            <ListBoxItem Height="30" Content="более 5 лет" FontFamily="Montserrat" FontSize="22" FontWeight="Medium" Foreground="#d9d9d9" />
+                        </ListBox>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+        <Button Width="42" 
+                Height="38"  
+                HorizontalAlignment="Left" 
+                Background="Transparent" 
+                BorderThickness="0"  
+                Command="{Binding DeclineCommand}"
+                Grid.Row="2"
+                Grid.Column="0"
+                Margin="30,0,30,25">
+            <Image Source="..\..\Images\ArrowBack.png" Width="42" Height="38"/>
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="Transparent">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.8"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Height="60" 
+                Style="{StaticResource WhiteButton}" 
+                Grid.Row="2" 
+                Width="300" 
+                FontSize="26"
+                Content="Подтвердить" 
+                HorizontalAlignment="Right"
+                Margin="30,0,30,25"
+                Command="{Binding ConfirmCommand}"/>
+    </Grid>
+</UserControl>

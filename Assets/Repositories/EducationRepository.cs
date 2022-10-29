@@ -42,7 +42,6 @@ namespace FreelancePlatform.Assets.Repositories
             using (var command = new MySqlCommand())
             {
                 connection.Open();
-                Console.WriteLine(education);
                 command.CommandText = "update educations set Institution=@institution,Startyear=@startyear,Endyear=@endyear where ID_education=@id;";
                 command.Parameters.Add("@id", MySqlDbType.Int32).Value = education.Id;
                 command.Parameters.Add("@institution", MySqlDbType.VarChar).Value = education.Institution;

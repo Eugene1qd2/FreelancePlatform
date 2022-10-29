@@ -22,20 +22,24 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         byte[] defaultImage;
         string _errorMessage;
 
+        private bool _isChanged;
+
+
         IUserRepository userRepository;
         IEducationRepository educationRepository;
         IWorkExpRepository workExpRepository;
         IUserSkillRepository userSkillRepository;
         ICertificateRepository certificateRepository;
 
-        //public delegate void StartChangingSkills();
         public event Action OnChangeSkills;
         public event Action OnChangeEducations;
+        public event Action OnChangeWorkExps;
 
         public ICommand ChangeUserPhotoCommand { get; set; }
         public ICommand ConfirmAboutMeCommand { get; set; }
         public ICommand ChangeSkillsCommand { get; set; }
         public ICommand ChangeEducationsCommand { get; set; }
+        public ICommand ChangeWorkExpsCommand { get; set; }
 
         public List<EducationModel> Educations
         {
@@ -101,6 +105,20 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string AboutUser
+        {
+            get
+            {
+                return _currentUser.Aboutme;
+            }
+            set
+            {
+                _currentUser.Aboutme = value;
+                IsChanged = true;
+                OnPropertyChanged();
+            }
+        }
+
         public UserModel CurrentUser
         {
             get
@@ -122,6 +140,16 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             set
             {
                 _certificates = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsChanged
+        {
+            get => _isChanged; 
+            set
+            {
+                _isChanged = value;
                 OnPropertyChanged();
             }
         }
@@ -154,6 +182,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             certificateRepository = new CertificateRepository();
 
             CurrentUser = user;
+            IsChanged = false;
             Educations = educationRepository.GetByUserId(CurrentUser.Id);
             WorkExps = workExpRepository.GetByUserId(CurrentUser.Id);
             UserSkills = userSkillRepository.GetByUserId(CurrentUser.Id);
@@ -192,6 +221,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             ConfirmAboutMeCommand = new ViewModelCommand(ExecuteConfirmAboutMeCommand);
             ChangeSkillsCommand = new ViewModelCommand(ExecuteChangeSkillsCommand);
             ChangeEducationsCommand = new ViewModelCommand(ExecuteChangeEducationsCommand);
+            ChangeWorkExpsCommand = new ViewModelCommand(ExecuteChangeWorkExpsCommand);
         }
 
         private void ExecuteChangeSkillsCommand(object obj)
@@ -203,10 +233,16 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             OnChangeEducations();
         }
+        
+        private void ExecuteChangeWorkExpsCommand(object obj)
+        {
+            OnChangeWorkExps();
+        }
 
         private void ExecuteConfirmAboutMeCommand(object obj)
         {
             userRepository.ChangeAboutMeByUsername(CurrentUser);
+            IsChanged = false;
         }
 
         private void ExecuteChangeUserPhotoCommand(object obj)
@@ -224,10 +260,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         public void UpdateInfo()
         {
+            CurrentUser = userRepository.GetByUsername(CurrentUser.Username);
             Educations = educationRepository.GetByUserId(CurrentUser.Id);
             WorkExps = workExpRepository.GetByUserId(CurrentUser.Id);
             UserSkills = userSkillRepository.GetByUserId(CurrentUser.Id);
             Certificates = certificateRepository.GetByUserId(CurrentUser.Id);
+            IsChanged = false;
 
             if (Educations.Count == 0)
             {

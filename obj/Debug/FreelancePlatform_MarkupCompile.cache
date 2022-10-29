@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\user\Desktop\FreelancePlatform\App.xaml
-171608737954
+19-524639715
 
-43-1407938025
+471602785999
 144-235526378
-AcceptionWindow.xaml;Assets\Controls\PasswordBoxMy.xaml;Assets\MVVM\Views\ApplicationSettingsView.xaml;Assets\MVVM\Views\AddEducationView.xaml;Assets\MVVM\Views\UserAccountView.xaml;Assets\MVVM\Views\EducationView.xaml;Assets\MVVM\Views\UserSkillsView.xaml;Assets\Themes\BarRadioButtonTheme.xaml;Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\TransparentButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;MainWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
+AcceptionWindow.xaml;Assets\Controls\PasswordBoxMy.xaml;Assets\MVVM\Views\AddWorkExpView.xaml;Assets\MVVM\Views\ApplicationSettingsView.xaml;Assets\MVVM\Views\AddEducationView.xaml;Assets\MVVM\Views\WorkExpView.xaml;Assets\MVVM\Views\UserAccountView.xaml;Assets\MVVM\Views\EducationView.xaml;Assets\MVVM\Views\UserSkillsView.xaml;Assets\Themes\BarRadioButtonTheme.xaml;Assets\Themes\OpacityHoverTheme.xaml;Assets\Themes\UnderlinedTextBoxTheme.xaml;Assets\Themes\RoundedButtonTheme.xaml;Assets\Themes\TransparentButtonTheme.xaml;Assets\Themes\WhiteButtonTheme.xaml;EnterWindow.xaml;MainWindow.xaml;ModalWindow.xaml;RegistrationWindow.xaml;
 
 False
 

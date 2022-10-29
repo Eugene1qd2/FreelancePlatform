@@ -13,5 +13,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
         void Edit(WorkExpModel workExp);
         void Remove(int id);
         List<WorkExpModel> GetByUserId(int userId);
+        WorkExpModel GetById(int Id);
     }
 }

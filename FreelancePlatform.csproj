@@ -139,7 +139,9 @@
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
     <Compile Include="Assets\MVVM\Models\UserSkillModel.cs" />
     <Compile Include="Assets\MVVM\Models\WorkExpModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\AddWorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddEducationViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\WorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\MainViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\LoginViewModel.cs" />
@@ -149,11 +151,17 @@
     <Compile Include="Assets\MVVM\ViewModels\UserAccauntViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
+    <Compile Include="Assets\MVVM\Views\AddWorkExpView.xaml.cs">
+      <DependentUpon>AddWorkExpView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\ApplicationSettingsView.xaml.cs">
       <DependentUpon>ApplicationSettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\MVVM\Views\AddEducationView.xaml.cs">
       <DependentUpon>AddEducationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\WorkExpView.xaml.cs">
+      <DependentUpon>WorkExpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\MVVM\Views\UserAccountView.xaml.cs">
       <DependentUpon>UserAccountView.xaml</DependentUpon>
@@ -187,11 +195,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\MVVM\Views\AddWorkExpView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\MVVM\Views\ApplicationSettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\MVVM\Views\AddEducationView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\WorkExpView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
