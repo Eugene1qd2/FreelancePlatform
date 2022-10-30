@@ -141,6 +141,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userSkillRepository.Remove(CurrentUser, skill.Id);
 
             UpdateSkills();
+            FilterSkills();
         }
 
         private void ExecuteAddSkillsCommand(object obj)
@@ -151,6 +152,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userSkillRepository.Add(skill, CurrentUser);
 
             UpdateSkills();
+            FilterSkills();
         }
 
         private void UpdateSkills()
