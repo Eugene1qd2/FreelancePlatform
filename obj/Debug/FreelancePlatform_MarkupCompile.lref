@@ -2,9 +2,11 @@
 FC:\Users\user\Desktop\FreelancePlatform\App.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\AcceptionWindow.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\Controls\PasswordBoxMy.xaml;;
+FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\AddCertificateView.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\AddWorkExpView.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\ApplicationSettingsView.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\AddEducationView.xaml;;
+FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\CertificateView.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\WorkExpView.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\UserAccountView.xaml;;
 FC:\Users\user\Desktop\FreelancePlatform\Assets\MVVM\Views\EducationView.xaml;;

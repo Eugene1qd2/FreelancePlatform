@@ -13,5 +13,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
         void Edit(CertificateModel certificate);
         void Remove(int id);
         List<CertificateModel> GetByUserId(int userId);
+        CertificateModel GetById(int Id);
     }
 }

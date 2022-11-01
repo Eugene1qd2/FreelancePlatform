@@ -15,7 +15,7 @@
                 <ResourceDictionary Source="Assets\Themes\RoundedButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            
+
             <!--Main controls-->
             <DataTemplate DataType="{x:Type viewModel:UserAccauntViewModel}">
                 <view:UserAccountView/>
@@ -28,7 +28,7 @@
             <DataTemplate DataType="{x:Type viewModel:UserSkillsViewModel}">
                 <view:UserSkillsView/>
             </DataTemplate>
-            
+
             <!--Something with Education View-->
             <DataTemplate DataType="{x:Type viewModel:EducationViewModel}">
                 <view:EducationView/>
@@ -45,6 +45,15 @@
 
             <DataTemplate DataType="{x:Type viewModel:AddWorkExpViewModel}">
                 <view:AddWorkExpView/>
+            </DataTemplate>
+
+            <!--Something with Certificate View-->
+            <DataTemplate DataType="{x:Type viewModel:CertificateViewModel}">
+                <view:CertificateView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:AddCertificateViewModel}">
+                <view:AddCertificateView/>
             </DataTemplate>
 
         </ResourceDictionary>

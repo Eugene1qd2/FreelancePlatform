@@ -22,8 +22,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private UserSkillsViewModel userSkills { get; set; }
         private EducationViewModel educations { get; set; }
         private WorkExpViewModel workExps { get; set; }
+        private CertificateViewModel certificates { get; set; }
         private AddWorkExpViewModel addWorkExps { get; set; }
         private AddEducationViewModel addEducations { get; set; }
+        private AddCertificateViewModel addCertificates { get; set; }
 
         private string _username;
         private string _errorMessage;
@@ -79,13 +81,18 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             
             CurrentUser = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
 
+            // Main vms:
             userAccaunt = new UserAccauntViewModel(CurrentUser);
             applicationSettings = new ApplicationSettingsViewModel();
+
+            // UA additional vms:
             userSkills= new UserSkillsViewModel(CurrentUser);
             educations = new EducationViewModel(CurrentUser);
             workExps = new WorkExpViewModel(CurrentUser);
+            certificates=new CertificateViewModel(CurrentUser);
             addEducations = new AddEducationViewModel(CurrentUser);
             addWorkExps=new AddWorkExpViewModel(CurrentUser);
+            addCertificates=new AddCertificateViewModel(CurrentUser);
 
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
@@ -129,6 +136,11 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 CurrentView = workExps;
             };
 
+            userAccaunt.OnChangeCertificates += () =>
+            {
+                CurrentView = certificates;
+            };
+
             /// <summary>
             /// Education triggers
             /// </summary>
@@ -160,6 +172,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 CurrentView = educations;
                 educations.UpdateInfo();
             };
+
             /// <summary>
             /// WorkExp triggers
             /// </summary>
@@ -191,6 +204,39 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = workExps;
                 workExps.UpdateInfo();
+            };
+
+            /// <summary>
+            /// Certificate triggers
+            /// </summary>
+            certificates.OnAddCertificate += () =>
+            {
+                addCertificates.IdCertificate = -1;
+                CurrentView = addCertificates;
+
+            };
+            certificates.OnEditCertificate += (int Id) =>
+            {
+                addCertificates.IdCertificate = Id;
+                CurrentView = addCertificates;
+            };
+
+            certificates.OnGoBack += () =>
+            {
+                CurrentView = userAccaunt;
+                userAccaunt.UpdateInfo();
+            };
+
+            addCertificates.OnGoBack += () =>
+            {
+                CurrentView = certificates;
+                certificates.UpdateInfo();
+            };
+
+            addCertificates.OnConfirm += () =>
+            {
+                CurrentView = certificates;
+                certificates.UpdateInfo();
             };
 
             /// <summary>

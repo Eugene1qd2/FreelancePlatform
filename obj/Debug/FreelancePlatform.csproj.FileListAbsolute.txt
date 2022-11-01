@@ -186,3 +186,7 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\WorkExpView.
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\WorkExpView.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddWorkExpView.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddWorkExpView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\CertificateView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\CertificateView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddCertificateView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddCertificateView.baml

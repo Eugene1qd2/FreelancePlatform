@@ -34,12 +34,14 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         public event Action OnChangeSkills;
         public event Action OnChangeEducations;
         public event Action OnChangeWorkExps;
+        public event Action OnChangeCertificates;
 
         public ICommand ChangeUserPhotoCommand { get; set; }
         public ICommand ConfirmAboutMeCommand { get; set; }
         public ICommand ChangeSkillsCommand { get; set; }
         public ICommand ChangeEducationsCommand { get; set; }
         public ICommand ChangeWorkExpsCommand { get; set; }
+        public ICommand ChangeCertificatesCommand { get; set; }
 
         public List<EducationModel> Educations
         {
@@ -154,6 +156,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             }
         }
 
+
         public UserAccauntViewModel()
         {
             ErrorMessage = "Вы не вошли в учётную запись пользователя!";
@@ -222,6 +225,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             ChangeSkillsCommand = new ViewModelCommand(ExecuteChangeSkillsCommand);
             ChangeEducationsCommand = new ViewModelCommand(ExecuteChangeEducationsCommand);
             ChangeWorkExpsCommand = new ViewModelCommand(ExecuteChangeWorkExpsCommand);
+            ChangeCertificatesCommand = new ViewModelCommand(ExecuteChangeCertificatesCommand);
         }
 
         private void ExecuteChangeSkillsCommand(object obj)
@@ -237,6 +241,11 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private void ExecuteChangeWorkExpsCommand(object obj)
         {
             OnChangeWorkExps();
+        }
+        
+        private void ExecuteChangeCertificatesCommand(object obj)
+        {
+            OnChangeCertificates();
         }
 
         private void ExecuteConfirmAboutMeCommand(object obj)

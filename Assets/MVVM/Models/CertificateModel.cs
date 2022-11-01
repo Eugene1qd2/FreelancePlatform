@@ -18,6 +18,7 @@ namespace FreelancePlatform.Assets.MVVM.Models
         public string Link { get; set; }
 
         private string _certificateString;
+        private string _certificateStringWithLink;
         private bool _isValid;
         public string CertificateString
         {
@@ -25,6 +26,15 @@ namespace FreelancePlatform.Assets.MVVM.Models
             {
                 _certificateString = UserId == 0 ? Organization : ("Организация: "+ Organization + "\nНавык: " + Skill);
                 return _certificateString;
+            }
+        }
+
+        public string CertificateStringWithLink
+        {
+            get
+            {
+                _certificateStringWithLink = "Организация: " + Organization + "\nНавык: " + Skill + "\nСсылка на сертификат: " + Link;
+                return _certificateStringWithLink;
             }
         }
         public ICommand FollowLinkCommand { get; set; }
