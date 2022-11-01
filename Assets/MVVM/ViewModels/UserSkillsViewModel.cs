@@ -76,7 +76,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             Skills = _allSkills.Except(UserSkills, new ListComparer()).ToList();
 
-            if (Skills!=null && SearchSkills!=string.Empty)
+            if (Skills!=null && SearchSkills!=string.Empty && SearchSkills!=null)
             {
             Skills = Skills.Where(x =>  x.Skill.Contains(SearchSkills)).ToList();
             }

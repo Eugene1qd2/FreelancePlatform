@@ -112,7 +112,7 @@ namespace FreelancePlatform.Assets.Repositories
 
         public UserModel GetByUsername(string username)
         {
-            UserModel user = null;
+            UserModel user = new UserModel();
             using (var connection = GetConnection())
             using (var command = new MySqlCommand())
             {
@@ -123,6 +123,7 @@ namespace FreelancePlatform.Assets.Repositories
                 MySqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
+                    byte[] photo = reader.GetValue(11) as byte[];
                     user = new UserModel()
                     {
                         Surname = reader.GetString("Surname"),
@@ -135,8 +136,8 @@ namespace FreelancePlatform.Assets.Repositories
                         Username = reader.GetString("Username"),
                         Password = reader.GetString("Password"),
                         Id = int.Parse(reader.GetString("ID")),
-                        Photo = reader.GetValue(11) as byte[],
-                        Aboutme = reader.GetString("Aboutme")
+                        Photo = photo,
+                        Aboutme = reader.GetValue(10) as string
                     };
                 }
             }
