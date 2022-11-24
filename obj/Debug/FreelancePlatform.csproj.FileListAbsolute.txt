@@ -190,3 +190,14 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\CertificateV
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\CertificateView.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddCertificateView.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddCertificateView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\MyOrdersView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\MyOrdersView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\RadioButtonTheme.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddOrderView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\AddOrderView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\OrderSkillsView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\OrderSkillsView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserOrderView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserOrderView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\SomeOnesAccountView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\SomeOnesAccountView.baml

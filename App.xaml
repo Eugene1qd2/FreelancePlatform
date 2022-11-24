@@ -14,16 +14,36 @@
                 <ResourceDictionary Source="Assets\Themes\TransparentButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RoundedButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\RadioButtonTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--Main controls-->
             <DataTemplate DataType="{x:Type viewModel:UserAccauntViewModel}">
                 <view:UserAccountView/>
             </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SomeOnesAccauntViewModel}">
+                <view:SomeOnesAccountView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewModel:ApplicationSettingsViewModel}">
                 <view:ApplicationSettingsView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MyOrdersViewModel}">
+                <view:MyOrdersView/>
+            </DataTemplate>
 
+            <!--Something with Order View-->
+            <DataTemplate DataType="{x:Type viewModel:AddOrderViewModel}">
+                <view:AddOrderView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:OrderSkillsViewModel}">
+                <view:OrderSkillsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserOrderViewModel}">
+                <view:UserOrderView/>
+            </DataTemplate>
+            
             <!--Something with Skills View-->
             <DataTemplate DataType="{x:Type viewModel:UserSkillsViewModel}">
                 <view:UserSkillsView/>

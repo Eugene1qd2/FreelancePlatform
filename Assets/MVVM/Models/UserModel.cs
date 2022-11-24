@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace FreelancePlatform.Assets.MVVM.Models
 {
@@ -56,10 +58,38 @@ namespace FreelancePlatform.Assets.MVVM.Models
             }
         }
         public string BirthdateString { get; set; }
-        public string Email { get; set; }       //Unique
+        public string Email { get; set; }     
         public string Male { get; set; }
         public string Aboutme { get; set; }
-        public byte[] Photo { get; set; }
+        private byte[] _photo;
+        public byte[] Photo { get { return _photo; } set { _photo = value; UpdatePhoto(); } }
+
+        BitmapImage _photoName;
+        private void UpdatePhoto()
+        {
+            if (Photo != null)
+                using (var ms = new MemoryStream(Photo))
+                {
+                    var image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.StreamSource = ms;
+                    image.EndInit();
+                    PhotoImg = image;
+                }
+        }
+        public BitmapImage PhotoImg
+        {
+            get
+            {
+                return _photoName;
+            }
+            set
+            {
+                _photoName = value;
+                Console.WriteLine(_photoName);
+            }
+        }
         public DateTime Registrationdate { get; set; }
         public UserModel(string username, string password, string name, string surname, string middlename, DateTime birthdate, string email, string male)
         {

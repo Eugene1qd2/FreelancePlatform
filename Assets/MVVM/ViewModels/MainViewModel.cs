@@ -19,6 +19,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     {
         private UserAccauntViewModel userAccaunt { get; set; }
         private ApplicationSettingsViewModel applicationSettings { get; set; }
+        private MyOrdersViewModel myOrders { get; set; }
         private UserSkillsViewModel userSkills { get; set; }
         private EducationViewModel educations { get; set; }
         private WorkExpViewModel workExps { get; set; }
@@ -26,11 +27,19 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private AddWorkExpViewModel addWorkExps { get; set; }
         private AddEducationViewModel addEducations { get; set; }
         private AddCertificateViewModel addCertificates { get; set; }
+        private AddOrderViewModel addOrders { get; set; }
+        private OrderSkillsViewModel addOrderSkills { get; set; }
+        private UserOrderViewModel userOrder { get; set; }
+        private SomeOnesAccauntViewModel someOnesAccaunt { get; set; }
 
         private string _username;
         private string _errorMessage;
         private object _currentView;
         private UserModel _currentUser;
+
+        private int _width;
+        public int Width { get => _width; set { _width = value; OnPropertyChanged(); } }
+
 
         public UserModel CurrentUser
         {
@@ -78,43 +87,53 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         public MainViewModel()
         {
             userRepository = new UserRepository();
-            
-            CurrentUser = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
 
+            CurrentUser = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+            Width = 1220;
             // Main vms:
             userAccaunt = new UserAccauntViewModel(CurrentUser);
             applicationSettings = new ApplicationSettingsViewModel();
+            myOrders = new MyOrdersViewModel(CurrentUser);
+            addOrders = new AddOrderViewModel(CurrentUser);
 
             // UA additional vms:
-            userSkills= new UserSkillsViewModel(CurrentUser);
+            userSkills = new UserSkillsViewModel(CurrentUser);
             educations = new EducationViewModel(CurrentUser);
             workExps = new WorkExpViewModel(CurrentUser);
-            certificates=new CertificateViewModel(CurrentUser);
+            certificates = new CertificateViewModel(CurrentUser);
             addEducations = new AddEducationViewModel(CurrentUser);
-            addWorkExps=new AddWorkExpViewModel(CurrentUser);
-            addCertificates=new AddCertificateViewModel(CurrentUser);
+            addWorkExps = new AddWorkExpViewModel(CurrentUser);
+            addCertificates = new AddCertificateViewModel(CurrentUser);
+            addOrderSkills = new OrderSkillsViewModel();
+            userOrder = new UserOrderViewModel(CurrentUser);
+            someOnesAccaunt = new SomeOnesAccauntViewModel();
 
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
             {
                 CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                Width = 1220;
             });
             OrdersListCommand = new ViewModelCommand(o =>
             {
                 CurrentView = null;
+                Width = 1220;
             });
             ChatsCommand = new ViewModelCommand(o =>
             {
                 CurrentView = null;
+                Width = 1220;
             });
             MyOrdersCommand = new ViewModelCommand(o =>
             {
-                CurrentView = null;
+                CurrentView = myOrders;
+                Width = 1220;
             });
             SettingsCommand = new ViewModelCommand(o =>
             {
                 CurrentView = applicationSettings;
+                Width = 1220;
             });
 
             /// <summary>
@@ -123,24 +142,106 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userAccaunt.OnChangeSkills += () =>
             {
                 CurrentView = userSkills;
+                Width = 1220;
             };
 
             userAccaunt.OnChangeEducations += () =>
             {
                 CurrentView = educations;
                 educations.UpdateInfo();
+                Width = 1220;
             };
 
             userAccaunt.OnChangeWorkExps += () =>
             {
                 CurrentView = workExps;
+                Width = 1220;
             };
 
             userAccaunt.OnChangeCertificates += () =>
             {
                 CurrentView = certificates;
+                Width = 1220;
             };
 
+            /// <summary>
+            /// User Orders triggers
+            /// </summary>
+            myOrders.OnAddOrder += () =>
+            {
+                CurrentView = addOrders;
+                addOrders.IdOrder = -1;
+                Width = 1600;
+            };
+            myOrders.OnSelectOrder += (int Id) =>
+            {
+                CurrentView = userOrder;
+                userOrder.UpdateOrder(Id);
+                Width = 1220;
+            };
+            userOrder.OnGoBack += () =>
+            {
+                CurrentView = myOrders;
+                myOrders.UpdateInfo();
+                Width = 1220;
+            };
+            userOrder.OnEditOrder += () =>
+            {
+                addOrders.IdOrder = userOrder.CurrentOrder.Id;
+                CurrentView = addOrders;
+                Width = 1600;
+            };
+            userOrder.OnRemoveOrder += () =>
+            {
+                CurrentView = myOrders;
+                myOrders.UpdateInfo();
+                Width = 1220;
+            };
+            addOrders.OnGoBack += () =>
+            {
+                CurrentView = myOrders;
+                myOrders.UpdateInfo();
+                addOrders.OrderSkills = new List<OrderSkillModel>();
+                if (addOrders.SelectedOrder != null)
+                {
+                    addOrders.SelectedOrder.OrderSkills = new List<OrderSkillModel>();
+                }
+                Width = 1220;
+            };
+            addOrders.OnConfirm += () =>
+            {
+                CurrentView = myOrders;
+                Width = 1220;
+                myOrders.UpdateInfo();
+            };
+            addOrders.OnAddSkills += () =>
+            {
+                Width = 1220;
+                addOrderSkills.UpdateInfo(addOrders.SelectedOrder);
+                addOrders.OrderSkills = addOrderSkills.OrderSkills;
+                if (addOrders.SelectedOrder != null)
+                {
+                    addOrders.SelectedOrder.OrderSkills = addOrderSkills.OrderSkills;
+                }
+                addOrderSkills.UpdateInfo(addOrders.SelectedOrder);
+                CurrentView = addOrderSkills;
+            };
+            addOrderSkills.OnGoBack += () =>
+            {
+                Width = 1600;
+                CurrentView = addOrders;
+                addOrders.OrderSkills = addOrderSkills.OrderSkills;
+                if (addOrders.SelectedOrder != null)
+                {
+                    addOrders.SelectedOrder.OrderSkills = addOrderSkills.OrderSkills;
+                }
+            };
+            userOrder.OnCheckProfile += (int id) =>
+            {
+                someOnesAccaunt.UpdateInfo(id);
+                Width = 1220;
+                CurrentView = someOnesAccaunt;
+            };
             /// <summary>
             /// Education triggers
             /// </summary>
@@ -148,29 +249,34 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 addEducations.IdEducation = -1;
                 CurrentView = addEducations;
+                Width = 1220;
             };
             educations.OnEditEducation += (int Id) =>
             {
                 addEducations.IdEducation = Id;
                 CurrentView = addEducations;
+                Width = 1220;
             };
 
             educations.OnGoBack += () =>
             {
                 CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                Width = 1220;
             };
 
             addEducations.OnGoBack += () =>
             {
                 CurrentView = educations;
                 educations.UpdateInfo();
+                Width = 1220;
             };
 
             addEducations.OnConfirm += () =>
             {
                 CurrentView = educations;
                 educations.UpdateInfo();
+                Width = 1220;
             };
 
             /// <summary>
@@ -180,30 +286,35 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 addWorkExps.IdWorkExp = -1;
                 CurrentView = addWorkExps;
+                Width = 1220;
 
             };
             workExps.OnEditWorkExp += (int Id) =>
             {
                 addWorkExps.IdWorkExp = Id;
                 CurrentView = addWorkExps;
+                Width = 1220;
             };
 
             workExps.OnGoBack += () =>
             {
                 CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                Width = 1220;
             };
 
             addWorkExps.OnGoBack += () =>
             {
                 CurrentView = workExps;
                 workExps.UpdateInfo();
+                Width = 1220;
             };
 
             addWorkExps.OnConfirm += () =>
             {
                 CurrentView = workExps;
                 workExps.UpdateInfo();
+                Width = 1220;
             };
 
             /// <summary>
@@ -213,30 +324,35 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 addCertificates.IdCertificate = -1;
                 CurrentView = addCertificates;
+                Width = 1220;
 
             };
             certificates.OnEditCertificate += (int Id) =>
             {
                 addCertificates.IdCertificate = Id;
                 CurrentView = addCertificates;
+                Width = 1220;
             };
 
             certificates.OnGoBack += () =>
             {
                 CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                Width = 1220;
             };
 
             addCertificates.OnGoBack += () =>
             {
                 CurrentView = certificates;
                 certificates.UpdateInfo();
+                Width = 1220;
             };
 
             addCertificates.OnConfirm += () =>
             {
                 CurrentView = certificates;
                 certificates.UpdateInfo();
+                Width = 1220;
             };
 
             /// <summary>
@@ -244,8 +360,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             /// </summary>
             userSkills.OnGoBack += () =>
             {
-                CurrentView=userAccaunt;
+                CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                Width = 1220;
             };
         }
     }

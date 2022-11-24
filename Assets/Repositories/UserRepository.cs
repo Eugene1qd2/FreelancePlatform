@@ -107,7 +107,36 @@ namespace FreelancePlatform.Assets.Repositories
 
         public UserModel GetById(int id)
         {
-            throw new NotImplementedException();
+            UserModel user = new UserModel();
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select * from users where ID=@username";
+                command.Parameters.Add("@username", MySqlDbType.VarChar).Value = id;
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    byte[] photo = reader.GetValue(11) as byte[];
+                    user = new UserModel()
+                    {
+                        Surname = reader.GetString("Surname"),
+                        Name = reader.GetString("Name"),
+                        Middlename = reader.GetString("Middlename"),
+                        Birthdate = DateTime.Parse(reader.GetString("Birthday")),
+                        Email = reader.GetString("Email"),
+                        Registrationdate = DateTime.Parse(reader.GetString("Registerdate")),
+                        Male = reader.GetString("Male"),
+                        Username = reader.GetString("Username"),
+                        Password = string.Empty,
+                        Id = int.Parse(reader.GetString("ID")),
+                        Photo = photo,
+                        Aboutme = reader.GetValue(10) as string
+                    };
+                }
+            }
+            return user;
         }
 
         public UserModel GetByUsername(string username)

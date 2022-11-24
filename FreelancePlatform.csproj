@@ -129,6 +129,10 @@
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Models\IOrderRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\IOrderSkillRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\ResponseModel.cs" />
+    <Compile Include="Assets\MVVM\Models\OrderModel.cs" />
     <Compile Include="Assets\MVVM\Models\CertificateModel.cs" />
     <Compile Include="Assets\MVVM\Models\EducationModel.cs" />
     <Compile Include="Assets\MVVM\Models\ICertificateRepository.cs" />
@@ -137,12 +141,18 @@
     <Compile Include="Assets\MVVM\Models\IEducationRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IUserRepository.cs" />
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
+    <Compile Include="Assets\MVVM\Models\OrderSkillModel.cs" />
     <Compile Include="Assets\MVVM\Models\UserSkillModel.cs" />
     <Compile Include="Assets\MVVM\Models\WorkExpModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddCertificateViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\AddOrderViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddWorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddEducationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\CertificateViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\MyOrdersViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\OrderSkillsViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\SomeOnesAccauntViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserOrderViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\WorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\MainViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
@@ -153,6 +163,9 @@
     <Compile Include="Assets\MVVM\ViewModels\UserAccauntViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
+    <Compile Include="Assets\MVVM\Views\AddOrderView.xaml.cs">
+      <DependentUpon>AddOrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\AddCertificateView.xaml.cs">
       <DependentUpon>AddCertificateView.xaml</DependentUpon>
     </Compile>
@@ -168,6 +181,18 @@
     <Compile Include="Assets\MVVM\Views\CertificateView.xaml.cs">
       <DependentUpon>CertificateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Views\MyOrdersView.xaml.cs">
+      <DependentUpon>MyOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\OrderSkillsView.xaml.cs">
+      <DependentUpon>OrderSkillsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\SomeOnesAccountView.xaml.cs">
+      <DependentUpon>SomeOnesAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\UserOrderView.xaml.cs">
+      <DependentUpon>UserOrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\WorkExpView.xaml.cs">
       <DependentUpon>WorkExpView.xaml</DependentUpon>
     </Compile>
@@ -181,6 +206,8 @@
       <DependentUpon>UserSkillsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\Repositories\CertificateRepository.cs" />
+    <Compile Include="Assets\Repositories\OrderRepository.cs" />
+    <Compile Include="Assets\Repositories\OrderSkillRepository.cs" />
     <Compile Include="Assets\Repositories\UserSkillRepository.cs" />
     <Compile Include="Assets\Repositories\WorkExpRepository.cs" />
     <Compile Include="Assets\Repositories\EducationRepository.cs" />
@@ -203,6 +230,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Assets\MVVM\Views\AddOrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\MVVM\Views\AddCertificateView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -220,6 +251,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\MVVM\Views\CertificateView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\MyOrdersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\OrderSkillsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\SomeOnesAccountView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\UserOrderView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -244,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Themes\OpacityHoverTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\RadioButtonTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -366,6 +417,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\editProf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\ConfirmDark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\EditDark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
