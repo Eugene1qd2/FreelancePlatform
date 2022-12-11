@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -24,6 +25,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         public event Action OnRemoveOrder;
         public event Action OnGoBack;
         public event Action<int> OnCheckProfile;
+        public event Action<int,int> OnConfirmRespond;
 
         public List<ResponseModel> Responses { get; set; }
 
@@ -137,12 +139,13 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         private void ExecuteConfirmResponseCommand(object obj)
         {
-            //сделать добавление чата если его нет, отправку туда сообщения о подтверждении.
+            orderRepository.ConfirmResponse(CurrentOrder, Responses.First(x => x.UserId == (int)obj));
+            OnConfirmRespond((int)obj,CurrentOrder.Id);
         }
 
         private bool CanExecuteEditCommand(object obj)
         {
-            return true;
+            return Responses.Count<=0;
         }
         private void ExecuteRemoveCommand(object obj)
         {
@@ -163,11 +166,13 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             CurrentOrder = orderRepository.GetById(id);
             Responses = orderRepository.GetResponsesById(id);
+            Responses.ForEach(x => Console.WriteLine(x.IsAccepted + " " + x.IsAcceptedF));
         }
 
         public void UpdateInfo()
         {
             CurrentUser = userRepository.GetByUsername(CurrentUser.Username);
+            Responses.ForEach(x => Console.WriteLine(x.IsAccepted + " " + x.IsAcceptedF));
         }
     }
 }

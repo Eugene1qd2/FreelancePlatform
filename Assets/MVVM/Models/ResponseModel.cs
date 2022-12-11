@@ -15,6 +15,7 @@ namespace FreelancePlatform.Assets.MVVM.Models
         public int UserId { get; set; }
         public int AdId { get; set; }
         public bool IsAccepted { get; set; }
+        public bool IsAcceptedF { get { return !IsAccepted; } set { } }
 
         public UserModel User { get; set; }
         public OrderModel Order { get; set; }

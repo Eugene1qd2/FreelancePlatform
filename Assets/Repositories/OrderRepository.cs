@@ -219,5 +219,80 @@ namespace FreelancePlatform.Assets.Repositories
             responses.ForEach(x => x.UpdateResponse());
             return responses;
         }
+
+        public List<OrderModel> GetAll()
+        {
+            List<OrderModel> orders = new List<OrderModel>();
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select * from ads limit 50;";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string address = (reader.GetValue(5) ?? string.Empty).ToString();
+                    orders.Add(new OrderModel()
+                    {
+                        Id = Convert.ToInt32(reader.GetValue(0)),
+                        UserId = Convert.ToInt32(reader.GetValue(1)),
+                        Topic = (string)reader.GetValue(2),
+                        Type = (string)reader.GetValue(3),
+                        WorkPlace = (string)reader.GetValue(4),
+                        Address = address,
+                        Budget = Convert.ToInt32(reader.GetValue(6)),
+                        NonrelDate = Convert.ToDateTime(reader.GetValue(7)),
+                        LessonCount = Convert.ToInt32(reader.GetValue(8)),
+                        Goal = (string)reader.GetValue(9),
+                        IsAccepted = Convert.ToBoolean(reader.GetValue(10)),
+                    });
+                }
+            }
+            return orders;
+        }
+
+        public void AddResponse(OrderModel order, UserModel user)
+        {
+            using (var connection = GetConnection())
+            {
+                using (var command = new MySqlCommand())
+                {
+                    connection.Open();
+                    command.CommandText = "insert into responses value(@id_ad,@id_user,@isaccepted);";
+                    command.Parameters.Add("@id_user", MySqlDbType.Int32).Value = user.Id;
+                    command.Parameters.Add("@id_ad", MySqlDbType.Int32).Value = order.Id;
+                    command.Parameters.Add("@isaccepted", MySqlDbType.Bit).Value = false;
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void ConfirmResponse(OrderModel order, ResponseModel Response)
+        {
+            using (var connection = GetConnection())
+            {
+                using (var command = new MySqlCommand())
+                {
+                    connection.Open();
+                    command.CommandText = "update responses set Isaccepted=@isaccepted where ID_ad=@adId and ID_user=@userId;";
+                    command.Parameters.Add("@userId", MySqlDbType.Int32).Value = Response.UserId;
+                    command.Parameters.Add("@adId", MySqlDbType.Int32).Value = Response.AdId;
+                    command.Parameters.Add("@isaccepted", MySqlDbType.Bit).Value = true;
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+
+                using (var command = new MySqlCommand())
+                {
+                    command.CommandText = "update ads set Isaccepted=@isaccepted where ID_ad=@adId;";
+                    command.Parameters.Add("@adId", MySqlDbType.Int32).Value = Response.AdId;
+                    command.Parameters.Add("@isaccepted", MySqlDbType.Bit).Value = true;
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

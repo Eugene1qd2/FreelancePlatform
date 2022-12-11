@@ -6,7 +6,7 @@
         xmlns:viewModel="clr-namespace:FreelancePlatform.Assets.MVVM.ViewModels"
         xmlns:local="clr-namespace:FreelancePlatform"
         mc:Ignorable="d"
-         Height="850" Width="{Binding Width, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+         Height="850" Width="{Binding Width, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closed="OnClosed">
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/BackgroundImage.png" />
     </Window.Background>
@@ -45,7 +45,11 @@
                        Width="37"
                        Height="44"
                        TextAlignment="Center"
-                       Style="{StaticResource OpacityHoverTheme}" MouseDown="TextBlock_MouseDown">×</TextBlock>
+                       Style="{StaticResource OpacityHoverTheme}" 
+                       MouseDown="TextBlock_MouseDown">
+                <TextBlock.InputBindings>
+                    <MouseBinding Command="{Binding CloseApplicationCommand}" MouseAction="LeftClick" />
+                </TextBlock.InputBindings>×</TextBlock>
         </Grid>
         <Grid Grid.Row="1" Grid.Column="0"
               Panel.ZIndex="-10">
@@ -62,7 +66,7 @@
                 <RowDefinition Height="77"/>
                 <RowDefinition Height="77"/>
                 <RowDefinition Height="1*"/>
-                <RowDefinition Height="115"/>
+                <RowDefinition Height="105"/>
             </Grid.RowDefinitions>
             <Image Source="Assets\Images\Logo.png" Grid.Row="0" Width="164" Height="69"/>
             <Image Width="50" Height="50" Source="Assets\Images\User.png" Grid.Row="1" HorizontalAlignment="Left" Margin="30,0"/>
@@ -94,14 +98,17 @@
                              FontSize="30"
                              Grid.Row="4"
                           Command="{Binding MyOrdersCommand}"/>
-            <Image Width="50" Height="50" Source="Assets\Images\Settings.png" Grid.Row="7" HorizontalAlignment="Left" Margin="30,15" VerticalAlignment="Top"/>
+            <Image Width="50" Height="50" Source="Assets\Images\Settings.png" Grid.Row="6" HorizontalAlignment="Left" Margin="30,15" VerticalAlignment="Top"/>
             <RadioButton Content="Настройки" 
                          Style="{StaticResource BarRadioButton}" 
                          Height="77"
                          FontSize="30"
-                         Grid.Row="7"
+                         Grid.Row="6"
                          VerticalAlignment="Top"
                          Command="{Binding SettingsCommand}"/>
+            <Border Grid.Row="5" Tag="Filter" BorderThickness="0,1,0,1" BorderBrush="#232931">
+                
+            </Border>
         </Grid>
         <ContentControl Grid.Row="1"
                         Grid.Column="1"

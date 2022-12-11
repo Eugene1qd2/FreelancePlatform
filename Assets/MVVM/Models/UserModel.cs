@@ -87,7 +87,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
             set
             {
                 _photoName = value;
-                Console.WriteLine(_photoName);
             }
         }
         public DateTime Registrationdate { get; set; }

@@ -75,13 +75,18 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
+    <Reference Include="System.Reactive, Version=5.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>packages\System.Reactive.5.0.0\lib\net472\System.Reactive.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -129,8 +134,10 @@
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Models\IChatRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IOrderRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IOrderSkillRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\ChatModel.cs" />
     <Compile Include="Assets\MVVM\Models\ResponseModel.cs" />
     <Compile Include="Assets\MVVM\Models\OrderModel.cs" />
     <Compile Include="Assets\MVVM\Models\CertificateModel.cs" />
@@ -140,6 +147,7 @@
     <Compile Include="Assets\MVVM\Models\IWorkExpRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IEducationRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IUserRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\MessageModel.cs" />
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
     <Compile Include="Assets\MVVM\Models\OrderSkillModel.cs" />
     <Compile Include="Assets\MVVM\Models\UserSkillModel.cs" />
@@ -149,10 +157,14 @@
     <Compile Include="Assets\MVVM\ViewModels\AddWorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddEducationViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\CertificateViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\ChatsViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\OrdersViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\MyOrdersViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\OrderSkillsViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\SomeOnesAccauntViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\SelectedOrderViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\UserOrderViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserChatViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\WorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\MainViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\RegistrationViewModel.cs" />
@@ -181,6 +193,12 @@
     <Compile Include="Assets\MVVM\Views\CertificateView.xaml.cs">
       <DependentUpon>CertificateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Views\ChatsView.xaml.cs">
+      <DependentUpon>ChatsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\OrdersView.xaml.cs">
+      <DependentUpon>OrdersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\MyOrdersView.xaml.cs">
       <DependentUpon>MyOrdersView.xaml</DependentUpon>
     </Compile>
@@ -190,8 +208,14 @@
     <Compile Include="Assets\MVVM\Views\SomeOnesAccountView.xaml.cs">
       <DependentUpon>SomeOnesAccountView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Views\SelectedOrderView.xaml.cs">
+      <DependentUpon>SelectedOrderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\UserOrderView.xaml.cs">
       <DependentUpon>UserOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\UserChatView.xaml.cs">
+      <DependentUpon>UserChatView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\MVVM\Views\WorkExpView.xaml.cs">
       <DependentUpon>WorkExpView.xaml</DependentUpon>
@@ -206,6 +230,7 @@
       <DependentUpon>UserSkillsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Assets\Repositories\CertificateRepository.cs" />
+    <Compile Include="Assets\Repositories\ChatRepository.cs" />
     <Compile Include="Assets\Repositories\OrderRepository.cs" />
     <Compile Include="Assets\Repositories\OrderSkillRepository.cs" />
     <Compile Include="Assets\Repositories\UserSkillRepository.cs" />
@@ -254,6 +279,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Assets\MVVM\Views\ChatsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\OrdersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\MVVM\Views\MyOrdersView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -266,7 +299,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Assets\MVVM\Views\SelectedOrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\MVVM\Views\UserOrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\UserChatView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -287,6 +328,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Themes\BarRadioButtonTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\ChatItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -426,6 +471,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\EditDark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Send.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

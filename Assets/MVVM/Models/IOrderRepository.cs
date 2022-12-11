@@ -15,5 +15,8 @@ namespace FreelancePlatform.Assets.MVVM.Models
         List<OrderModel> GetByUserId(int userId);
         OrderModel GetById(int Id);
         List<ResponseModel> GetResponsesById(int orderId);
+        List<OrderModel> GetAll();
+        void AddResponse(OrderModel order,UserModel user);
+        void ConfirmResponse(OrderModel order,ResponseModel Response);
     }
 }

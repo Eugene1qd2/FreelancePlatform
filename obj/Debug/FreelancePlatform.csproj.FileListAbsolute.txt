@@ -201,3 +201,14 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserOrderVie
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserOrderView.baml
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\SomeOnesAccountView.g.cs
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\SomeOnesAccountView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\OrdersView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\OrdersView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\SelectedOrderView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\SelectedOrderView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserChatView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserChatView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ChatsView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ChatsView.baml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\ChatItem.baml
+C:\Users\user\Desktop\FreelancePlatform\bin\Debug\System.Reactive.dll
+C:\Users\user\Desktop\FreelancePlatform\bin\Debug\System.Reactive.xml

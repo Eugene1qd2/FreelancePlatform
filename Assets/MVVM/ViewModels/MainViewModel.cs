@@ -12,11 +12,14 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FreelancePlatform.Assets.Additional_Data;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace FreelancePlatform.Assets.MVVM.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+
         private UserAccauntViewModel userAccaunt { get; set; }
         private ApplicationSettingsViewModel applicationSettings { get; set; }
         private MyOrdersViewModel myOrders { get; set; }
@@ -31,6 +34,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private OrderSkillsViewModel addOrderSkills { get; set; }
         private UserOrderViewModel userOrder { get; set; }
         private SomeOnesAccauntViewModel someOnesAccaunt { get; set; }
+        private OrdersViewModel orders { get; set; }
+        private SelectedOrderViewModel selectedOrder { get; set; }
+        private UserChatViewModel userChat { get; set; }
+        private ChatsViewModel chats { get; set; }
 
         private string _username;
         private string _errorMessage;
@@ -83,6 +90,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         public ICommand ChatsCommand { get; }
         public ICommand MyOrdersCommand { get; }
         public ICommand SettingsCommand { get; }
+        public ICommand CloseApplicationCommand { get; }
 
         public MainViewModel()
         {
@@ -95,6 +103,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             applicationSettings = new ApplicationSettingsViewModel();
             myOrders = new MyOrdersViewModel(CurrentUser);
             addOrders = new AddOrderViewModel(CurrentUser);
+            orders = new OrdersViewModel(CurrentUser);
+            chats=new ChatsViewModel(CurrentUser);
 
             // UA additional vms:
             userSkills = new UserSkillsViewModel(CurrentUser);
@@ -107,7 +117,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             addOrderSkills = new OrderSkillsViewModel();
             userOrder = new UserOrderViewModel(CurrentUser);
             someOnesAccaunt = new SomeOnesAccauntViewModel();
-
+            selectedOrder = new SelectedOrderViewModel(CurrentUser);
+            userChat = new UserChatViewModel(CurrentUser);
             CurrentView = userAccaunt;
             UserAccauntCommand = new ViewModelCommand(o =>
             {
@@ -117,12 +128,14 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             });
             OrdersListCommand = new ViewModelCommand(o =>
             {
-                CurrentView = null;
+                CurrentView = orders;
+                orders.UpdateInfo();
                 Width = 1220;
             });
             ChatsCommand = new ViewModelCommand(o =>
             {
-                CurrentView = null;
+                CurrentView = chats;
+                chats.UpdateInfo();
                 Width = 1220;
             });
             MyOrdersCommand = new ViewModelCommand(o =>
@@ -135,6 +148,49 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 CurrentView = applicationSettings;
                 Width = 1220;
             });
+            CloseApplicationCommand = new ViewModelCommand(o =>
+            {
+                userChat.Disconnect();
+                Application.Current.Shutdown();
+            });
+            /// <summary>
+            /// OrdersList triggers
+            /// </summary>
+            orders.OnSelectOrder += (int id) =>
+            {
+                CurrentView = selectedOrder;
+                selectedOrder.UpdateOrder(id);
+                Width = 1220;
+            };
+            selectedOrder.OnRespondOrder += (int id) =>
+            {
+                userChat.CreateChatById(id);
+
+                Width = 1220;
+            };
+            selectedOrder.OnGoBack += () =>
+            {
+                CurrentView = orders;
+                orders.UpdateInfo();
+                Width = 1220;
+            };
+            /// <summary>
+            /// User Chat triggers
+            /// </summary>
+            chats.OnSelectChat += (int id) =>
+            {
+
+                userChat.UpdateInfo(id);
+                CurrentView = userChat;
+                Width = 1220;
+
+            };
+            userChat.OnGoBack += () =>
+            {
+                CurrentView = null; //дописать
+                Width = 1220;
+            };
+
 
             /// <summary>
             /// User Accaunt triggers
@@ -196,6 +252,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 CurrentView = myOrders;
                 myOrders.UpdateInfo();
                 Width = 1220;
+            };
+            userOrder.OnConfirmRespond += (int Userid,int OrderId) =>
+            {
+                int chatId=userChat.SendConfirmMessage(Userid, OrderId);
+                userChat.UpdateInfo(chatId);
+                CurrentView = userChat;
             };
             addOrders.OnGoBack += () =>
             {

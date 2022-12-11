@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="Assets\Themes\RoundedButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RadioButtonTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\ChatItem.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--Main controls-->
@@ -33,6 +34,10 @@
                 <view:MyOrdersView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:OrdersViewModel}">
+                <view:OrdersView/>
+            </DataTemplate>
+
             <!--Something with Order View-->
             <DataTemplate DataType="{x:Type viewModel:AddOrderViewModel}">
                 <view:AddOrderView/>
@@ -42,6 +47,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:UserOrderViewModel}">
                 <view:UserOrderView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SelectedOrderViewModel}">
+                <view:SelectedOrderView/>
             </DataTemplate>
             
             <!--Something with Skills View-->
@@ -74,6 +82,14 @@
 
             <DataTemplate DataType="{x:Type viewModel:AddCertificateViewModel}">
                 <view:AddCertificateView/>
+            </DataTemplate>
+
+            <!--Something with Chats View-->
+            <DataTemplate DataType="{x:Type viewModel:UserChatViewModel}">
+                <view:UserChatView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:ChatsViewModel}">
+                <view:ChatsView/>
             </DataTemplate>
 
         </ResourceDictionary>
