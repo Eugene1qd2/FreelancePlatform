@@ -38,10 +38,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private SelectedOrderViewModel selectedOrder { get; set; }
         private UserChatViewModel userChat { get; set; }
         private ChatsViewModel chats { get; set; }
+        private FilterViewModel filter { get; set; }
 
         private string _username;
         private string _errorMessage;
         private object _currentView;
+        private object _filterView;
         private UserModel _currentUser;
 
         private int _width;
@@ -73,6 +75,18 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
+        public object FilterView
+        {
+            get
+            {
+                return _filterView;
+            }
+            set
+            {
+                _filterView = value;
+                OnPropertyChanged();
+            }
+        }
 
         private IUserRepository userRepository;
 
@@ -94,6 +108,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         public MainViewModel()
         {
+
+            filter = new FilterViewModel();
+            FilterView = null;
             userRepository = new UserRepository();
 
             CurrentUser = userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
@@ -124,28 +141,33 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                FilterView = null;
                 Width = 1220;
             });
             OrdersListCommand = new ViewModelCommand(o =>
             {
                 CurrentView = orders;
                 orders.UpdateInfo();
+                FilterView = filter;
                 Width = 1220;
             });
             ChatsCommand = new ViewModelCommand(o =>
             {
                 CurrentView = chats;
                 chats.UpdateInfo();
+                FilterView = null;
                 Width = 1220;
             });
             MyOrdersCommand = new ViewModelCommand(o =>
             {
                 CurrentView = myOrders;
+                FilterView = null;
                 Width = 1220;
             });
             SettingsCommand = new ViewModelCommand(o =>
             {
                 CurrentView = applicationSettings;
+                FilterView = null;
                 Width = 1220;
             });
             CloseApplicationCommand = new ViewModelCommand(o =>
@@ -160,6 +182,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 CurrentView = selectedOrder;
                 selectedOrder.UpdateOrder(id);
+                FilterView = null;
                 Width = 1220;
             };
             selectedOrder.OnRespondOrder += (int id) =>
@@ -170,8 +193,14 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             };
             selectedOrder.OnGoBack += () =>
             {
-                CurrentView = orders;
                 orders.UpdateInfo();
+                CurrentView = orders;
+                Width = 1220;
+            };
+            selectedOrder.OnCheckProfile += (int id) =>
+            {
+                someOnesAccaunt.UpdateInfo(id);
+                CurrentView = someOnesAccaunt;
                 Width = 1220;
             };
             /// <summary>
@@ -187,11 +216,17 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             };
             userChat.OnGoBack += () =>
             {
-                CurrentView = null; //дописать
+                chats.UpdateInfo();
+                CurrentView = chats;
                 Width = 1220;
             };
 
-
+            userChat.OnCheckProfile += (int id) =>
+            {
+                someOnesAccaunt.UpdateInfo(id);
+                CurrentView = someOnesAccaunt;
+                Width = 1220;
+            };
             /// <summary>
             /// User Accaunt triggers
             /// </summary>

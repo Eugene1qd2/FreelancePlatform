@@ -37,7 +37,10 @@
             <DataTemplate DataType="{x:Type viewModel:OrdersViewModel}">
                 <view:OrdersView/>
             </DataTemplate>
-
+            
+            <DataTemplate DataType="{x:Type viewModel:FilterViewModel}">
+                <view:FilterView/>
+            </DataTemplate>
             <!--Something with Order View-->
             <DataTemplate DataType="{x:Type viewModel:AddOrderViewModel}">
                 <view:AddOrderView/>

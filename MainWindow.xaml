@@ -6,7 +6,9 @@
         xmlns:viewModel="clr-namespace:FreelancePlatform.Assets.MVVM.ViewModels"
         xmlns:local="clr-namespace:FreelancePlatform"
         mc:Ignorable="d"
-         Height="850" Width="{Binding Width, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closed="OnClosed">
+         Height="850" Width="{Binding Width, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" WindowStyle="None" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closed="OnClosed"
+        Title="FreeLancePlatform"
+        Icon="Assets/Images/Icons/Logo.ico">
     <Window.Background>
         <ImageBrush ImageSource="Assets/Images/BackgroundImage.png" />
     </Window.Background>
@@ -106,9 +108,11 @@
                          Grid.Row="6"
                          VerticalAlignment="Top"
                          Command="{Binding SettingsCommand}"/>
-            <Border Grid.Row="5" Tag="Filter" BorderThickness="0,1,0,1" BorderBrush="#232931">
+            <ContentControl Grid.Row="5"
+                            Content="{Binding FilterView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 
-            </Border>
+            </ContentControl>
+            
         </Grid>
         <ContentControl Grid.Row="1"
                         Grid.Column="1"

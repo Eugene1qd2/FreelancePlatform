@@ -153,6 +153,7 @@
     <Compile Include="Assets\MVVM\Models\UserSkillModel.cs" />
     <Compile Include="Assets\MVVM\Models\WorkExpModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddCertificateViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\FilterViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddOrderViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddWorkExpViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\AddEducationViewModel.cs" />
@@ -175,6 +176,9 @@
     <Compile Include="Assets\MVVM\ViewModels\UserAccauntViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelBase.cs" />
     <Compile Include="Assets\MVVM\ViewModels\ViewModelCommand.cs" />
+    <Compile Include="Assets\MVVM\Views\FilterView.xaml.cs">
+      <DependentUpon>FilterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\AddOrderView.xaml.cs">
       <DependentUpon>AddOrderView.xaml</DependentUpon>
     </Compile>
@@ -254,6 +258,10 @@
     <Page Include="Assets\Controls\PasswordBoxMy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\MVVM\Views\FilterView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\MVVM\Views\AddOrderView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -474,6 +482,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Images\Send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\Icons\Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

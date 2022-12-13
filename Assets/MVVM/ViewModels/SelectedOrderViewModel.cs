@@ -86,7 +86,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         private void ExecuteCheckProfileCommand(object obj)
         {
-            OnCheckProfile((int)obj);
+            OnCheckProfile(CurrentOrder.UserId);
         }
         private bool CanExecuteRespondCommand(object obj)
         {

@@ -212,3 +212,5 @@ C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\ChatsView.ba
 C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\Themes\ChatItem.baml
 C:\Users\user\Desktop\FreelancePlatform\bin\Debug\System.Reactive.dll
 C:\Users\user\Desktop\FreelancePlatform\bin\Debug\System.Reactive.xml
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\FilterView.g.cs
+C:\Users\user\Desktop\FreelancePlatform\obj\Debug\Assets\MVVM\Views\FilterView.baml

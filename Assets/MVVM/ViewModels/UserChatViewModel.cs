@@ -73,8 +73,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         public ICommand GoBackCommand { get; set; }
         public ICommand SendMessageCommand { get; set; }
+        public ICommand CheckProfileCommand { get; set; }
 
         public event Action OnGoBack;
+        public event Action<int> OnCheckProfile;
 
         private string _inputText;
         public string InputText
@@ -119,7 +121,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
             GoBackCommand = new ViewModelCommand(ExecuteGoBackCommand);
             SendMessageCommand = new ViewModelCommand(ExecuteSendMessageCommand, CanExecuteSendMessageCommand);
-
+            CheckProfileCommand = new ViewModelCommand(ExecuteCheckProfileCommand);
             Connect();
         }
 
@@ -192,6 +194,11 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private void ExecuteGoBackCommand(object obj)
         {
             OnGoBack();
+        }
+        
+        private void ExecuteCheckProfileCommand(object obj)
+        {
+            OnCheckProfile(CurrentChat.User.Id);
         }
 
         private void ExecuteSendMessageCommand(object obj)

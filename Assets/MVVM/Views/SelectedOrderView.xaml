@@ -53,6 +53,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Ellipse Width="150" Height="150">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CheckProfileCommand}"  MouseAction="LeftClick"/>
+                        </Ellipse.InputBindings>
                         <Ellipse.Fill>
                             <ImageBrush ImageSource="{Binding CurrentOrder.User.PhotoImg}" Stretch="UniformToFill"/>
                         </Ellipse.Fill>
