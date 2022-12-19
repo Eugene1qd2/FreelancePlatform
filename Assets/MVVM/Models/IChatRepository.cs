@@ -13,7 +13,7 @@ namespace FreelancePlatform.Assets.MVVM.Models
         ErrorStatus Add(ChatModel chat);
         void Edit(ChatModel chat);
         void Remove(int id);
-        List<ChatModel> GetByUserId(int userId);
+        ObservableCollection<ChatModel> GetByUserId(int userId);
         ChatModel GetById(int Id);
         ObservableCollection<MessageModel> GetMessagesByChatId(int chatId);
         ChatModel GetByMembers(int[] members, string Topic);

@@ -26,8 +26,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         IWorkExpRepository workExpRepository;
         IUserSkillRepository userSkillRepository;
         ICertificateRepository certificateRepository;
+        IChatRepository chatRepository;
 
         public event Action OnGoBack;
+        public event Action<int> OnWriteMessage;
 
         public List<EducationModel> Educations
         {
@@ -125,8 +127,13 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             workExpRepository = new WorkExpRepository();
             userSkillRepository = new UserSkillRepository();
             certificateRepository = new CertificateRepository();
+
         }
 
+        public void ExecuteWriteMessageCommand(object obj)
+        {
+            OnWriteMessage(CurrentUser.Id);
+        }
 
         public void UpdateInfo(int id)
         {
@@ -135,6 +142,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             WorkExps = workExpRepository.GetByUserId(CurrentUser.Id);
             UserSkills = userSkillRepository.GetByUserId(CurrentUser.Id);
             Certificates = certificateRepository.GetByUserId(CurrentUser.Id);
+
 
             if (Educations.Count == 0)
             {

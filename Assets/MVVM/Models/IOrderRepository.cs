@@ -1,6 +1,7 @@
 ﻿using FreelancePlatform.Assets.Additional_Data;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,11 @@ namespace FreelancePlatform.Assets.MVVM.Models
         List<OrderModel> GetByUserId(int userId);
         OrderModel GetById(int Id);
         List<ResponseModel> GetResponsesById(int orderId);
-        List<OrderModel> GetAll();
+        ObservableCollection<OrderModel> GetAll();
         void AddResponse(OrderModel order,UserModel user);
         void ConfirmResponse(OrderModel order,ResponseModel Response);
+        ObservableCollection<OrderModel> GetByUsername(string username);
+        ObservableCollection<OrderModel> GetBySkills(string[] skills);
+        ObservableCollection<OrderModel> GetByTopic(string search);
     }
 }

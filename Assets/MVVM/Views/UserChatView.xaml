@@ -27,7 +27,7 @@
                 </Grid.ColumnDefinitions>
                 <Ellipse Width="60" Height="60" VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Center">
                     <Ellipse.InputBindings>
-                        <MouseBinding Command="{Binding CheckProfileCommand}" MouseAction="LeftClick"/>
+                        <MouseBinding Command="{Binding CheckProfileCommand}" CommandParameter="{Binding FirstUser.Id}" MouseAction="LeftClick"/>
                     </Ellipse.InputBindings>
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="{Binding FirstUser.PhotoImg}"

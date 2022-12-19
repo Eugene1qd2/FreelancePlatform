@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -25,7 +26,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         public event Action OnRemoveOrder;
         public event Action OnGoBack;
         public event Action<int> OnCheckProfile;
-        public event Action<int,int> OnConfirmRespond;
+        public event Action<int, int> OnConfirmRespond;
 
         public List<ResponseModel> Responses { get; set; }
 
@@ -57,7 +58,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             get
             {
-                return  "Бюджет: " + CurrentOrder.Budget+"руб";
+                return "Бюджет: " + CurrentOrder.Budget + "руб";
             }
             set { }
         }
@@ -123,15 +124,15 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             RemoveCommand = new ViewModelCommand(ExecuteRemoveCommand, CanExecuteRemoveCommand);
             GoBackCommand = new ViewModelCommand(ExecuteGoBackCommand);
 
-            CheckProfileCommand=new ViewModelCommand(ExecuteCheckProfileCommand);
-            ConfirmResponseCommand = new ViewModelCommand(ExecuteConfirmResponseCommand); 
+            CheckProfileCommand = new ViewModelCommand(ExecuteCheckProfileCommand);
+            ConfirmResponseCommand = new ViewModelCommand(ExecuteConfirmResponseCommand);
         }
 
         private void ExecuteEditCommand(object obj)
         {
             OnEditOrder();
-        } 
-        
+        }
+
         private void ExecuteCheckProfileCommand(object obj)
         {
             OnCheckProfile((int)obj);
@@ -140,17 +141,22 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private void ExecuteConfirmResponseCommand(object obj)
         {
             orderRepository.ConfirmResponse(CurrentOrder, Responses.First(x => x.UserId == (int)obj));
-            OnConfirmRespond((int)obj,CurrentOrder.Id);
+            OnConfirmRespond((int)obj, CurrentOrder.Id);
         }
 
         private bool CanExecuteEditCommand(object obj)
         {
-            return Responses.Count<=0;
+            return Responses.Count <= 0;
         }
         private void ExecuteRemoveCommand(object obj)
         {
-            orderRepository.Remove(CurrentOrder.Id);
-            OnRemoveOrder();
+            ModalWindow modal = new ModalWindow("Вы действительно хотите удалить этот заказ?");
+            modal.ShowDialog();
+            if (modal.DialogResult==true)
+            {
+                orderRepository.Remove(CurrentOrder.Id);
+                OnRemoveOrder();
+            }
         }
 
         private bool CanExecuteRemoveCommand(object obj)

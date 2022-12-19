@@ -49,6 +49,20 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private int _width;
         public int Width { get => _width; set { _width = value; OnPropertyChanged(); } }
 
+        private float _chatOpacity;
+        public float ChatOpacity
+        {
+            get
+            {
+                return _chatOpacity;
+            }
+            set
+            {
+                _chatOpacity = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public UserModel CurrentUser
         {
@@ -157,6 +171,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 chats.UpdateInfo();
                 FilterView = null;
                 Width = 1220;
+                ChatOpacity = 0;
             });
             MyOrdersCommand = new ViewModelCommand(o =>
             {
@@ -170,11 +185,23 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 FilterView = null;
                 Width = 1220;
             });
+
+
+
             CloseApplicationCommand = new ViewModelCommand(o =>
             {
                 userChat.Disconnect();
                 Application.Current.Shutdown();
             });
+
+            /// <summary>
+            /// Filter triggers
+            /// </summary>
+            filter.OnApplyFilter += (FilterStruct filter) =>
+            {
+                orders.UpdateInfo(filter);
+            };
+
             /// <summary>
             /// OrdersList triggers
             /// </summary>
@@ -188,13 +215,13 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             selectedOrder.OnRespondOrder += (int id) =>
             {
                 userChat.CreateChatById(id);
-
                 Width = 1220;
             };
             selectedOrder.OnGoBack += () =>
             {
                 orders.UpdateInfo();
                 CurrentView = orders;
+                FilterView = filter;
                 Width = 1220;
             };
             selectedOrder.OnCheckProfile += (int id) =>
@@ -203,13 +230,23 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 CurrentView = someOnesAccaunt;
                 Width = 1220;
             };
+
+            /// <summary>
+            /// SomeOnesUser Accaunt triggers
+            /// </summary>
+            someOnesAccaunt.OnWriteMessage += (int id) =>
+            {
+                userChat.CreateChatByTopic("Диалог", id);
+                Width = 1220;
+            };
+
             /// <summary>
             /// User Chat triggers
             /// </summary>
             chats.OnSelectChat += (int id) =>
             {
 
-                userChat.UpdateInfo(id);
+                userChat.UpdateInfo(id,true);
                 CurrentView = userChat;
                 Width = 1220;
 
@@ -226,6 +263,17 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 someOnesAccaunt.UpdateInfo(id);
                 CurrentView = someOnesAccaunt;
                 Width = 1220;
+            };
+            userChat.OnNewMessage += (int chatId) =>
+            {
+                if (CurrentView!=chats)
+                {
+                    ChatOpacity = 1;
+                }
+                else
+                {
+                    ChatOpacity = 0;
+                }
             };
             /// <summary>
             /// User Accaunt triggers
@@ -291,7 +339,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userOrder.OnConfirmRespond += (int Userid,int OrderId) =>
             {
                 int chatId=userChat.SendConfirmMessage(Userid, OrderId);
-                userChat.UpdateInfo(chatId);
+                userChat.UpdateInfo(chatId,false);
                 CurrentView = userChat;
             };
             addOrders.OnGoBack += () =>

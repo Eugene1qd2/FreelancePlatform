@@ -77,6 +77,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         public event Action OnGoBack;
         public event Action<int> OnCheckProfile;
+        public event Action<int> OnNewMessage;
 
         private string _inputText;
         public string InputText
@@ -153,7 +154,12 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                                 if (line.Contains("Update^"))
                                 {
                                     int id = int.Parse(line.Split()[1]);
-                                    UpdateInfo(id);
+                                    if (CurrentChat == null || CurrentChat.ChatId != id)
+                                    {
+                                        OnNewMessage(id);
+                                    }
+                                    UpdateInfo(id, false);
+
                                 }
                             }
                         }
@@ -195,10 +201,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             OnGoBack();
         }
-        
+
         private void ExecuteCheckProfileCommand(object obj)
         {
-            OnCheckProfile(CurrentChat.User.Id);
+            OnCheckProfile((int)obj);
         }
 
         private void ExecuteSendMessageCommand(object obj)
@@ -224,13 +230,20 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             }
         }
 
-        public void UpdateInfo(int id)
+        public void UpdateInfo(int id, bool isSelect)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            if (isSelect)
             {
                 CurrentChat = chatRepository.GetById(id);
-                Messages = chatRepository.GetMessagesByChatId(CurrentChat.ChatId);
-            });
+            }
+            if (CurrentChat == null || CurrentChat.ChatId == id)
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    CurrentChat = chatRepository.GetById(id);
+                    Messages = chatRepository.GetMessagesByChatId(CurrentChat.ChatId);
+                });
+            }
 
         }
 
@@ -241,6 +254,17 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             {
                 sw.AutoFlush = true;
                 sw.WriteLine($"{CurrentUser.Id} Create^ <{order.Topic}> {order.UserId} {CurrentUser.Id} msg:Здравствуйте, меня заинтересовало ваше предложение о работе, не могли бы мы обсудить нюансы?");
+                System.Threading.Tasks.Task.Delay(10).Wait();
+            }
+            catch { }
+        }
+
+        public void CreateChatByTopic(string Topic,int UserId)
+        {
+            try
+            {
+                sw.AutoFlush = true;
+                sw.WriteLine($"{CurrentUser.Id} Create^ <{Topic}> {UserId} {CurrentUser.Id} msg:Здравствуйте, не могли бы мы обсудить некоторые вопросы?");
                 System.Threading.Tasks.Task.Delay(10).Wait();
             }
             catch { }

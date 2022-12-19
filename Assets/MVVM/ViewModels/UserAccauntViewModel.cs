@@ -251,6 +251,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private void ExecuteConfirmAboutMeCommand(object obj)
         {
             userRepository.ChangeAboutMeByUsername(CurrentUser);
+            ModalWindow modal = new ModalWindow("Информация сохранена!");
+            modal.ShowDialog();
             IsChanged = false;
         }
 

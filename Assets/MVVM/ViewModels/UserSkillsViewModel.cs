@@ -130,6 +130,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
         private void ExecuteDeclineChangeSkillsCommand(object obj)
         {
+            ModalWindow modal = new ModalWindow("Ваши навыки сохранены!");
+            modal.ShowDialog();
             OnGoBack();
         }
 

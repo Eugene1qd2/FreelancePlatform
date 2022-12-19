@@ -163,6 +163,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     Link = Link
                 }, CurrentUser);
             }
+            ModalWindow modal = new ModalWindow("Информация о сертификате сохранена!");
+            modal.ShowDialog();
             OnConfirm();
         }
 

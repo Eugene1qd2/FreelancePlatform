@@ -93,6 +93,16 @@
                              FontSize="30"
                              Grid.Row="3"
                           Command="{Binding ChatsCommand}"/>
+            <TextBlock Grid.Row="3"
+                       Text="!"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right"
+                       FontSize="44"
+                       FontWeight="Medium" 
+                       FontFamily="Montserrat"
+                       Foreground="#232931"
+                       Margin="40,0"
+                       Opacity="{Binding ChatOpacity}"/>
             <Image Width="50" Height="50" Source="Assets\Images\Order.png" Grid.Row="4" HorizontalAlignment="Left" Margin="30,0"/>
             <RadioButton Content="Мои заказы" 
                              Style="{StaticResource BarRadioButton}" 

@@ -161,6 +161,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     StartYear = int.Parse(YearStart)
                 }, CurrentUser));
             }
+            ModalWindow modal = new ModalWindow("Информация об образовании сохранена!");
+            modal.ShowDialog();
             OnConfirm();
         }
         private bool CanExecuteConfirmCommand(object obj)

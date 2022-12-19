@@ -12,14 +12,16 @@ using System.Windows.Media.Imaging;
 
 namespace FreelancePlatform.Assets.MVVM.ViewModels
 {
+    public struct FilterStruct
+    {
+        public string search;
+        public int budget;
+    }
     class FilterViewModel : ViewModelBase
     {
-        public ICommand DeclineCommand { get; set; }
-        public ICommand ConfirmCommand { get; set; }
-        public ICommand AddSkillsCommand { get; set; }
+        public ICommand ApplyFilterCommand { get; set; }
 
-
-        public event Action OnConfirm;
+        public event Action<FilterStruct> OnApplyFilter;
 
         private float _opacity;
         public float Opacity
@@ -34,15 +36,48 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-                
+
+        private string _inputText;
+
+        public string InputText
+        {
+            get { return _inputText; }
+            set
+            {
+                _inputText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _budget;
+
+        public int Budget
+        {
+            get { return _budget; }
+            set
+            {
+                _budget = value;
+                OnPropertyChanged();
+            }
+        }
+
         private IOrderRepository orderRepository;
         private IOrderSkillRepository orderSkillsRepository;
-
 
         public FilterViewModel()
         {
             orderRepository = new OrderRepository();
             orderSkillsRepository = new OrderSkillRepository();
+
+            ApplyFilterCommand = new ViewModelCommand(ExecuteApplyFilterCommand);
+        }
+        private void ExecuteApplyFilterCommand(object obj)
+        {
+            OnApplyFilter(new FilterStruct()
+            {
+                budget = _budget,
+                search = _inputText,
+            });
         }
     }
 }

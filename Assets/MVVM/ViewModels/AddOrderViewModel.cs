@@ -66,6 +66,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     Type = "Создание проекта";
                     LessonCount = 0;
                     WorkPlace = string.Empty;
+                    Address = string.Empty;
+                    IsAddress = false;
                 }
                 OnPropertyChanged();
             }
@@ -333,7 +335,6 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         }
         private void ExecuteConfirmCommand(object obj)
         {
-            Console.WriteLine(IdOrder);
             if (IdOrder == -1)
             {
                 OrderModel order = new OrderModel()
@@ -349,7 +350,6 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     IsAccepted = IsAccepted,
                     OrderSkills = OrderSkills,
                 };
-                Console.WriteLine(orderRepository.Add(order, CurrentUser));
             }
             else
             {
@@ -369,6 +369,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 };
                 orderRepository.Edit(order);
             }
+            ModalWindow modal = new ModalWindow("Информация о заказе сохранена!");
+            modal.ShowDialog();
             OnConfirm();
         }
         private void ExecuteAddSkillsCommand(object obj)

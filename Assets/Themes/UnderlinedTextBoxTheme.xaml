@@ -20,7 +20,7 @@
                                      FontFamily="Montserrat"
                                      FontWeight="Medium"
                                      x:Name="textBox"
-                                     Text="{Binding InputText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding InputText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                      MaxLength="{TemplateBinding MaxLength}"/>
 
                             <TextBlock IsHitTestVisible="False"

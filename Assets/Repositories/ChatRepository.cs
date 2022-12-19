@@ -97,10 +97,10 @@ namespace FreelancePlatform.Assets.Repositories
             return chat;
         }
 
-        public List<ChatModel> GetByUserId(int userId)
+        public ObservableCollection<ChatModel> GetByUserId(int userId)
         {
             IUserRepository userRepository = new UserRepository();
-            List<ChatModel> chats = new List<ChatModel>();
+            ObservableCollection<ChatModel> chats = new ObservableCollection<ChatModel>();
             using (var connection = GetConnection())
             using (var command = new MySqlCommand())
             {

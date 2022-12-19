@@ -96,6 +96,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         private void ExecuteRespondCommand(object obj)
         {
             orderRepository.AddResponse(CurrentOrder, CurrentUser);
+            ModalWindow modal = new ModalWindow("Ваш отклик сохранён!\nЧат создан!");
+            modal.ShowDialog();
             OnRespondOrder(CurrentOrder.Id);
             isResponded = true;
         }

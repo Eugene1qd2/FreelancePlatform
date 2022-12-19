@@ -164,8 +164,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                         else
                         {
                             ErrorMessage = "Такого пользователя не существует!";
+                            failureCount = 0;
+                            return;
                         }
-
                     }
                     ErrorMessage = "Неправильный логин или пароль!";
                 }

@@ -3,8 +3,10 @@ using FreelancePlatform.Assets.Repositories;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -13,7 +15,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     class ChatsViewModel: ViewModelBase
     {
         private UserModel _currentUser;
-        private List<ChatModel> _chats;
+        private ObservableCollection<ChatModel> _chats;
 
 
         IUserRepository userRepository;
@@ -34,7 +36,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                 OnPropertyChanged();
             }
         }
-        public List<ChatModel> Chats
+        public ObservableCollection<ChatModel> Chats
         {
             get
             {
@@ -50,7 +52,6 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
         {
             Chats = chatRepository.GetByUserId(CurrentUser.Id);
         }
-
         public ChatsViewModel()
         {
         }

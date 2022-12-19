@@ -161,6 +161,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     Post = Post
                 }, CurrentUser);
             }
+            ModalWindow modal = new ModalWindow("Информация об опыте работы сохранена!");
+            modal.ShowDialog();
             OnConfirm();
         }
         private bool CanExecuteConfirmCommand(object obj)

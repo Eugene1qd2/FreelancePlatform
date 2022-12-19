@@ -28,7 +28,7 @@ namespace FreelancePlatform.Assets.MVVM.Models
             }
         }
 
-        public bool isSomethingNew { get; set; }
+        public float isSomethingNew { get; set; }
         public UserModel User { get; set; }
 
         public ChatModel()

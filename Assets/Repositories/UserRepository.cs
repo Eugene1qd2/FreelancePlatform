@@ -141,7 +141,7 @@ namespace FreelancePlatform.Assets.Repositories
 
         public UserModel GetByUsername(string username)
         {
-            UserModel user = new UserModel();
+            UserModel user =null;
             using (var connection = GetConnection())
             using (var command = new MySqlCommand())
             {

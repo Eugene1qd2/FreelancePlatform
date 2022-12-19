@@ -3,10 +3,12 @@ using FreelancePlatform.Assets.MVVM.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Ubiety.Dns.Core;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace FreelancePlatform.Assets.Repositories
 {
@@ -220,9 +222,9 @@ namespace FreelancePlatform.Assets.Repositories
             return responses;
         }
 
-        public List<OrderModel> GetAll()
+        public ObservableCollection<OrderModel> GetAll()
         {
-            List<OrderModel> orders = new List<OrderModel>();
+            ObservableCollection<OrderModel> orders = new ObservableCollection<OrderModel>();
             using (var connection = GetConnection())
             using (var command = new MySqlCommand())
             {
@@ -293,6 +295,126 @@ namespace FreelancePlatform.Assets.Repositories
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public ObservableCollection<OrderModel> GetByUsername(string username)
+        {
+            IUserRepository userRepository = new UserRepository();
+            UserModel userModel = userRepository.GetByUsername(username);
+            if (userModel != null)
+            {
+                ObservableCollection<OrderModel> orders = new ObservableCollection<OrderModel>();
+                using (var connection = GetConnection())
+                using (var command = new MySqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = $"select * from ads where ID_user={userModel.Id} limit 50;";
+                    MySqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        string address = (reader.GetValue(5) ?? string.Empty).ToString();
+                        orders.Add(new OrderModel()
+                        {
+                            Id = Convert.ToInt32(reader.GetValue(0)),
+                            UserId = Convert.ToInt32(reader.GetValue(1)),
+                            Topic = (string)reader.GetValue(2),
+                            Type = (string)reader.GetValue(3),
+                            WorkPlace = (string)reader.GetValue(4),
+                            Address = address,
+                            Budget = Convert.ToInt32(reader.GetValue(6)),
+                            NonrelDate = Convert.ToDateTime(reader.GetValue(7)),
+                            LessonCount = Convert.ToInt32(reader.GetValue(8)),
+                            Goal = (string)reader.GetValue(9),
+                            IsAccepted = Convert.ToBoolean(reader.GetValue(10)),
+                        });
+                    }
+                }
+                return orders;
+            }
+            else
+            {
+                return new ObservableCollection<OrderModel>();
+            }
+        }
+
+        public ObservableCollection<OrderModel> GetBySkills(string[] skills)
+        {
+            IOrderSkillRepository orderSkillRepository = new OrderSkillRepository();
+            ObservableCollection<OrderModel> orders = new ObservableCollection<OrderModel>();
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = $"select * from ads limit 50;";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string address = (reader.GetValue(5) ?? string.Empty).ToString();
+                    OrderModel model = new OrderModel()
+                    {
+                        Id = Convert.ToInt32(reader.GetValue(0)),
+                        UserId = Convert.ToInt32(reader.GetValue(1)),
+                        Topic = (string)reader.GetValue(2),
+                        Type = (string)reader.GetValue(3),
+                        WorkPlace = (string)reader.GetValue(4),
+                        Address = address,
+                        Budget = Convert.ToInt32(reader.GetValue(6)),
+                        NonrelDate = Convert.ToDateTime(reader.GetValue(7)),
+                        LessonCount = Convert.ToInt32(reader.GetValue(8)),
+                        Goal = (string)reader.GetValue(9),
+                        IsAccepted = Convert.ToBoolean(reader.GetValue(10)),
+                    };
+                    model.OrderSkills = orderSkillRepository.GetByOrderId(model.Id);
+                    bool brk = true;
+                    foreach (string skill in skills)
+                    {
+                        if (model.OrderSkills.Count(x => x.Skill.Contains(skill))<=0)
+                        {
+                            brk=false;
+                            break;
+                        }
+                    }
+                    if (brk)
+                    {
+                        orders.Add(model);
+                    }
+                }
+            }
+            return orders;
+        }
+
+        public ObservableCollection<OrderModel> GetByTopic(string search)
+        {
+            ObservableCollection<OrderModel> orders = new ObservableCollection<OrderModel>();
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = $"select * from ads where Topic Like '%{search}%' limit 50;";
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string address = (reader.GetValue(5) ?? string.Empty).ToString();
+                    orders.Add(new OrderModel()
+                    {
+                        Id = Convert.ToInt32(reader.GetValue(0)),
+                        UserId = Convert.ToInt32(reader.GetValue(1)),
+                        Topic = (string)reader.GetValue(2),
+                        Type = (string)reader.GetValue(3),
+                        WorkPlace = (string)reader.GetValue(4),
+                        Address = address,
+                        Budget = Convert.ToInt32(reader.GetValue(6)),
+                        NonrelDate = Convert.ToDateTime(reader.GetValue(7)),
+                        LessonCount = Convert.ToInt32(reader.GetValue(8)),
+                        Goal = (string)reader.GetValue(9),
+                        IsAccepted = Convert.ToBoolean(reader.GetValue(10)),
+                    });
+                }
+            }
+            return orders;
         }
     }
 }
