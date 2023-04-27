@@ -27,12 +27,12 @@ namespace FreelancePlatform.Assets.Repositories
                     command.Parameters.Add("@endyear", MySqlDbType.Int32).Value = education.EndYear;
                     command.Connection = connection;
                     command.ExecuteNonQuery();
-                }
+            }
                 catch
                 {
-                    return ErrorStatus.RegistrationError;
-                }
+                return ErrorStatus.RegistrationError;
             }
+        }
             return ErrorStatus.NoError;
         }
 

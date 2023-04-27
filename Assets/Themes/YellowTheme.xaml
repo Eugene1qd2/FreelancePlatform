@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="MainLightColorBrush" Color="#ffc300"/>
+    <SolidColorBrush x:Key="MainDarkColorHalfBrush" Color="#77ffc300"/>
+    <LinearGradientBrush x:Key="LeftPanelGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#ffc300"  Offset="0"></GradientStop>
+        <GradientStop Color="#77ffc300" Offset="1"></GradientStop>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ErrorBrush" Color="#dd1616"/>
+</ResourceDictionary>

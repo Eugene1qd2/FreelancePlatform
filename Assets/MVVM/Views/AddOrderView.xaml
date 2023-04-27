@@ -56,15 +56,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Topic, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                            <TextBox.CaretBrush>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="#D9D9D9" Offset="0" />
-                                        <GradientStop Color="#4ECCA3" Offset="1" />
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </TextBox.CaretBrush>
+                         Text="{Binding Topic, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 CaretBrush="#D9D9D9">
                         </TextBox>
                     </StackPanel>
                 </Border>
@@ -153,15 +146,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Address, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                            <TextBox.CaretBrush>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="#D9D9D9" Offset="0" />
-                                        <GradientStop Color="#4ECCA3" Offset="1" />
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </TextBox.CaretBrush>
+                         Text="{Binding Address, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 CaretBrush="#D9D9D9">
                         </TextBox>
                     </StackPanel>
                 </Border>
@@ -187,15 +173,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Budget, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                            <TextBox.CaretBrush>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="#D9D9D9" Offset="0" />
-                                        <GradientStop Color="#4ECCA3" Offset="1" />
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </TextBox.CaretBrush>
+                         Text="{Binding Budget, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 CaretBrush="#D9D9D9">
                         </TextBox>
                     </StackPanel>
                 </Border>
@@ -228,15 +207,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding LessonCount, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                            <TextBox.CaretBrush>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="#D9D9D9" Offset="0" />
-                                        <GradientStop Color="#4ECCA3" Offset="1" />
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </TextBox.CaretBrush>
+                         Text="{Binding LessonCount, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                 CaretBrush="#D9D9D9">
                         </TextBox>
                     </StackPanel>
                 </Border>
@@ -263,15 +235,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Nonreldate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                            <TextBox.CaretBrush>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="#D9D9D9" Offset="0" />
-                                        <GradientStop Color="#4ECCA3" Offset="1" />
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </TextBox.CaretBrush>
+                         Text="{Binding Nonreldate, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                              CaretBrush="#D9D9D9">
                         </extend:MaskedTextBox>
                     </StackPanel>
                 </Border>
@@ -296,15 +261,8 @@
                          VerticalAlignment="Bottom"
                          Text="{Binding Goal, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                               TextWrapping="Wrap"
-                                 AcceptsReturn="True">
-                            <TextBox.CaretBrush>
-                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStop Color="#D9D9D9" Offset="0" />
-                                        <GradientStop Color="#4ECCA3" Offset="1" />
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </TextBox.CaretBrush>
+                                 AcceptsReturn="True"
+                                 CaretBrush="#D9D9D9">
                         </TextBox>
                     </Border>
                 </StackPanel>

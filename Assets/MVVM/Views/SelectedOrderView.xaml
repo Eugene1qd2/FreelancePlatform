@@ -34,7 +34,7 @@
                 <TextBlock FontFamily="Montserrat"
                                FontSize="30"
                                FontWeight="Medium"
-                               Foreground="#4ECCA3"
+                               Foreground="{DynamicResource MainLightColorBrush}"
                                Text="{Binding CurrentOrder.Topic, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                VerticalAlignment="Center"
                                HorizontalAlignment="Left"

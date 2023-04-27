@@ -50,15 +50,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Organization, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.CaretBrush>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Color="#D9D9D9" Offset="0" />
-                                    <GradientStop Color="#4ECCA3" Offset="1" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </TextBox.CaretBrush>
+                         Text="{Binding Organization, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         CaretBrush="#D9D9D9">
                     </TextBox>
                 </StackPanel>
             </Border>
@@ -82,15 +75,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Skill, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.CaretBrush>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Color="#D9D9D9" Offset="0" />
-                                    <GradientStop Color="#4ECCA3" Offset="1" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </TextBox.CaretBrush>
+                         Text="{Binding Skill, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             CaretBrush="#D9D9D9">
                     </TextBox>
                 </StackPanel>
             </Border>
@@ -114,15 +100,8 @@
                          BorderThickness="0"
                          Padding="30,10,30,5"
                          VerticalAlignment="Bottom"
-                         Text="{Binding Link, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                        <TextBox.CaretBrush>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <LinearGradientBrush.GradientStops>
-                                    <GradientStop Color="#D9D9D9" Offset="0" />
-                                    <GradientStop Color="#4ECCA3" Offset="1" />
-                                </LinearGradientBrush.GradientStops>
-                            </LinearGradientBrush>
-                        </TextBox.CaretBrush>
+                         Text="{Binding Link, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             CaretBrush="#D9D9D9">
                     </TextBox>
                 </StackPanel>
             </Border>

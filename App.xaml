@@ -16,6 +16,10 @@
                 <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\ChatItem.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\RedTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\BlueTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\YellowTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\DefaultTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <!--Main controls-->

@@ -8,13 +8,11 @@
              d:DesignHeight="825" d:DesignWidth="840"
              BorderThickness="0">
     <Grid>
-        <TextBlock Text="Пока здесь ничего нет!" 
-                   FontSize="40"
-                   FontWeight="SemiBold"
-                   FontFamily="Montserrat"
-                   VerticalAlignment="Top"
-                   Margin="0,50"
-                   HorizontalAlignment="Center"
-                   Foreground="#D9D9D9"/>
+        <StackPanel Margin="100">
+            <Button  Width="200" Height="60" Content="Стандартная тема" FontSize="20"  Style="{StaticResource WhiteButton}" Margin="10" Click="Button_Click"/>
+            <Button  Width="200" Height="60" Content="Красная тема" FontSize="20"  Style="{StaticResource WhiteButton}" Margin="10" Click="Button_Click_1"/>
+            <Button  Width="200" Height="60" Content="Синяя тема" FontSize="20"  Style="{StaticResource WhiteButton}" Margin="10" Click="Button_Click_2"/>
+            <Button  Width="200" Height="60" Content="Желтая тема" FontSize="20"  Style="{StaticResource WhiteButton}" Margin="10" Click="Button_Click_3"/>
+        </StackPanel>
     </Grid>
 </UserControl>

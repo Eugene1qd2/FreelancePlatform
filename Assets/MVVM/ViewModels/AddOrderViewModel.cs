@@ -350,6 +350,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
                     IsAccepted = IsAccepted,
                     OrderSkills = OrderSkills,
                 };
+                orderRepository.Add(order,CurrentUser);
             }
             else
             {

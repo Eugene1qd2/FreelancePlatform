@@ -38,7 +38,7 @@
                     <TextBlock FontFamily="Montserrat"
                                FontSize="24"
                                FontWeight="Medium"
-                               Foreground="#4ECCA3"
+                               Foreground="{DynamicResource MainLightColorBrush}"
                                Text="{Binding CurrentChat.Topic}"/>
                     <TextBlock FontFamily="Montserrat"
                                FontSize="20"

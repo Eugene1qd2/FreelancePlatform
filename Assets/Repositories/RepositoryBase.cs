@@ -12,7 +12,7 @@ namespace FreelancePlatform.Assets.Repositories
         private readonly string _connectionString;
         public RepositoryBase()
         {
-            _connectionString = "server=localhost;username=root;database=freelanceplatformdb;password=root;uid=root;charset=utf8";
+            _connectionString = "server=localhost;username=root;database=freelanceplatformdb;uid=root;charset=utf8";
         }
         protected MySqlConnection GetConnection()
         {

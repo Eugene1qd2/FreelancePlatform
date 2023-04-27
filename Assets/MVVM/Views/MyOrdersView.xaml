@@ -45,7 +45,7 @@
                                                    FontWeight="Medium"
                                                    FontFamily="Montserrat"
                                                    FontSize="30"
-                                                   Foreground="#4ECCA3"
+                                                   Foreground="{DynamicResource MainLightColorBrush}"
                                                    Height="auto"
                                                    VerticalAlignment="Center"
                                  HorizontalAlignment="Left"/>
