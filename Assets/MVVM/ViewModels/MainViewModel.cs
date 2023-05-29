@@ -20,6 +20,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
     public class MainViewModel : ViewModelBase
     {
 
+        private ProfileViewModel profile { get; set; }
+        private UserStatsViewModel userStats { get; set; }
+        private UserReviewsViewModel userReviews { get; set; }
         private UserAccauntViewModel userAccaunt { get; set; }
         private ApplicationSettingsViewModel applicationSettings { get; set; }
         private MyOrdersViewModel myOrders { get; set; }
@@ -150,11 +153,56 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             someOnesAccaunt = new SomeOnesAccauntViewModel();
             selectedOrder = new SelectedOrderViewModel(CurrentUser);
             userChat = new UserChatViewModel(CurrentUser);
-            CurrentView = userAccaunt;
+            profile = new ProfileViewModel(CurrentUser);
+            userStats = new UserStatsViewModel(CurrentUser);
+            userReviews=new UserReviewsViewModel(CurrentUser);
+
+            //Profile Commands
+            profile.UserAccauntCommand = new ViewModelCommand(o =>
+            {
+                Width = 1220;
+                if (profile.CurrentUser.Id==profile.CurrentProfile.Id)
+                {
+                    userAccaunt.UpdateInfo();
+                    profile.CurrentView = userAccaunt;
+                    CurrentView = profile;
+                }
+                else
+                {
+                    someOnesAccaunt.UpdateInfo(profile.CurrentProfile.Id);
+                    profile.CurrentProfile = someOnesAccaunt.CurrentUser;
+                    profile.CurrentView = someOnesAccaunt;
+                    CurrentView = profile;
+                }
+                
+            });
+            profile.UserStatsCommand = new ViewModelCommand(o =>
+            {
+                Width = 1220;
+                userStats.CurrentUser = profile.CurrentProfile;
+                userStats.UpdateInfo();
+                profile.CurrentView = userStats;
+                CurrentView = profile;
+            });
+            profile.UserReviewsCommand = new ViewModelCommand(o =>
+            {
+                Width = 1220;
+                userReviews.UpdateInfo(profile.CurrentProfile.Id);
+                profile.CurrentView = userReviews;
+                CurrentView = profile;
+            });
+
+            //CurrentView = userAccaunt;
+            profile.CurrentView = userAccaunt;
+            CurrentView = profile;
+
             UserAccauntCommand = new ViewModelCommand(o =>
             {
-                CurrentView = userAccaunt;
+                profile.CurrentProfile= profile.CurrentUser;
+                profile.CurrentView = userAccaunt;
+                profile.ProfileCheck = true;
                 userAccaunt.UpdateInfo();
+                CurrentView = profile;
                 FilterView = null;
                 Width = 1220;
             });
@@ -176,6 +224,7 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             MyOrdersCommand = new ViewModelCommand(o =>
             {
                 CurrentView = myOrders;
+                myOrders.UpdateInfo();
                 FilterView = null;
                 Width = 1220;
             });
@@ -227,7 +276,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             selectedOrder.OnCheckProfile += (int id) =>
             {
                 someOnesAccaunt.UpdateInfo(id);
-                CurrentView = someOnesAccaunt;
+                profile.CurrentProfile = someOnesAccaunt.CurrentUser;
+                profile.CurrentView = someOnesAccaunt;
+                profile.ProfileCheck = true;
+                CurrentView = profile;
                 Width = 1220;
             };
 
@@ -261,7 +313,10 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userChat.OnCheckProfile += (int id) =>
             {
                 someOnesAccaunt.UpdateInfo(id);
-                CurrentView = someOnesAccaunt;
+                profile.CurrentProfile = someOnesAccaunt.CurrentUser;
+                profile.CurrentView = someOnesAccaunt;
+                profile.ProfileCheck = true;
+                CurrentView = profile;
                 Width = 1220;
             };
             userChat.OnNewMessage += (int chatId) =>
@@ -384,8 +439,11 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             userOrder.OnCheckProfile += (int id) =>
             {
                 someOnesAccaunt.UpdateInfo(id);
+                profile.CurrentProfile = someOnesAccaunt.CurrentUser;
+                profile.CurrentView = someOnesAccaunt;
+                profile.ProfileCheck = true;
+                CurrentView = profile;
                 Width = 1220;
-                CurrentView = someOnesAccaunt;
             };
             /// <summary>
             /// Education triggers
@@ -405,8 +463,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
             educations.OnGoBack += () =>
             {
-                CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                profile.CurrentView = userAccaunt;
+                CurrentView = profile; 
                 Width = 1220;
             };
 
@@ -443,8 +502,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
             workExps.OnGoBack += () =>
             {
-                CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                profile.CurrentView = userAccaunt;
+                CurrentView = profile;
                 Width = 1220;
             };
 
@@ -481,8 +541,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
             certificates.OnGoBack += () =>
             {
-                CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                profile.CurrentView = userAccaunt;
+                CurrentView = profile;
                 Width = 1220;
             };
 
@@ -505,8 +566,9 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
             /// </summary>
             userSkills.OnGoBack += () =>
             {
-                CurrentView = userAccaunt;
                 userAccaunt.UpdateInfo();
+                profile.CurrentView = userAccaunt;
+                CurrentView = profile;
                 Width = 1220;
             };
         }

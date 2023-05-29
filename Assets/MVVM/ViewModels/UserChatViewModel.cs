@@ -162,8 +162,8 @@ namespace FreelancePlatform.Assets.MVVM.ViewModels
 
                                 }
                             }
-                        }
-                        System.Threading.Tasks.Task.Delay(10).Wait();
+                        } 
+                        System.Threading.Tasks.Task.Delay(100).Wait();
                     }
                     catch (Exception e)
                     {

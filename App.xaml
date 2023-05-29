@@ -11,9 +11,11 @@
                 <ResourceDictionary Source="Assets\Themes\OpacityHoverTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\UnderlinedTextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\WhiteButtonTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\WhiteTextTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\TransparentButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RoundedButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\BarRadioButtonTheme.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\TopMenuRadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\ChatItem.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RedTheme.xaml"/>
@@ -23,6 +25,18 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!--Main controls-->
+            <DataTemplate DataType="{x:Type viewModel:ProfileViewModel}">
+                <view:ProfileView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:UserStatsViewModel}">
+                <view:UserStatsView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:UserReviewsViewModel}">
+                <view:UserReviewsView/>
+            </DataTemplate>
+            
             <DataTemplate DataType="{x:Type viewModel:UserAccauntViewModel}">
                 <view:UserAccountView/>
             </DataTemplate>

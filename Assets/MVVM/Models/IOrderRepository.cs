@@ -22,5 +22,6 @@ namespace FreelancePlatform.Assets.MVVM.Models
         ObservableCollection<OrderModel> GetByUsername(string username);
         ObservableCollection<OrderModel> GetBySkills(string[] skills);
         ObservableCollection<OrderModel> GetByTopic(string search);
+        ObservableCollection<ResponseModel> GetOrdersInWorkById(int id);
     }
 }

@@ -14,7 +14,7 @@
                         <StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="{Binding Sender.Username}"
-                                   Foreground="#4ECCA3"
+                                   Foreground="{DynamicResource MainLightColorBrush}"
                                    FontSize="12"
                                    FontWeight="Bold"
                                    FontFamily="Montserrat"

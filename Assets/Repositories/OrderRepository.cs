@@ -222,6 +222,31 @@ namespace FreelancePlatform.Assets.Repositories
             return responses;
         }
 
+        public List<ResponseModel> GetResponsesByUserId(int userId)
+        {
+            List<ResponseModel> responses = new List<ResponseModel>();
+            using (var connection = GetConnection())
+            using (var command = new MySqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "select * from responses where ID_user=@orderId";
+                command.Parameters.Add("@orderId", MySqlDbType.Int32).Value = userId;
+                MySqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    responses.Add(new ResponseModel()
+                    {
+                        AdId = Convert.ToInt32(reader.GetValue(0)),
+                        UserId = Convert.ToInt32(reader.GetValue(1)),
+                        IsAccepted = Convert.ToBoolean(reader.GetValue(2)),
+                    });
+                }
+            }
+            responses.ForEach(x => x.UpdateResponse());
+            return responses;
+        }
+
         public ObservableCollection<OrderModel> GetAll()
         {
             ObservableCollection<OrderModel> orders = new ObservableCollection<OrderModel>();
@@ -415,6 +440,14 @@ namespace FreelancePlatform.Assets.Repositories
                 }
             }
             return orders;
+        }
+
+        public ObservableCollection<ResponseModel> GetOrdersInWorkById(int id)
+        {
+            List<ResponseModel> responses = GetResponsesByUserId(id);
+            responses.RemoveAll(x => x.IsAcceptedF = false);
+            ObservableCollection<ResponseModel> res = new ObservableCollection<ResponseModel>(responses);
+            return res; 
         }
     }
 }

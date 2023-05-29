@@ -31,6 +31,15 @@ namespace FreelancePlatform.Assets.MVVM.Models
         public List<OrderSkillModel> OrderSkills { get; set; }
         public List<ResponseModel> Responses { get; set; }
 
+        public string TopicString
+        {
+            get
+            {
+                return "Тема заказа: " + Topic;
+            }
+            set { }
+        }
+
         public string GoalString
         {
             get

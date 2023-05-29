@@ -127,15 +127,8 @@
                                  Background="Transparent"
                                  BorderThickness="0"
                                  BorderBrush="Transparent"
-                                 AcceptsReturn="True">
-                                    <TextBox.CaretBrush>
-                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                            <LinearGradientBrush.GradientStops>
-                                                <GradientStop Color="#232931" Offset="0" />
-                                                <GradientStop Color="#4ECCA3" Offset="1" />
-                                            </LinearGradientBrush.GradientStops>
-                                        </LinearGradientBrush>
-                                    </TextBox.CaretBrush>
+                                 AcceptsReturn="True"
+                                         CaretBrush="#232931">
                                 </TextBox>
                             </Border>
                         </Grid>

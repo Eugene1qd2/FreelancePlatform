@@ -134,7 +134,12 @@
     <Compile Include="Assets\Controls\PasswordBoxMy.xaml.cs">
       <DependentUpon>PasswordBoxMy.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\Controls\StarRating.xaml.cs">
+      <DependentUpon>StarRating.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Models\IChatRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\IReviewRepository.cs" />
+    <Compile Include="Assets\MVVM\Models\IUserStatsRepositoryRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IOrderRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IOrderSkillRepository.cs" />
     <Compile Include="Assets\MVVM\Models\ChatModel.cs" />
@@ -148,6 +153,7 @@
     <Compile Include="Assets\MVVM\Models\IEducationRepository.cs" />
     <Compile Include="Assets\MVVM\Models\IUserRepository.cs" />
     <Compile Include="Assets\MVVM\Models\MessageModel.cs" />
+    <Compile Include="Assets\MVVM\Models\ReviewModel.cs" />
     <Compile Include="Assets\MVVM\Models\UserModel.cs" />
     <Compile Include="Assets\MVVM\Models\OrderSkillModel.cs" />
     <Compile Include="Assets\MVVM\Models\UserSkillModel.cs" />
@@ -164,6 +170,10 @@
     <Compile Include="Assets\MVVM\ViewModels\OrderSkillsViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\SomeOnesAccauntViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\SelectedOrderViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\ProfileViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserReviewsViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserStatsViewModel.cs" />
+    <Compile Include="Assets\MVVM\ViewModels\UserChatViewModel - Копировать.cs" />
     <Compile Include="Assets\MVVM\ViewModels\UserOrderViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\UserChatViewModel.cs" />
     <Compile Include="Assets\MVVM\ViewModels\WorkExpViewModel.cs" />
@@ -215,6 +225,15 @@
     <Compile Include="Assets\MVVM\Views\SelectedOrderView.xaml.cs">
       <DependentUpon>SelectedOrderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Assets\MVVM\Views\ProfileView.xaml.cs">
+      <DependentUpon>ProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\UserReviewsView.xaml.cs">
+      <DependentUpon>UserReviewsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Assets\MVVM\Views\UserStatsView.xaml.cs">
+      <DependentUpon>UserStatsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Assets\MVVM\Views\UserOrderView.xaml.cs">
       <DependentUpon>UserOrderView.xaml</DependentUpon>
     </Compile>
@@ -235,6 +254,8 @@
     </Compile>
     <Compile Include="Assets\Repositories\CertificateRepository.cs" />
     <Compile Include="Assets\Repositories\ChatRepository.cs" />
+    <Compile Include="Assets\Repositories\ReviewRepository.cs" />
+    <Compile Include="Assets\Repositories\UserStatsRepository.cs" />
     <Compile Include="Assets\Repositories\OrderRepository.cs" />
     <Compile Include="Assets\Repositories\OrderSkillRepository.cs" />
     <Compile Include="Assets\Repositories\UserSkillRepository.cs" />
@@ -256,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Assets\Controls\PasswordBoxMy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Controls\StarRating.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -311,6 +336,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Assets\MVVM\Views\ProfileView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\UserReviewsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\MVVM\Views\UserStatsView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Assets\MVVM\Views\UserOrderView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -334,6 +371,14 @@
     <Page Include="Assets\MVVM\Views\UserSkillsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Assets\Themes\TopMenuRadioButtonTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Assets\Themes\WhiteTextTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Assets\Themes\YellowTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
