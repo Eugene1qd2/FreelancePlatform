@@ -69,5 +69,10 @@ namespace FreelancePlatform.Assets.MVVM.Views
             Application.Current.Resources.MergedDictionaries.Remove(BlueTheme);
             Application.Current.Resources.MergedDictionaries.Remove(DefaultTheme);
         }
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+            System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
+        }
     }
 }

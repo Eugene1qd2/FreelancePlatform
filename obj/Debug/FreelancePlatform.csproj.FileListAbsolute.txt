@@ -482,3 +482,4 @@ C:\Users\qawse\OneDrive\Рабочий стол\Диплом\Application\Freelan
 C:\Users\qawse\OneDrive\Рабочий стол\Диплом\Application\FreelancePlatform\obj\Debug\Assets\MVVM\Views\UserReviewsView.baml
 C:\Users\qawse\OneDrive\Рабочий стол\Диплом\Application\FreelancePlatform\obj\Debug\Assets\Controls\StarRating.g.cs
 C:\Users\qawse\OneDrive\Рабочий стол\Диплом\Application\FreelancePlatform\obj\Debug\Assets\Controls\StarRating.baml
+C:\Users\qawse\OneDrive\Рабочий стол\Диплом\Application\FreelancePlatform\obj\Debug\Assets\Themes\ColorThemeRadioButtonTheme.baml

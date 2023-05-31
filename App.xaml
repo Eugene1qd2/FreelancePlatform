@@ -18,6 +18,7 @@
                 <ResourceDictionary Source="Assets\Themes\TopMenuRadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\ChatItem.xaml"/>
+                <ResourceDictionary Source="Assets\Themes\ColorThemeRadioButtonTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\RedTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\BlueTheme.xaml"/>
                 <ResourceDictionary Source="Assets\Themes\YellowTheme.xaml"/>
